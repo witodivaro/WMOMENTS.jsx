@@ -10,7 +10,6 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
-import SCREENS from '../../config/screens';
 import COLORS from '../../constants/colors';
 
 import {addLocation} from '../../redux/locations/locations.slice';
@@ -26,8 +25,14 @@ const NewLocationScreen = () => {
   };
 
   const saveLocationHandler = () => {
-    dispatch(addLocation(titleValue, null, imageUri));
-    navigation.navigate(SCREENS.Locations.name);
+    dispatch(
+      addLocation({
+        title: titleValue,
+        location: null,
+        imagePath: imageUri,
+      }),
+    );
+    navigation.navigate('locations');
   };
 
   const imageTakenHandler = (uri) => {

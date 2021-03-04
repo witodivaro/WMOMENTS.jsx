@@ -15,7 +15,6 @@ const ImageSelector = ({onImageTaken}) => {
         quality: 0.5,
       },
       (response) => {
-        console.log(response);
         if (response.errorCode) {
           let errorMessage = '';
           switch (response.errorCode) {

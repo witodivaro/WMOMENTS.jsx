@@ -1,22 +1,21 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
-import SCREENS from '../../config/screens';
 import Colors from '../../constants/colors';
 
 const LocationItem = ({item}) => {
-  const {title, location, image} = item;
+  const {title, location, imagePath} = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
-    navigation.navigate(SCREENS.LocationDetails.name, {
+    navigation.navigate('location-details', {
       locationTitle: title,
     });
   };
 
   return (
     <TouchableOpacity onPress={itemClickHandler} style={styles.locationItem}>
-      <Image style={styles.image} source={{uri: image}} />
+      <Image style={styles.image} source={{uri: imagePath}} />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.location}>{location}</Text>

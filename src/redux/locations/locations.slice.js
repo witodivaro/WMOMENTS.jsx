@@ -1,32 +1,42 @@
-import {createAction, createSlice, nanoid} from '@reduxjs/toolkit';
+import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
+import {Platform} from 'react-native';
+import RNFS from 'react-native-fs';
 
 const initialState = {
   list: [],
 };
 
-export const addLocation = createAction(
+export const addLocation = createAsyncThunk(
   'locations/addLocation',
-  (title, location, image) => ({
-    payload: {
+  async ({title, location, imagePath}) => {
+    const fileName = imagePath.split('/').pop();
+    const newPath =
+      Platform.OS === 'android'
+        ? 'file://'
+        : '' + RNFS.DocumentDirectoryPath + `/${fileName}`;
+
+    await RNFS.moveFile(imagePath, newPath);
+
+    return {
       title,
       location,
-      image,
+      imagePath: newPath,
       id: nanoid(),
-    },
-  }),
+    };
+  },
 );
 
 const locationsSlice = createSlice({
   name: 'locations',
   initialState,
   extraReducers: {
-    [addLocation]: (state, {payload}) => {
-      const {title, location, image, id} = payload;
+    [addLocation.fulfilled]: (state, {payload}) => {
+      const {title, location, imagePath, id} = payload;
 
       state.list.push({
         title,
         location,
-        image,
+        imagePath,
         id,
       });
     },
