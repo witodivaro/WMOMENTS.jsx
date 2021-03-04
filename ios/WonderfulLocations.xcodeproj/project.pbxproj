@@ -19,6 +19,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9D3CB0EF989CACA241A973D5 /* libPods-WonderfulLocations-WonderfulLocationsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B458BBA76FA8334C2AF8FA1 /* libPods-WonderfulLocations-WonderfulLocationsTests.a */; };
 		9D8D67D49D36DA74184482AD /* libPods-WonderfulLocations-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65312A86D2E483B27E6087B3 /* libPods-WonderfulLocations-tvOSTests.a */; };
+		D8417A3925F142AA0050195F /* www in Resources */ = {isa = PBXBuildFile; fileRef = D8417A3825F142AA0050195F /* www */; };
 		F62F74517030C86AE20E7934 /* libPods-WonderfulLocations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C755382E2A460E49D421FF8 /* libPods-WonderfulLocations.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,7 @@
 		BCF5289237CA5A99F8C4798A /* Pods-WonderfulLocations-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOS/Pods-WonderfulLocations-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BD76E79E829875AC1D982B3D /* Pods-WonderfulLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations/Pods-WonderfulLocations.debug.xcconfig"; sourceTree = "<group>"; };
 		C4AAEFFD954B7573350B6394 /* Pods-WonderfulLocations-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOSTests/Pods-WonderfulLocations-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		D8417A3825F142AA0050195F /* www */ = {isa = PBXFileReference; lastKnownFileType = folder; name = www; path = ../www; sourceTree = "<group>"; };
 		DECAE610AC8D71C7625C5295 /* libPods-WonderfulLocations-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonderfulLocations-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -134,13 +136,13 @@
 				988C58BB41A348AD47A1621B /* Pods-WonderfulLocations-tvOSTests.debug.xcconfig */,
 				C4AAEFFD954B7573350B6394 /* Pods-WonderfulLocations-tvOSTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
 		13B07FAE1A68108700A75B9A /* WonderfulLocations */ = {
 			isa = PBXGroup;
 			children = (
+				D8417A3825F142AA0050195F /* www */,
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
@@ -341,6 +343,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D8417A3925F142AA0050195F /* www in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);

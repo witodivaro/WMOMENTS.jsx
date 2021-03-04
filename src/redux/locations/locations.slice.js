@@ -1,6 +1,7 @@
 import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
 import {Platform} from 'react-native';
 import RNFS from 'react-native-fs';
+import {insertLocation} from '../../db/db';
 
 const initialState = {
   list: [],
@@ -8,21 +9,32 @@ const initialState = {
 
 export const addLocation = createAsyncThunk(
   'locations/addLocation',
-  async ({title, location, imagePath}) => {
+  async ({title, location, imagePath}, {rejectWithValue}) => {
     const fileName = imagePath.split('/').pop();
     const newPath =
-      Platform.OS === 'android'
-        ? 'file://'
-        : '' + RNFS.DocumentDirectoryPath + `/${fileName}`;
+      (Platform.OS === 'android' ? 'file://' : '') +
+      RNFS.DocumentDirectoryPath +
+      `/${fileName}`;
 
-    await RNFS.moveFile(imagePath, newPath);
+    try {
+      await RNFS.moveFile(imagePath, newPath);
+      const dbResult = await insertLocation({
+        title,
+        location: 'Mock location',
+        imagePath: newPath,
+        lat: 15.6,
+        lng: 12.3,
+      });
 
-    return {
-      title,
-      location,
-      imagePath: newPath,
-      id: nanoid(),
-    };
+      return {
+        title,
+        location,
+        imagePath: newPath,
+        id: dbResult.insertId.toString(),
+      };
+    } catch (error) {
+      rejectWithValue(error);
+    }
   },
 );
 

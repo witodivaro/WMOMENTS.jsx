@@ -10,6 +10,16 @@ import React from 'react';
 import {SafeAreaView, StyleSheet} from 'react-native';
 
 import PlacesStackNavigator from './src/navigators/stack/places/places.navigator';
+import {init} from './src/db/db';
+
+init()
+  .then((res) => {
+    console.log('Initialized database');
+  })
+  .catch((err) => {
+    console.log('Database initializing failed');
+    console.log(err);
+  });
 
 const App = () => {
   return (
