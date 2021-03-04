@@ -1,42 +1,9 @@
-import {createAsyncThunk, createSlice, nanoid} from '@reduxjs/toolkit';
-import {Platform} from 'react-native';
-import RNFS from 'react-native-fs';
-import {insertLocation} from '../../db/db';
+import {createSlice} from '@reduxjs/toolkit';
+import {addLocation, fetchLocationsFromDB} from './locations.thunks';
 
 const initialState = {
   list: [],
 };
-
-export const addLocation = createAsyncThunk(
-  'locations/addLocation',
-  async ({title, location, imagePath}, {rejectWithValue}) => {
-    const fileName = imagePath.split('/').pop();
-    const newPath =
-      (Platform.OS === 'android' ? 'file://' : '') +
-      RNFS.DocumentDirectoryPath +
-      `/${fileName}`;
-
-    try {
-      await RNFS.moveFile(imagePath, newPath);
-      const dbResult = await insertLocation({
-        title,
-        location: 'Mock location',
-        imagePath: newPath,
-        lat: 15.6,
-        lng: 12.3,
-      });
-
-      return {
-        title,
-        location,
-        imagePath: newPath,
-        id: dbResult.insertId.toString(),
-      };
-    } catch (error) {
-      rejectWithValue(error);
-    }
-  },
-);
 
 const locationsSlice = createSlice({
   name: 'locations',
@@ -51,6 +18,10 @@ const locationsSlice = createSlice({
         imagePath,
         id,
       });
+    },
+    [fetchLocationsFromDB.fulfilled]: (state, {payload}) => {
+      const {items} = payload;
+      state.list = items;
     },
   },
 });

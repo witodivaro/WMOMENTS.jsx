@@ -12,7 +12,7 @@ import {useDispatch} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import COLORS from '../../constants/colors';
 
-import {addLocation} from '../../redux/locations/locations.slice';
+import {addLocation} from '../../redux/locations/locations.thunks';
 
 const NewLocationScreen = () => {
   const dispatch = useDispatch();

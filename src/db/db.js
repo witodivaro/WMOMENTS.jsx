@@ -42,3 +42,21 @@ export const insertLocation = ({title, imagePath, location, lat, lng}) => {
   });
   return promise;
 };
+
+export const fetchCollections = () => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        'SELECT * FROM locations',
+        [],
+        (_, result) => {
+          resolve(result);
+        },
+        (_, err) => {
+          reject(err);
+        },
+      );
+    });
+  });
+  return promise;
+};

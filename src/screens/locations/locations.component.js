@@ -6,19 +6,23 @@ import {useEffect} from 'react';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import COLORS from '../../constants/colors';
-import {useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {selectLocationsList} from '../../redux/locations/locations.selectors';
 import LocationItem from '../../components/location-item/location-item.component';
+import {fetchLocationsFromDB} from '../../redux/locations/locations.thunks';
 
 const renderLocationItem = ({item}) => {
   return <LocationItem item={item} />;
 };
 
 const LocationsScreen = () => {
+  const dispatch = useDispatch();
   const navigation = useNavigation();
   const locations = useSelector(selectLocationsList);
 
   useEffect(() => {
+    dispatch(fetchLocationsFromDB());
+
     navigation.setOptions({
       headerRight: () => (
         <HeaderButtons HeaderButtonComponent={EvilHeaderButton}>
@@ -31,7 +35,7 @@ const LocationsScreen = () => {
         </HeaderButtons>
       ),
     });
-  }, []);
+  }, [dispatch]);
 
   return (
     <View>
