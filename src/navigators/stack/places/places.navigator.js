@@ -4,6 +4,8 @@ import {Platform} from 'react-native';
 
 import SCREENS from '../../../config/screens';
 import COLORS from '../../../constants/colors';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import EvilHeaderButton from '../../../components/evil-header-button/evil-header-button.component';
 
 const PlacesStack = createStackNavigator();
 
