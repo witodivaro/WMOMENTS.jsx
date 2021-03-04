@@ -10,6 +10,7 @@ import {
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
+import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
 import {addLocation} from '../../redux/locations/locations.thunks';
@@ -44,6 +45,7 @@ const NewLocationScreen = () => {
       <View style={styles.form}>
         <ImageSelector onImageTaken={imageTakenHandler} />
         <Text style={styles.label}>Title</Text>
+        <LocationPicker />
         <TextInput
           onChangeText={titleChangeHandler}
           value={titleValue}
