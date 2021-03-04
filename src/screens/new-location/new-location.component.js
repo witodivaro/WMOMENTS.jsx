@@ -24,7 +24,7 @@ const NewLocationScreen = () => {
   };
 
   const saveLocationHandler = () => {
-    dispatch(addLocation(titleValue));
+    dispatch(addLocation(titleValue, null, null));
     navigation.navigate(SCREENS.Locations.name);
   };
 

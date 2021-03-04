@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {FlatList, StyleSheet, Text, View} from 'react-native';
 import Icon from 'react-native-vector-icons/EvilIcons';
 import {useNavigation} from '@react-navigation/native';
 import {useEffect} from 'react';
@@ -7,9 +7,17 @@ import SCREENS from '../../config/screens';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import COLORS from '../../constants/colors';
+import {useSelector} from 'react-redux';
+import {selectLocationsList} from '../../redux/locations/locations.selectors';
+import LocationItem from '../../components/location-item/location-item.component';
+
+const renderLocationItem = ({item}) => {
+  return <LocationItem item={item} />;
+};
 
 const LocationsScreen = () => {
   const navigation = useNavigation();
+  const locations = useSelector(selectLocationsList);
 
   useEffect(() => {
     navigation.setOptions({
@@ -28,7 +36,7 @@ const LocationsScreen = () => {
 
   return (
     <View>
-      <Text>Locations screen</Text>
+      <FlatList data={locations} renderItem={renderLocationItem} />
     </View>
   );
 };
