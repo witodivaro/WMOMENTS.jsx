@@ -23,6 +23,8 @@ target 'WonderfulLocations' do
   end
 end
 
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 target 'WonderfulLocations-tvOS' do
   # Pods for WonderfulLocations-tvOS
 

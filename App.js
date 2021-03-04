@@ -7,19 +7,22 @@
  */
 
 import React from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
+
+import PlacesStackNavigator from './src/navigators/stack/places/places.navigator';
 
 const App = () => {
-  return <Text>App</Text>;
+  return (
+    <SafeAreaView style={styles.screen}>
+      <PlacesStackNavigator />
+    </SafeAreaView>
+  );
 };
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  screen: {
+    flex: 1,
+  },
+});
 
 export default App;
