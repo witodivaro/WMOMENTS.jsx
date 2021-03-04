@@ -34,5 +34,4 @@ const locationsSlice = createSlice({
 });
 
 export const {} = locationsSlice.actions;
-console.log(locationsSlice.actions);
 export default locationsSlice.reducer;

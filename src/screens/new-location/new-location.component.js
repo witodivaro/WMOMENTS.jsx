@@ -9,6 +9,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
+import ImageSelector from '../../components/image-selector/image-selector.component';
 import SCREENS from '../../config/screens';
 import COLORS from '../../constants/colors';
 
@@ -18,19 +19,25 @@ const NewLocationScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const [titleValue, setTitleValue] = useState('');
+  const [imageUri, setImageUri] = useState('');
 
   const titleChangeHandler = (text) => {
     setTitleValue(text);
   };
 
   const saveLocationHandler = () => {
-    dispatch(addLocation(titleValue, null, null));
+    dispatch(addLocation(titleValue, null, imageUri));
     navigation.navigate(SCREENS.Locations.name);
+  };
+
+  const imageTakenHandler = (uri) => {
+    setImageUri(uri);
   };
 
   return (
     <ScrollView>
       <View style={styles.form}>
+        <ImageSelector onImageTaken={imageTakenHandler} />
         <Text style={styles.label}>Title</Text>
         <TextInput
           onChangeText={titleChangeHandler}
@@ -40,7 +47,8 @@ const NewLocationScreen = () => {
         <Button
           title="Save location"
           onPress={saveLocationHandler}
-          color={COLORS.primary}></Button>
+          color={COLORS.primary}
+        />
       </View>
     </ScrollView>
   );
