@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit';
+import {createSlice, current} from '@reduxjs/toolkit';
 import {addLocation, fetchLocationsFromDB} from './locations.thunks';
 
 const initialState = {
@@ -12,7 +12,7 @@ const locationsSlice = createSlice({
     [addLocation.fulfilled]: (state, {payload}) => {
       const {title, lat, lng, imagePath, id} = payload;
 
-      state.list.push({
+      state.list.unshift({
         title,
         lat,
         lng,
@@ -21,7 +21,7 @@ const locationsSlice = createSlice({
       });
     },
     [addLocation.rejected]: (state, {payload}) => {
-      console.log('ADDLOCATION REJECT: ', payload);
+      console.log('ADD LOCATION REJECT: ', payload);
     },
     [fetchLocationsFromDB.fulfilled]: (state, {payload}) => {
       const {items} = payload;

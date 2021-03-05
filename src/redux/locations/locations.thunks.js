@@ -2,18 +2,21 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Platform} from 'react-native';
 import {fetchCollections, insertLocation} from '../../db/db';
 import RNFS from 'react-native-fs';
+import {clearLocation} from '../new-location/new-location.slice';
 
 export const addLocation = createAsyncThunk(
   'locations/addLocation',
-  async ({title, location, imagePath}, {rejectWithValue}) => {
+  async ({title, location, imagePath}, {rejectWithValue, dispatch}) => {
     const fileName = imagePath ? imagePath.split('/').pop() : null;
     const newPath = fileName
       ? (Platform.OS === 'android' ? 'file://' : '') +
         RNFS.DocumentDirectoryPath +
         `/${fileName}`
-      : `https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/No_image_available.svg/600px-No_image_available.svg.png`;
+      : 'https://vetdom.ru/local/templates/vetdom-services/img/not-found.png';
 
     const now = new Date().toISOString();
+
+    dispatch(clearLocation());
 
     try {
       if (fileName) {
@@ -36,7 +39,6 @@ export const addLocation = createAsyncThunk(
         date: now,
       };
     } catch (error) {
-      console.log('lol error: ', error);
       rejectWithValue(error);
     }
   },

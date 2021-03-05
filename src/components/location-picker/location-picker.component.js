@@ -73,7 +73,9 @@ const LocationPicker = () => {
   };
 
   const pickOnMapHandler = () => {
-    navigation.navigate('map');
+    navigation.navigate('map', {
+      selectedLocation: selectedLocation,
+    });
   };
 
   const renderedPositionFallback = isFetching ? (

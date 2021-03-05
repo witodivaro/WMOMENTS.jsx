@@ -5,12 +5,13 @@ import Colors from '../../constants/colors';
 import moment from 'moment-mini';
 
 const LocationItem = ({item}) => {
-  const {title, imagePath, date} = item;
+  const {id, title, imagePath, date} = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
     navigation.navigate('location-details', {
       locationTitle: title,
+      locationId: id,
     });
   };
 

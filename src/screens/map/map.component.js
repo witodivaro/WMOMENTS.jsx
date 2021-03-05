@@ -1,24 +1,27 @@
 import React, {useState} from 'react';
-import {Button, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import COLORS from '../../constants/colors';
-import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
 import {setLocation} from '../../redux/new-location/new-location.slice';
 
-const MapScreen = ({navigation}) => {
+const MapScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
-  const selectedLocation = useSelector(selectNewLocationSelectedLocation);
+  const selectedLocation = route.params?.selectedLocation || null;
+  const unchangable = route.params?.unchangable || false;
+
   const [unsavedSelectedLocation, setUnsavedSelectedLocation] = useState(null);
 
   const mapRegion = {
     latitude: unsavedSelectedLocation?.lat || selectedLocation?.lat || 37.78,
     longitude: unsavedSelectedLocation?.lng || selectedLocation?.lng || -122.43,
-    latitudeDelta: 0.0922,
-    longitudeDelta: 0.0421,
+    latitudeDelta: 0.01,
+    longitudeDelta: 0.01,
   };
 
   const selectLocationHandler = (e) => {
+    if (unchangable) return;
+
     const {longitude, latitude} = e.nativeEvent.coordinate;
     setUnsavedSelectedLocation({
       lng: longitude,
