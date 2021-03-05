@@ -62,6 +62,7 @@ const ImageSelector = ({onImageTaken}) => {
 const styles = StyleSheet.create({
   imagePicker: {
     alignItems: 'center',
+    width: '100%',
   },
   imagePreview: {
     width: '100%',

@@ -39,7 +39,11 @@ const LocationsScreen = () => {
 
   return (
     <View>
-      <FlatList data={locations} renderItem={renderLocationItem} />
+      <FlatList
+        data={locations}
+        keyExtractor={(item) => item.id.toString()}
+        renderItem={renderLocationItem}
+      />
     </View>
   );
 };

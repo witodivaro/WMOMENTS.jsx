@@ -7,6 +7,7 @@ import {
   View,
   TextInput,
   ScrollView,
+  Alert,
 } from 'react-native';
 import {useDispatch} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
@@ -20,16 +21,31 @@ const NewLocationScreen = () => {
   const navigation = useNavigation();
   const [titleValue, setTitleValue] = useState('');
   const [imageUri, setImageUri] = useState('');
+  const [position, setPosition] = useState(null);
 
   const titleChangeHandler = (text) => {
     setTitleValue(text);
   };
 
   const saveLocationHandler = () => {
+    if (!titleValue) {
+      Alert.alert('Invalid title.', 'Input the valid location title!', {
+        text: 'OK',
+      });
+      return;
+    }
+
+    if (!position) {
+      Alert.alert('Select geolocation.', 'No geolocation selected.', {
+        text: 'OK',
+      });
+      return;
+    }
+
     dispatch(
       addLocation({
         title: titleValue,
-        location: null,
+        location: position,
         imagePath: imageUri,
       }),
     );
@@ -40,12 +56,19 @@ const NewLocationScreen = () => {
     setImageUri(uri);
   };
 
+  const positionPickedHandler = ({lat, lng}) => {
+    setPosition({
+      lat,
+      lng,
+    });
+  };
+
   return (
     <ScrollView>
       <View style={styles.form}>
         <ImageSelector onImageTaken={imageTakenHandler} />
+        <LocationPicker onPositionPicked={positionPickedHandler} />
         <Text style={styles.label}>Title</Text>
-        <LocationPicker />
         <TextInput
           onChangeText={titleChangeHandler}
           value={titleValue}
@@ -66,6 +89,7 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   label: {
+    marginTop: 20,
     fontSize: 18,
     marginBottom: 15,
   },

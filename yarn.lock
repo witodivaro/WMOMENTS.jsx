@@ -5130,6 +5130,11 @@
   dependencies:
     "minimist" "^1.2.5"
 
+"moment-mini@^2.24.0":
+  "integrity" "sha512-9ARkWHBs+6YJIvrIp0Ik5tyTTtP9PoV0Ssu2Ocq5y9v8+NOOpWiRshAp8c4rZVWTOe+157on/5G+zj5pwIQFEQ=="
+  "resolved" "https://registry.npmjs.org/moment-mini/-/moment-mini-2.24.0.tgz"
+  "version" "2.24.0"
+
 "ms@2.0.0":
   "integrity" "sha1-VgiurfwAvmwpAd9fmGF4jeDVl8g="
   "resolved" "https://registry.yarnpkg.com/ms/-/ms-2.0.0.tgz"

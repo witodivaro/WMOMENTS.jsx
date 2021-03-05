@@ -2,9 +2,10 @@ import {useNavigation} from '@react-navigation/native';
 import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
+import moment from 'moment-mini';
 
 const LocationItem = ({item}) => {
-  const {title, location, imagePath} = item;
+  const {title, imagePath, date} = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
@@ -18,7 +19,7 @@ const LocationItem = ({item}) => {
       <Image style={styles.image} source={{uri: imagePath}} />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.location}>{location}</Text>
+        <Text style={styles.date}>{moment(date).fromNow()}</Text>
       </View>
     </TouchableOpacity>
   );

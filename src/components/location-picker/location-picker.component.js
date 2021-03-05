@@ -12,7 +12,7 @@ import Geolocation from 'react-native-geolocation-service';
 import {useState} from 'react/cjs/react.development';
 import MapPreview from '../map-preview/map-preview.component';
 
-const LocationPicker = () => {
+const LocationPicker = ({onPositionPicked}) => {
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
@@ -41,6 +41,11 @@ const LocationPicker = () => {
             lng: position.coords.longitude,
           });
           setIsFetching(false);
+
+          onPositionPicked({
+            lat: position.coords.latitude,
+            lng: position.coords.longitude,
+          });
         },
         (error) => {
           setError(error.message);
@@ -76,7 +81,11 @@ const LocationPicker = () => {
 export default LocationPicker;
 
 const styles = StyleSheet.create({
-  locationPicker: {},
+  locationPicker: {
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20,
+  },
   mapPreview: {
     marginBottom: 10,
     width: '100%',

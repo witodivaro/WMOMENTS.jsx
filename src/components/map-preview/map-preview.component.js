@@ -1,14 +1,12 @@
 import React from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
-import ENV from '../../config/env';
+import {Image, StyleSheet, View} from 'react-native';
 
 const MapPreview = ({style, location, children}) => {
-  let imagePreviewUrl;
+  let imagePreviewUrl = null;
 
   if (location) {
-    imagePreviewUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${location.lat},${location.lng}&zoom=13&size=400x200&maptype=roadmap&markers=color:red%7Clabel:C%7C${location.lat},${location.lng}&key=${ENV.GOOGLE_API_KEY}`;
+    imagePreviewUrl = `https://static-maps.yandex.ru/1.x/?ll=${location.lng},${location.lat}&size=450,450&z=16&l=map&pt=${location.lng},${location.lat},vkbkm,`;
   }
-  console.log(imagePreviewUrl);
 
   return (
     <View style={[styles.mapPreview, style]}>

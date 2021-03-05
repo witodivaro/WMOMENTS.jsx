@@ -10,14 +10,18 @@ const locationsSlice = createSlice({
   initialState,
   extraReducers: {
     [addLocation.fulfilled]: (state, {payload}) => {
-      const {title, location, imagePath, id} = payload;
+      const {title, lat, lng, imagePath, id} = payload;
 
       state.list.push({
         title,
-        location,
+        lat,
+        lng,
         imagePath,
         id,
       });
+    },
+    [addLocation.rejected]: (state, {payload}) => {
+      console.log('ADDLOCATION REJECT: ', payload);
     },
     [fetchLocationsFromDB.fulfilled]: (state, {payload}) => {
       const {items} = payload;
