@@ -72,6 +72,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderWidth: 1,
     borderColor: '#ccc',
+    elevation: 5,
+    shadowOpacity: 0.26,
+    shadowRadius: 5,
+    backgroundColor: '#eee',
   },
   image: {
     width: '100%',

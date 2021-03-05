@@ -1,7 +1,7 @@
 import React from 'react';
-import {Image, StyleSheet, View} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity} from 'react-native';
 
-const MapPreview = ({style, location, children}) => {
+const MapPreview = ({style, location, children, onPress}) => {
   let imagePreviewUrl = null;
 
   if (location) {
@@ -9,24 +9,29 @@ const MapPreview = ({style, location, children}) => {
   }
 
   return (
-    <View style={[styles.mapPreview, style]}>
+    <TouchableOpacity onPress={onPress} style={[styles.mapPreview, style]}>
       {imagePreviewUrl ? (
         <Image style={styles.mapImage} source={{uri: imagePreviewUrl}} />
       ) : (
         children
       )}
-    </View>
+    </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   mapPreview: {
     borderWidth: 1,
+    borderColor: '#ccc',
     justifyContent: 'center',
     alignItems: 'center',
     height: 200,
     width: '100%',
     marginBottom: 10,
+    shadowRadius: 5,
+    shadowOpacity: 0.12,
+    elevation: 5,
+    backgroundColor: '#eee',
   },
   mapImage: {
     width: '100%',

@@ -10,5 +10,10 @@ module.exports = {
         },
       },
     },
+    'react-native-maps': {
+      platforms: {
+        android: null,
+      },
+    },
   },
 };

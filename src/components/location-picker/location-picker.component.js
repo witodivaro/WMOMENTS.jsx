@@ -11,11 +11,13 @@ import COLORS from '../../constants/colors';
 import Geolocation from 'react-native-geolocation-service';
 import {useState} from 'react/cjs/react.development';
 import MapPreview from '../map-preview/map-preview.component';
+import {useNavigation} from '@react-navigation/core';
 
 const LocationPicker = ({onPositionPicked}) => {
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const navigation = useNavigation();
 
   const getGeolocationHandler = () => {
     const getPermission = async () => {
@@ -58,6 +60,10 @@ const LocationPicker = ({onPositionPicked}) => {
     getLocation();
   };
 
+  const pickOnMapHandler = () => {
+    navigation.navigate('map');
+  };
+
   const renderedPositionFallback = isFetching ? (
     <ActivityIndicator />
   ) : error ? (
@@ -68,12 +74,21 @@ const LocationPicker = ({onPositionPicked}) => {
 
   return (
     <View style={styles.locationPicker}>
-      <MapPreview location={position}>{renderedPositionFallback}</MapPreview>
-      <Button
-        title="Get user geolocation"
-        onPress={getGeolocationHandler}
-        color={COLORS.primary}
-      />
+      <MapPreview onPress={pickOnMapHandler} location={position}>
+        {renderedPositionFallback}
+      </MapPreview>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Get user geolocation"
+          onPress={getGeolocationHandler}
+          color={COLORS.primary}
+        />
+        <Button
+          title="Pick on map"
+          onPress={pickOnMapHandler}
+          color={COLORS.primary}
+        />
+      </View>
     </View>
   );
 };
@@ -95,5 +110,10 @@ const styles = StyleSheet.create({
     marginBottom: 15,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  buttonContainer: {
+    flexDirection: 'row',
+    width: '100%',
+    justifyContent: 'space-around',
   },
 });
