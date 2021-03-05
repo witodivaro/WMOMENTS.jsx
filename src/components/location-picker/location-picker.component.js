@@ -12,12 +12,27 @@ import Geolocation from 'react-native-geolocation-service';
 import {useState} from 'react/cjs/react.development';
 import MapPreview from '../map-preview/map-preview.component';
 import {useNavigation} from '@react-navigation/core';
+import {useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
+import {setLocation} from '../../redux/new-location/new-location.slice';
 
-const LocationPicker = ({onPositionPicked}) => {
+const LocationPicker = () => {
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
+  const selectedLocation = useSelector(selectNewLocationSelectedLocation);
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (selectedLocation) {
+      setPosition({
+        lat: selectedLocation.lat,
+        lng: selectedLocation.lng,
+      });
+    }
+  }, [selectedLocation]);
 
   const getGeolocationHandler = () => {
     const getPermission = async () => {
@@ -38,16 +53,13 @@ const LocationPicker = ({onPositionPicked}) => {
 
       Geolocation.getCurrentPosition(
         (position) => {
-          setPosition({
+          const newLocation = {
             lat: position.coords.latitude,
             lng: position.coords.longitude,
-          });
-          setIsFetching(false);
+          };
 
-          onPositionPicked({
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          });
+          dispatch(setLocation(newLocation));
+          setIsFetching(false);
         },
         (error) => {
           setError(error.message);

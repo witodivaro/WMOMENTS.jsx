@@ -1,5 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
+import {useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,19 +10,30 @@ import {
   ScrollView,
   Alert,
 } from 'react-native';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
 import {addLocation} from '../../redux/locations/locations.thunks';
+import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
 
 const NewLocationScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const selectedLocation = useSelector(selectNewLocationSelectedLocation);
   const [titleValue, setTitleValue] = useState('');
   const [imageUri, setImageUri] = useState('');
-  const [position, setPosition] = useState(null);
+  const [position, setPosition] = useState('');
+
+  useEffect(() => {
+    if (selectedLocation) {
+      setPosition({
+        lat: selectedLocation.lat,
+        lng: selectedLocation.lng,
+      });
+    }
+  }, [selectedLocation]);
 
   const titleChangeHandler = (text) => {
     setTitleValue(text);
@@ -56,18 +68,11 @@ const NewLocationScreen = () => {
     setImageUri(uri);
   };
 
-  const positionPickedHandler = ({lat, lng}) => {
-    setPosition({
-      lat,
-      lng,
-    });
-  };
-
   return (
     <ScrollView>
       <View style={styles.form}>
         <ImageSelector onImageTaken={imageTakenHandler} />
-        <LocationPicker onPositionPicked={positionPickedHandler} />
+        <LocationPicker />
         <Text style={styles.label}>Title</Text>
         <TextInput
           onChangeText={titleChangeHandler}
