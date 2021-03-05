@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import MapView, {PROVIDER_GOOGLE} from 'react-native-maps';
+import MapView from 'react-native-maps';
 
 const MapScreen = () => {
   const mapRegion = {
@@ -12,11 +12,7 @@ const MapScreen = () => {
 
   return (
     <View style={styles.mapContainer}>
-      <MapView
-        style={styles.map}
-        provider={PROVIDER_GOOGLE}
-        region={mapRegion}
-      />
+      <MapView style={styles.map} region={mapRegion} />
     </View>
   );
 };
