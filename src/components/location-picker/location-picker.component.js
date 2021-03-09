@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -9,10 +9,8 @@ import {
 } from 'react-native';
 import COLORS from '../../constants/colors';
 import Geolocation from 'react-native-geolocation-service';
-import {useState} from 'react/cjs/react.development';
 import MapPreview from '../map-preview/map-preview.component';
 import {useNavigation} from '@react-navigation/core';
-import {useEffect} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
 import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
 import {setLocation} from '../../redux/new-location/new-location.slice';

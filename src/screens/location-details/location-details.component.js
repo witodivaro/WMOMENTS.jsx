@@ -155,8 +155,12 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   modalActions: {
+    marginTop: 20,
     justifyContent: 'center',
     flexDirection: 'row',
+  },
+  modalAction: {
+    marginHorizontal: 10,
   },
 });
 
