@@ -12,7 +12,7 @@ const LocationDetailsScreen = ({route}) => {
   const navigation = useNavigation();
 
   const location = useSelector(createLocationByIdSelector(locationId));
-  const {date, id, imagePath, lat, lng, title} = location;
+  const {date, imagePath, lat, lng} = location;
 
   return (
     <ScrollView style={styles.screen}>

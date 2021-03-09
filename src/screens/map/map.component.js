@@ -9,8 +9,11 @@ const MapScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
   const selectedLocation = route.params?.selectedLocation || null;
   const unchangable = route.params?.unchangable || false;
+  const [touched, setTouched] = useState(false);
 
-  const [unsavedSelectedLocation, setUnsavedSelectedLocation] = useState(null);
+  const [unsavedSelectedLocation, setUnsavedSelectedLocation] = useState(
+    selectedLocation,
+  );
 
   const mapRegion = {
     latitude: unsavedSelectedLocation?.lat || selectedLocation?.lat || 37.78,
@@ -22,6 +25,7 @@ const MapScreen = ({navigation, route}) => {
   const selectLocationHandler = (e) => {
     if (unchangable) return;
 
+    setTouched(true);
     const {longitude, latitude} = e.nativeEvent.coordinate;
     setUnsavedSelectedLocation({
       lng: longitude,
@@ -34,22 +38,22 @@ const MapScreen = ({navigation, route}) => {
     navigation.navigate('new-location');
   };
 
-  const renderedMarker =
-    unsavedSelectedLocation || selectedLocation ? (
-      <Marker
-        title="Selected location"
-        coordinate={{
-          latitude: unsavedSelectedLocation?.lat || selectedLocation.lat,
-          longitude: unsavedSelectedLocation?.lng || selectedLocation.lng,
-        }}
-      />
-    ) : null;
-
-  const renderedSaveButton = unsavedSelectedLocation ? (
-    <TouchableOpacity style={styles.button} onPress={saveLocationHandler}>
-      <Text style={styles.text}>Save</Text>
-    </TouchableOpacity>
+  const renderedMarker = unsavedSelectedLocation ? (
+    <Marker
+      title="Selected location"
+      coordinate={{
+        latitude: unsavedSelectedLocation.lat,
+        longitude: unsavedSelectedLocation.lng,
+      }}
+    />
   ) : null;
+
+  const renderedSaveButton =
+    unsavedSelectedLocation && touched ? (
+      <TouchableOpacity style={styles.button} onPress={saveLocationHandler}>
+        <Text style={styles.text}>Save</Text>
+      </TouchableOpacity>
+    ) : null;
 
   return (
     <View style={styles.mapContainer}>
