@@ -12,7 +12,7 @@ export const addLocation = createAsyncThunk(
       ? (Platform.OS === 'android' ? 'file://' : '') +
         RNFS.DocumentDirectoryPath +
         `/${fileName}`
-      : 'https://vetdom.ru/local/templates/vetdom-services/img/not-found.png';
+      : '';
 
     const now = new Date().toISOString();
 

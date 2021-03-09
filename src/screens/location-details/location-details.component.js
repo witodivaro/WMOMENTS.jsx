@@ -19,6 +19,7 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
 import {removeLocation} from '../../redux/locations/locations.thunks';
+const NoImage = require('../../assets/no-image.png');
 
 const LocationDetailsScreen = ({route}) => {
   const {locationId} = route.params;
@@ -59,9 +60,13 @@ const LocationDetailsScreen = ({route}) => {
       <View style={styles.locationDetails}>
         <Image
           style={styles.image}
-          source={{
-            uri: imagePath,
-          }}
+          source={
+            imagePath
+              ? {
+                  uri: imagePath,
+                }
+              : NoImage
+          }
           resizeMode="contain"
         />
         <MapPreview

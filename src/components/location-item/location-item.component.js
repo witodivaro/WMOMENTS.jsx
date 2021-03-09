@@ -4,6 +4,8 @@ import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
 
+const NoImage = require('../../assets/no-image.png');
+
 const LocationItem = ({item}) => {
   const {id, title, imagePath, date} = item;
   const navigation = useNavigation();
@@ -17,7 +19,10 @@ const LocationItem = ({item}) => {
 
   return (
     <TouchableOpacity onPress={itemClickHandler} style={styles.locationItem}>
-      <Image style={styles.image} source={{uri: imagePath}} />
+      <Image
+        style={styles.image}
+        source={imagePath ? {uri: imagePath} : NoImage}
+      />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{moment(date).fromNow()}</Text>
