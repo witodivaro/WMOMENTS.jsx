@@ -1,5 +1,9 @@
 import {createSlice, current} from '@reduxjs/toolkit';
-import {addLocation, fetchLocationsFromDB} from './locations.thunks';
+import {
+  addLocation,
+  fetchLocationsFromDB,
+  removeLocation,
+} from './locations.thunks';
 
 const initialState = {
   list: [],
@@ -26,6 +30,11 @@ const locationsSlice = createSlice({
     [fetchLocationsFromDB.fulfilled]: (state, {payload}) => {
       const {items} = payload;
       state.list = items;
+    },
+    [removeLocation.fulfilled]: (state, {payload}) => {
+      const {id} = payload;
+
+      state.list = state.list.filter((location) => location.id !== id);
     },
   },
 });

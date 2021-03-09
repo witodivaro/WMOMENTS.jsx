@@ -60,3 +60,21 @@ export const fetchCollections = () => {
   });
   return promise;
 };
+
+export const removeLocation = ({id}) => {
+  const promise = new Promise((resolve, reject) => {
+    db.transaction((tx) => {
+      tx.executeSql(
+        `DELETE FROM locations WHERE id = ?`,
+        [id],
+        () => {
+          resolve();
+        },
+        (_, err) => {
+          reject(err);
+        },
+      );
+    });
+  });
+  return promise;
+};

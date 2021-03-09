@@ -1,8 +1,8 @@
 import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Platform} from 'react-native';
-import {fetchCollections, insertLocation} from '../../db/db';
+import * as DBActions from '../../db/db';
 import RNFS from 'react-native-fs';
-import {clearLocation} from '../new-location/new-location.slice';
+import {clearNewLocation} from '../new-location/new-location.slice';
 
 export const addLocation = createAsyncThunk(
   'locations/addLocation',
@@ -16,13 +16,14 @@ export const addLocation = createAsyncThunk(
 
     const now = new Date().toISOString();
 
-    dispatch(clearLocation());
+    dispatch(clearNewLocation());
 
     try {
       if (fileName) {
         await RNFS.moveFile(imagePath, newPath);
       }
-      const dbResult = await insertLocation({
+
+      const dbResult = await DBActions.insertLocation({
         title,
         imagePath: newPath,
         lat: location.lat,
@@ -44,11 +45,26 @@ export const addLocation = createAsyncThunk(
   },
 );
 
+export const removeLocation = createAsyncThunk(
+  'locations/removeLocation',
+  async ({id}, {rejectWithValue}) => {
+    try {
+      await DBActions.removeLocation({id});
+
+      return {
+        id,
+      };
+    } catch (error) {
+      rejectWithValue(error);
+    }
+  },
+);
+
 export const fetchLocationsFromDB = createAsyncThunk(
   'locations/fetchLocationsFromDB',
   async (_, {rejectWithValue}) => {
     try {
-      const dbResult = await fetchCollections();
+      const dbResult = await DBActions.fetchCollections();
       const items = [];
       for (let i = 0; i < dbResult.rows.length; i++) {
         items.push(dbResult.rows.item(i));

@@ -1,18 +1,56 @@
 import {useNavigation} from '@react-navigation/core';
-import React from 'react';
-import {StyleSheet, Text, View, ScrollView, Image} from 'react-native';
-import {useSelector} from 'react-redux';
+import React, {useCallback, useState} from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+  Image,
+  Platform,
+  Button,
+} from 'react-native';
+import {useDispatch, useSelector} from 'react-redux';
 import MapPreview from '../../components/map-preview/map-preview.component';
 import COLORS from '../../constants/colors';
 import {createLocationByIdSelector} from '../../redux/locations/locations.selectors';
 import moment from 'moment-mini';
+import {useEffect} from 'react';
+import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
+import Modal from 'react-native-modal';
+import {removeLocation} from '../../redux/locations/locations.thunks';
 
 const LocationDetailsScreen = ({route}) => {
   const {locationId} = route.params;
   const navigation = useNavigation();
-
+  const dispatch = useDispatch();
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
   const location = useSelector(createLocationByIdSelector(locationId));
-  const {date, imagePath, lat, lng} = location;
+
+  const toggleDeleteModalVisible = useCallback(() => {
+    setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
+  }, [setIsDeleteModalVisible]);
+
+  const deleteLocationHandler = useCallback(() => {
+    toggleDeleteModalVisible();
+    dispatch(removeLocation({id: locationId}));
+    navigation.navigate('locations');
+  }, [locationId, dispatch, navigation]);
+
+  useEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <HeaderButtons HeaderButtonComponent={EvilHeaderButton}>
+          <Item
+            iconName="trash"
+            color={Platform.OS === 'ios' ? COLORS.primary : 'white'}
+            iconSize={30}
+            onPress={toggleDeleteModalVisible}
+          />
+        </HeaderButtons>
+      ),
+    });
+  }, [navigation, toggleDeleteModalVisible]);
 
   return (
     <ScrollView style={styles.screen}>
@@ -20,29 +58,55 @@ const LocationDetailsScreen = ({route}) => {
         <Image
           style={styles.image}
           source={{
-            uri: imagePath,
+            uri: location?.imagePath,
           }}
           resizeMode="contain"
         />
         <MapPreview
           location={{
-            lat,
-            lng,
+            lat: location?.lat,
+            lng: location?.lng,
           }}
           onPress={() => {
             navigation.navigate('map', {
               unchangable: true,
               selectedLocation: {
-                lat,
-                lng,
+                lat: location?.lat,
+                lng: location?.lng,
               },
             });
           }}
         />
         <View style={styles.dateContainer}>
-          <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
+          <Text style={styles.date}>
+            {moment(location?.date).format('MMMM Do YYYY')}
+          </Text>
         </View>
       </View>
+      <Modal
+        backdropOpacity={0.4}
+        onBackdropPress={toggleDeleteModalVisible}
+        isVisible={isDeleteModalVisible}
+        animationIn="fadeInUp"
+        animationOut="fadeOutDown">
+        <View style={styles.modalView}>
+          <Text style={styles.modalText}>
+            Do you want to delete this location? {'\n'} '{location?.title}'
+          </Text>
+          <View style={styles.modalActions}>
+            <View style={styles.modalAction}>
+              <Button
+                title="DELETE"
+                color="red"
+                onPress={deleteLocationHandler}
+              />
+            </View>
+            <View style={styles.modalAction}>
+              <Button title="CANCEL" onPress={toggleDeleteModalVisible} />
+            </View>
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 };
@@ -75,6 +139,21 @@ const styles = StyleSheet.create({
     color: 'white',
     fontSize: 20,
   },
+  modalView: {
+    padding: 20,
+    backgroundColor: 'white',
+    borderWidth: 1,
+  },
+  modalText: {
+    textAlign: 'center',
+    fontSize: 20,
+    color: COLORS.primary,
+  },
+  modalActions: {
+    justifyContent: 'center',
+    flexDirection: 'row',
+  },
+  modalAction: {},
 });
 
 export default LocationDetailsScreen;
