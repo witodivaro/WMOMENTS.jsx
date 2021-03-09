@@ -25,17 +25,19 @@ const LocationDetailsScreen = ({route}) => {
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const location = useSelector(createLocationByIdSelector(locationId));
+  const selectedLocation = useSelector(createLocationByIdSelector(locationId));
+  const [location] = useState(selectedLocation);
+  const {date, id, imagePath, lat, lng, title} = location;
 
   const toggleDeleteModalVisible = useCallback(() => {
     setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
   }, [setIsDeleteModalVisible]);
 
   const deleteLocationHandler = useCallback(() => {
-    toggleDeleteModalVisible();
     dispatch(removeLocation({id: locationId}));
+    toggleDeleteModalVisible();
     navigation.navigate('locations');
-  }, [locationId, dispatch, navigation]);
+  }, [id, dispatch, navigation]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -50,7 +52,7 @@ const LocationDetailsScreen = ({route}) => {
         </HeaderButtons>
       ),
     });
-  }, [navigation, toggleDeleteModalVisible]);
+  }, [navigation, id]);
 
   return (
     <ScrollView style={styles.screen}>
@@ -58,29 +60,27 @@ const LocationDetailsScreen = ({route}) => {
         <Image
           style={styles.image}
           source={{
-            uri: location?.imagePath,
+            uri: imagePath,
           }}
           resizeMode="contain"
         />
         <MapPreview
           location={{
-            lat: location?.lat,
-            lng: location?.lng,
+            lat,
+            lng,
           }}
           onPress={() => {
             navigation.navigate('map', {
               unchangable: true,
               selectedLocation: {
-                lat: location?.lat,
-                lng: location?.lng,
+                lat,
+                lng,
               },
             });
           }}
         />
         <View style={styles.dateContainer}>
-          <Text style={styles.date}>
-            {moment(location?.date).format('MMMM Do YYYY')}
-          </Text>
+          <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
         </View>
       </View>
       <Modal
@@ -91,7 +91,7 @@ const LocationDetailsScreen = ({route}) => {
         animationOut="fadeOutDown">
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Do you want to delete this location? {'\n'} '{location?.title}'
+            Do you want to delete this location? {'\n'} '{title}'
           </Text>
           <View style={styles.modalActions}>
             <View style={styles.modalAction}>
@@ -153,7 +153,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'row',
   },
-  modalAction: {},
 });
 
 export default LocationDetailsScreen;
