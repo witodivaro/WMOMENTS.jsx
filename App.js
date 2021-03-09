@@ -13,6 +13,8 @@ import PlacesStackNavigator from './src/navigators/stack/places/places.navigator
 import {init} from './src/db/db';
 import COLORS from './src/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
+import PushNotification from 'react-native-push-notification';
+import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
 init()
   .then((res) => {
@@ -24,8 +26,23 @@ init()
   });
 
 const App = () => {
+  const triggerNotificationHandler = () => {
+    // PushNotification.localNotification({
+    //   channelId: 'local-notifications',
+    //   title: 'Local notification',
+    //   message: 'Local notification',
+    // });
+    PushNotification.localNotificationSchedule({
+      channelId: 'local-notifications',
+      title: 'SCHEDULED NOTIFICATION',
+      message: 'It is sheduled for real',
+      date: new Date(Date.now() + 1 * 1000),
+    });
+  };
+
   useEffect(() => {
     SplashScreen.hide();
+    triggerNotificationHandler();
   }, []);
 
   return (

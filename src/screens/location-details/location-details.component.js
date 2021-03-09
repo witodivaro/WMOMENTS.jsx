@@ -58,6 +58,9 @@ const LocationDetailsScreen = ({route}) => {
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.locationDetails}>
+        <View style={styles.dateContainer}>
+          <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
+        </View>
         <Image
           style={styles.image}
           source={
@@ -84,9 +87,6 @@ const LocationDetailsScreen = ({route}) => {
             });
           }}
         />
-        <View style={styles.dateContainer}>
-          <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
-        </View>
       </View>
       <Modal
         backdropOpacity={0.4}
@@ -132,16 +132,16 @@ const styles = StyleSheet.create({
     color: COLORS.primary,
   },
   dateContainer: {
-    marginTop: 20,
+    marginVertical: 10,
     alignItems: 'center',
-    borderWidth: 2,
+    borderWidth: Platform.OS === 'ios' ? 0 : 2,
     borderColor: COLORS.primary,
     padding: 20,
     borderRadius: 20,
-    backgroundColor: COLORS.primary,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
   },
   date: {
-    color: 'white',
+    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
     fontSize: 20,
   },
   modalView: {
