@@ -67,7 +67,7 @@ const LocationDetailsScreen = ({route}) => {
                 }
               : NoImage
           }
-          resizeMode="contain"
+          resizeMode="cover"
         />
         <MapPreview
           location={{
