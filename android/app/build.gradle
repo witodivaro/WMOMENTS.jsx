@@ -150,6 +150,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('wonderful-locations.keystore')
+            storePassword "wonderfullocations"
+            keyAlias "wl-key"
+            keyPassword "wonderfullocations"
+        }
     }
     buildTypes {
         debug {
