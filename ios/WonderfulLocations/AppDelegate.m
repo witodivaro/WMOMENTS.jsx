@@ -67,21 +67,13 @@ didReceiveNotificationResponse:(UNNotificationResponse *)response
   rootViewController.view = rootView;
   self.window.rootViewController = rootViewController;
   [self.window makeKeyAndVisible];
+
   UNUserNotificationCenter *center = [UNUserNotificationCenter currentNotificationCenter];
   center.delegate = self;
   
   [RNSplashScreen show]; 
 
   return YES;
-}
-
--(void)userNotificationCenter:(UNUserNotificationCenter *)center willPresentNotification:(UNNotification *)notification withCompletionHandler:(void (^)(UNNotificationPresentationOptions options))completionHandler
-{
-  NSDictionary *userInfo = notification.request.content.userInfo;
-  [RNCPushNotificationIOS didReceiveRemoteNotification:userInfo
-                                fetchCompletionHandler:^void (UIBackgroundFetchResult result){}];
-
-  completionHandler(UNNotificationPresentationOptionSound | UNNotificationPresentationOptionAlert | UNNotificationPresentationOptionBadge);
 }
 
 - (NSURL *)sourceURLForBridge:(RCTBridge *)bridge

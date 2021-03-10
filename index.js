@@ -11,21 +11,6 @@ import {store} from './src/redux/store';
 import PushNotification from 'react-native-push-notification';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 
-PushNotification.configure({
-  onNotification: (notification) => {
-    console.log('NOTIFICATION: ', notification);
-
-    notification.finish(PushNotificationIOS.FetchResult.NoData);
-  },
-
-  requestPermissions: Platform.OS === 'ios',
-});
-
-PushNotification.createChannel({
-  channelId: 'local-notifications',
-  channelName: 'Local notifications',
-});
-
 const RNNavigationRedux = () => (
   <Provider store={store}>
     <NavigationContainer>
