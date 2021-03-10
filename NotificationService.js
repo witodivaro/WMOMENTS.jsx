@@ -42,11 +42,13 @@ export default class NotificationService {
   }
 
   setAppReminder() {
+    const ONE_HOUR = 60 * 60 * 1000;
+
     this.scheduleNotification({
       id: NOTIFICATION_ID.REMINDER,
       title: `Did you forget?`,
       message: `It's time to add new locations!`,
-      delay: 2 * 60 * 60 * 1000,
+      delay: ONE_HOUR,
     });
   }
 
@@ -87,9 +89,5 @@ export default class NotificationService {
     return () => {
       NotificationHandler.attachNotificationHandler(null);
     };
-  }
-
-  attachActionHandler(handler) {
-    return () => {};
   }
 }

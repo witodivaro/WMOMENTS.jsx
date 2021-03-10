@@ -21,10 +21,7 @@ import PlacesStackNavigator from './src/navigators/stack/places/places.navigator
 import {init} from './src/db/db';
 import COLORS from './src/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
-import PushNotification from 'react-native-push-notification';
-import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import NotificationService from './NotificationService';
-import NOTIFICATION_ID from './src/config/notification-id';
 
 init()
   .then((res) => {
@@ -39,18 +36,17 @@ const Notifications = new NotificationService();
 
 const App = () => {
   useEffect(() => {
-    AppState.addEventListener('change', (state) => {
+    const appStateChangeHandler = (state) => {
       if (state.match(/inactive|background/)) {
         Notifications.setAppReminder();
       } else if (state === 'active') {
         Notifications.cancelAppReminder();
       }
-    });
+    };
+
+    AppState.addEventListener('change', appStateChangeHandler);
 
     SplashScreen.hide();
-    Notifications.cancelNotification({
-      id: NOTIFICATION_ID.REMINDER,
-    });
   }, []);
 
   return (

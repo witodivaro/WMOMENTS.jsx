@@ -10,15 +10,26 @@ import {useDispatch, useSelector} from 'react-redux';
 import {selectLocationsList} from '../../redux/locations/locations.selectors';
 import LocationItem from '../../components/location-item/location-item.component';
 import {fetchLocationsFromDB} from '../../redux/locations/locations.thunks';
+import NotificationService from '../../../NotificationService';
 
 const renderLocationItem = ({item}) => {
   return <LocationItem item={item} />;
 };
 
+const Notifications = new NotificationService();
+
 const LocationsScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const locations = useSelector(selectLocationsList);
+
+  useEffect(() => {
+    const notificationOpenHandler = () => {
+      navigation.navigate('new-location');
+    };
+
+    Notifications.attachNotificationHandler(notificationOpenHandler);
+  }, []);
 
   useEffect(() => {
     dispatch(fetchLocationsFromDB());
