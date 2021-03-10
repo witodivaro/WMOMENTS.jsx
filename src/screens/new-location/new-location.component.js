@@ -40,16 +40,20 @@ const NewLocationScreen = () => {
 
   const saveLocationHandler = () => {
     if (!titleValue) {
-      Alert.alert('Invalid title.', 'Input the valid location title!', {
-        text: 'OK',
-      });
+      Alert.alert('Invalid title.', 'Input the valid location title!', [
+        {
+          text: 'OK',
+        },
+      ]);
       return;
     }
 
     if (!position) {
-      Alert.alert('Select geolocation.', 'No geolocation selected.', {
-        text: 'OK',
-      });
+      Alert.alert('Select geolocation.', 'No geolocation selected.', [
+        {
+          text: 'OK',
+        },
+      ]);
       return;
     }
 
