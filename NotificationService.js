@@ -1,13 +1,12 @@
 import PushNotification from 'react-native-push-notification';
 import NotificationHandler from './NotificationHandler';
+import NOTIFICATION_ID from './src/config/notification-id';
 
 export default class NotificationService {
-  constructor(onNotification) {
+  constructor() {
     this.lastId = 0;
 
     this.createDefaultChannels();
-
-    NotificationHandler.attachNotificationHandler(onNotification);
   }
 
   createDefaultChannels() {
@@ -41,16 +40,39 @@ export default class NotificationService {
     });
   }
 
-  scheduleNotification({delay, title, message}) {
-    this.lastId++;
+  setAppReminder() {
+    this.scheduleNotification({
+      id: NOTIFICATION_ID.REMINDER,
+      title: `Did you forget?`,
+      message: `It's time to add new locations!`,
+      delay: 5 * 1000,
+    });
+  }
 
+  cancelAppReminder() {
+    this.cancelNotification({
+      id: NOTIFICATION_ID.REMINDER,
+    });
+  }
+
+  scheduleNotification({id, delay, title, message}) {
     PushNotification.localNotificationSchedule({
       date: new Date(Date.now() + delay),
       channelId: 'default-channel-id',
-      id: this.lastId,
+      id: id || ++this.lastId,
+      userInfo: {
+        id: id || ++this.lastId,
+      },
       title: title,
       message: message,
       ignoreInForeground: true,
+      invokeApp: false,
+    });
+  }
+
+  cancelNotification({id}) {
+    PushNotification.cancelLocalNotifications({
+      id: id,
     });
   }
 
@@ -58,5 +80,15 @@ export default class NotificationService {
     return PushNotification.checkPermissions(cb);
   }
 
-  requestPermissions() {}
+  attachNotificationHandler(handler) {
+    NotificationHandler.attachNotificationHandler(handler);
+
+    return () => {
+      NotificationHandler.attachNotificationHandler(null);
+    };
+  }
+
+  attachActionHandler(handler) {
+    return () => {};
+  }
 }

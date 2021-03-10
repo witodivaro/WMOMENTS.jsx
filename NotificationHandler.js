@@ -6,14 +6,21 @@ class NotificationHandler {
   onNotification(notification) {
     console.log('Notification handler: ', notification);
 
-    notification.finish(PushNotificationIOS.FetchResult.NoData);
     if (typeof this._onNotification === 'function') {
       this._onNotification(notification);
     }
   }
 
+  onAction(notification) {
+    console.log(notification);
+  }
+
+  attachActionHandler(handler) {
+    this.onAction = handler;
+  }
+
   attachNotificationHandler(handler) {
-    this._onRegister = handler;
+    this._onNotification = handler;
   }
 }
 
@@ -21,9 +28,7 @@ const handler = new NotificationHandler();
 
 PushNotification.configure({
   onNotification: handler.onNotification.bind(handler),
-  onAction: (action) => {
-    console.log('ACTION: ', action);
-  },
+  onAction: handler.onAction.bind(handler),
   requestPermissions: Platform.OS === 'ios',
   popInitialNotification: false,
 });

@@ -18,5 +18,4 @@ const RNNavigationRedux = () => (
     </NavigationContainer>
   </Provider>
 );
-
 AppRegistry.registerComponent(appName, () => RNNavigationRedux);
