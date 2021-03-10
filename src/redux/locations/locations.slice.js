@@ -24,9 +24,6 @@ const locationsSlice = createSlice({
         id,
       });
     },
-    [addLocation.rejected]: (state, {payload}) => {
-      console.log('ADD LOCATION REJECT: ', payload);
-    },
     [fetchLocationsFromDB.fulfilled]: (state, {payload}) => {
       const {items} = payload;
       state.list = items;

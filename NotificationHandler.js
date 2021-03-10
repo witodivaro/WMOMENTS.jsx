@@ -4,16 +4,12 @@ import PushNotification from 'react-native-push-notification';
 
 class NotificationHandler {
   onNotification(notification) {
-    console.log('Notification handler: ', notification);
-
     if (typeof this._onNotification === 'function') {
       this._onNotification(notification);
     }
   }
 
-  onAction(notification) {
-    console.log(notification);
-  }
+  onAction(notification) {}
 
   attachActionHandler(handler) {
     this.onAction = handler;

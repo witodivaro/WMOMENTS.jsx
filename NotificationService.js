@@ -1,3 +1,4 @@
+import {Platform} from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import NotificationHandler from './NotificationHandler';
 import NOTIFICATION_ID from './src/config/notification-id';

@@ -1,3 +1,3 @@
 export default {
-  REMINDER: 'REMINDER_NOTIFICATION',
+  REMINDER: '101',
 };
