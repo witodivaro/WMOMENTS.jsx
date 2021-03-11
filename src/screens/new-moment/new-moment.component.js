@@ -76,12 +76,14 @@ const NewMomentScreen = () => {
       <View style={styles.form}>
         <ImageSelector onImageTaken={imageTakenHandler} />
         <LocationPicker />
-        <Text style={styles.label}>Title</Text>
-        <TextInput
-          onChangeText={titleChangeHandler}
-          value={titleValue}
-          style={styles.textInput}
-        />
+        <View style={styles.titleSelector}>
+          <Text style={styles.label}>Title</Text>
+          <TextInput
+            onChangeText={titleChangeHandler}
+            value={titleValue}
+            style={styles.textInput}
+          />
+        </View>
         <Button
           title="Save moment"
           onPress={saveLocationHandler}
@@ -97,11 +99,22 @@ const styles = StyleSheet.create({
     padding: 20,
   },
   label: {
+    textAlign: 'center',
     marginTop: 20,
     fontSize: 18,
-    marginBottom: 15,
+    color: COLORS.primary,
+  },
+  titleSelector: {
+    marginVertical: 20,
+    shadowOpacity: 0.26,
+    backgroundColor: '#eee',
+    shadowOffset: {
+      height: 2,
+    },
+    elevation: 6,
   },
   textInput: {
+    marginHorizontal: 20,
     marginBottom: 15,
     fontSize: 18,
     borderBottomWidth: 1,
