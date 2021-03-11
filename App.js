@@ -23,9 +23,11 @@ import COLORS from './src/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
 import NotificationService from './NotificationService';
 
+console.log(process.env);
+
 init()
   .then((res) => {
-    console.log('Initialized database');
+    console.log('Initialized database2');
   })
   .catch((err) => {
     console.log('Database initializing failed');

@@ -728,7 +728,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wonderfullocations;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wmoments;
 				PRODUCT_NAME = WMoments;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -751,7 +751,7 @@
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wonderfullocations;
+				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wmoments;
 				PRODUCT_NAME = WMoments;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";

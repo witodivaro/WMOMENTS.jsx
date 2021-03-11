@@ -1,4 +1,4 @@
-package com.wonderfullocations;
+package com.wmoments;
 import android.os.Bundle;
 
 import com.facebook.react.ReactActivity;
