@@ -14,20 +14,20 @@ import ImageSelector from '../../components/image-selector/image-selector.compon
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
-import {addLocation} from '../../redux/locations/locations.thunks';
-import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
+import {addMoment} from '../../redux/moments/moments.thunks';
+import {selectNewMomentSelectedLocation} from '../../redux/new-moment/new-moment.selectors';
 
-const NewLocationScreen = () => {
+const NewMomentScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const selectedLocation = useSelector(selectNewLocationSelectedLocation);
+  const selectedLocation = useSelector(selectNewMomentSelectedLocation);
   const [titleValue, setTitleValue] = useState('');
   const [imageUri, setImageUri] = useState('');
-  const [position, setPosition] = useState('');
+  const [location, setLocation] = useState('');
 
   useEffect(() => {
     if (selectedLocation) {
-      setPosition({
+      setLocation({
         lat: selectedLocation.lat,
         lng: selectedLocation.lng,
       });
@@ -48,7 +48,7 @@ const NewLocationScreen = () => {
       return;
     }
 
-    if (!position) {
+    if (!location) {
       Alert.alert('Select geolocation.', 'No geolocation selected.', [
         {
           text: 'OK',
@@ -58,13 +58,13 @@ const NewLocationScreen = () => {
     }
 
     dispatch(
-      addLocation({
+      addMoment({
         title: titleValue,
-        location: position,
+        location: location,
         imagePath: imageUri,
       }),
     );
-    navigation.navigate('locations');
+    navigation.navigate('moments');
   };
 
   const imageTakenHandler = (uri) => {
@@ -83,7 +83,7 @@ const NewLocationScreen = () => {
           style={styles.textInput}
         />
         <Button
-          title="Save location"
+          title="Save moment"
           onPress={saveLocationHandler}
           color={COLORS.primary}
         />
@@ -110,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default NewLocationScreen;
+export default NewMomentScreen;

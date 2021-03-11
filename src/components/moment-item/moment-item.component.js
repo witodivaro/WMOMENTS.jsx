@@ -3,36 +3,39 @@ import React from 'react';
 import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
+import {useMemo} from 'react';
 
 const NoImage = require('../../assets/no-image.png');
 
-const LocationItem = ({item}) => {
+const MomentItem = ({item}) => {
   const {id, title, imagePath, date} = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
-    navigation.navigate('location-details', {
-      locationTitle: title,
-      locationId: id,
+    navigation.navigate('moment-details', {
+      momentTitle: title,
+      momentId: id,
     });
   };
 
+  const renderedMomentDate = useMemo(() => moment(date).fromNow(), [date]);
+
   return (
-    <TouchableOpacity onPress={itemClickHandler} style={styles.locationItem}>
+    <TouchableOpacity onPress={itemClickHandler} style={styles.MomentItem}>
       <Image
         style={styles.image}
         source={imagePath ? {uri: imagePath} : NoImage}
       />
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={styles.date}>{moment(date).fromNow()}</Text>
+        <Text style={styles.date}>{renderedMomentDate}</Text>
       </View>
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
-  locationItem: {
+  MomentItem: {
     borderBottomColor: '#ccc',
     borderBottomWidth: 1,
     paddingVertical: 15,
@@ -59,10 +62,10 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 5,
   },
-  location: {
+  moment: {
     color: '#666',
     fontSize: 16,
   },
 });
 
-export default LocationItem;
+export default MomentItem;

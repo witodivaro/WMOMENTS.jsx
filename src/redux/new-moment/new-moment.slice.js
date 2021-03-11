@@ -4,18 +4,18 @@ const initialState = {
   selectedLocation: null,
 };
 
-const newLocationSlice = createSlice({
+const newMomentSlice = createSlice({
   initialState,
-  name: 'newLocation',
+  name: 'newMoment',
   reducers: {
     setLocation(state, action) {
       state.selectedLocation = action.payload;
     },
-    clearNewLocation(state) {
+    clearNewMoment(state) {
       state.selectedLocation = null;
     },
   },
 });
 
-export const {setLocation, clearNewLocation} = newLocationSlice.actions;
-export default newLocationSlice.reducer;
+export const {setLocation, clearNewMoment} = newMomentSlice.actions;
+export default newMomentSlice.reducer;

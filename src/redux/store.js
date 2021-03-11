@@ -1,11 +1,11 @@
 import {configureStore} from '@reduxjs/toolkit';
 
-import locationsReducer from './locations/locations.slice';
-import newLocationReducer from './new-location/new-location.slice';
+import momentsReducer from './moments/moments.slice';
+import newMomentReducer from './new-moment/new-moment.slice';
 
 export const store = configureStore({
   reducer: {
-    locations: locationsReducer,
-    newLocation: newLocationReducer,
+    moments: momentsReducer,
+    newMoment: newMomentReducer,
   },
 });

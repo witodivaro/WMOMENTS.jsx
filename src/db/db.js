@@ -1,7 +1,7 @@
 import SQLite from 'react-native-sqlite-storage';
 
 const db = SQLite.openDatabase({
-  name: 'locations.db',
+  name: 'moments.db',
   location: 'default',
 });
 
@@ -11,7 +11,7 @@ export const init = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'CREATE TABLE IF NOT EXISTS locations (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, imagePath TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL, date TEXT NOT NULL);',
+        'CREATE TABLE IF NOT EXISTS moments (id INTEGER PRIMARY KEY NOT NULL, title TEXT NOT NULL, imagePath TEXT NOT NULL, lat REAL NOT NULL, lng REAL NOT NULL, date TEXT NOT NULL);',
         [],
         () => {
           resolve();
@@ -25,11 +25,11 @@ export const init = () => {
   return promise;
 };
 
-export const insertLocation = ({title, imagePath, lat, lng, date}) => {
+export const insertMoment = ({title, imagePath, lat, lng, date}) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `INSERT INTO locations (title, imagePath, lat, lng, date) VALUES (?, ?, ?, ?, ?);`,
+        `INSERT INTO moments (title, imagePath, lat, lng, date) VALUES (?, ?, ?, ?, ?);`,
         [title, imagePath, lat, lng, date],
         (_, result) => {
           resolve(result);
@@ -43,11 +43,11 @@ export const insertLocation = ({title, imagePath, lat, lng, date}) => {
   return promise;
 };
 
-export const fetchCollections = () => {
+export const fetchMoments = () => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        'SELECT * FROM locations ORDER BY id DESC',
+        'SELECT * FROM moments ORDER BY id DESC',
         [],
         (_, result) => {
           resolve(result);
@@ -61,11 +61,11 @@ export const fetchCollections = () => {
   return promise;
 };
 
-export const removeLocation = ({id}) => {
+export const removeMoment = ({id}) => {
   const promise = new Promise((resolve, reject) => {
     db.transaction((tx) => {
       tx.executeSql(
-        `DELETE FROM locations WHERE id = ?`,
+        `DELETE FROM moments WHERE id = ?`,
         [id],
         () => {
           resolve();

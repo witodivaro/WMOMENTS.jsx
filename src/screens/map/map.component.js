@@ -3,7 +3,7 @@ import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
 import MapView, {Marker} from 'react-native-maps';
 import {useDispatch} from 'react-redux';
 import COLORS from '../../constants/colors';
-import {setLocation} from '../../redux/new-location/new-location.slice';
+import {setLocation} from '../../redux/new-moment/new-moment.slice';
 
 const MapScreen = ({navigation, route}) => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const MapScreen = ({navigation, route}) => {
 
   const saveLocationHandler = () => {
     dispatch(setLocation(unsavedSelectedLocation));
-    navigation.navigate('new-location');
+    navigation.navigate('new-moment');
   };
 
   const renderedMarker = unsavedSelectedLocation ? (

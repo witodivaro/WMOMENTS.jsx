@@ -23,21 +23,21 @@ const PlacesStackNavigator = () => {
           },
         }),
       }}
-      initialRouteName={SCREENS.Locations.name}>
+      initialRouteName={SCREENS.Moments.name}>
       <PlacesStack.Screen
-        name={SCREENS.Locations.name}
-        key={SCREENS.Locations.key}
-        component={SCREENS.Locations.component}
+        name={SCREENS.Moments.name}
+        key={SCREENS.Moments.key}
+        component={SCREENS.Moments.component}
         options={{
-          title: 'Locations',
+          title: 'Moments',
         }}
       />
       <PlacesStack.Screen
-        name={SCREENS.NewLocation.name}
-        key={SCREENS.NewLocation.key}
-        component={SCREENS.NewLocation.component}
+        name={SCREENS.NewMoment.name}
+        key={SCREENS.NewMoment.key}
+        component={SCREENS.NewMoment.component}
         options={{
-          title: 'New location',
+          title: 'New moment',
         }}
       />
       <PlacesStack.Screen
@@ -49,11 +49,11 @@ const PlacesStackNavigator = () => {
         }}
       />
       <PlacesStack.Screen
-        name={SCREENS.LocationDetails.name}
-        key={SCREENS.LocationDetails.key}
-        component={SCREENS.LocationDetails.component}
+        name={SCREENS.MomentDetails.name}
+        key={SCREENS.MomentDetails.key}
+        component={SCREENS.MomentDetails.component}
         options={({route}) => ({
-          title: route.params.locationTitle,
+          title: route.params.momentTitle,
         })}
       />
     </PlacesStack.Navigator>

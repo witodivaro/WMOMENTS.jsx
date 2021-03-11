@@ -12,14 +12,14 @@ import Geolocation from 'react-native-geolocation-service';
 import MapPreview from '../map-preview/map-preview.component';
 import {useNavigation} from '@react-navigation/core';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectNewLocationSelectedLocation} from '../../redux/new-location/new-location.selectors';
-import {setLocation} from '../../redux/new-location/new-location.slice';
+import {selectNewMomentSelectedLocation} from '../../redux/new-moment/new-moment.selectors';
+import {setLocation} from '../../redux/new-moment/new-moment.slice';
 
 const LocationPicker = () => {
   const [error, setError] = useState('');
   const [position, setPosition] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  const selectedLocation = useSelector(selectNewLocationSelectedLocation);
+  const selectedLocation = useSelector(selectNewMomentSelectedLocation);
   const navigation = useNavigation();
   const dispatch = useDispatch();
 

@@ -6,32 +6,32 @@ import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import COLORS from '../../constants/colors';
 import {useDispatch, useSelector} from 'react-redux';
-import {selectLocationsList} from '../../redux/locations/locations.selectors';
-import LocationItem from '../../components/location-item/location-item.component';
-import {fetchLocationsFromDB} from '../../redux/locations/locations.thunks';
+import {selectMomentsList} from '../../redux/moments/moments.selectors';
+import MomentItem from '../../components/moment-item/moment-item.component';
+import {fetchMomentsFromDB} from '../../redux/moments/moments.thunks';
 import NotificationService from '../../../NotificationService';
 
-const renderLocationItem = ({item}) => {
-  return <LocationItem item={item} />;
+const renderMomentItem = ({item}) => {
+  return <MomentItem item={item} />;
 };
 
 const Notifications = new NotificationService();
 
-const LocationsScreen = () => {
+const MomentsScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const locations = useSelector(selectLocationsList);
+  const moments = useSelector(selectMomentsList);
 
   useEffect(() => {
     const notificationOpenHandler = () => {
-      navigation.navigate('new-location');
+      navigation.navigate('new-moment');
     };
 
     Notifications.attachNotificationHandler(notificationOpenHandler);
   }, []);
 
   useEffect(() => {
-    dispatch(fetchLocationsFromDB());
+    dispatch(fetchMomentsFromDB());
 
     navigation.setOptions({
       headerRight: () => (
@@ -40,38 +40,36 @@ const LocationsScreen = () => {
             iconName="plus"
             color={Platform.OS === 'ios' ? COLORS.primary : 'white'}
             iconSize={35}
-            onPress={() => navigation.navigate('new-location')}
+            onPress={() => navigation.navigate('new-moment')}
           />
         </HeaderButtons>
       ),
     });
   }, [dispatch]);
 
-  const navigateToNewLocationsScreenHandler = useCallback(() => {
-    navigation.navigate('new-location');
+  const navigateToNewmomentsScreenHandler = useCallback(() => {
+    navigation.navigate('new-moment');
   }, [navigation]);
 
   const renderedContent = useMemo(
     () =>
-      locations.length > 0 ? (
+      moments.length > 0 ? (
         <FlatList
-          data={locations}
+          data={moments}
           keyExtractor={(item) => item.id.toString()}
-          renderItem={renderLocationItem}
+          renderItem={renderMomentItem}
         />
       ) : (
-        <View style={styles.noLocations}>
-          <Text style={styles.noLocationsText}>
-            You have no locations saved!
-          </Text>
+        <View style={styles.nomoments}>
+          <Text style={styles.nomomentsText}>You have no moments saved!</Text>
           <Button
-            title="ADD NEW LOCATION"
-            onPress={navigateToNewLocationsScreenHandler}
+            title="ADD NEW MOMENT"
+            onPress={navigateToNewmomentsScreenHandler}
             color={COLORS.primary}
           />
         </View>
       ),
-    [locations],
+    [moments],
   );
 
   return <View style={styles.screen}>{renderedContent}</View>;
@@ -81,13 +79,13 @@ const styles = StyleSheet.create({
   screen: {
     flex: 1,
   },
-  noLocations: {
+  nomoments: {
     flex: 1,
     padding: 20,
     justifyContent: 'center',
     alignItems: 'center',
   },
-  noLocationsText: {
+  nomomentsText: {
     marginBottom: 20,
     fontSize: 20,
     color: COLORS.primary,
@@ -99,4 +97,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LocationsScreen;
+export default MomentsScreen;

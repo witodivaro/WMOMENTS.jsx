@@ -2,10 +2,10 @@ import {createAsyncThunk} from '@reduxjs/toolkit';
 import {Platform} from 'react-native';
 import * as DBActions from '../../db/db';
 import RNFS from 'react-native-fs';
-import {clearNewLocation} from '../new-location/new-location.slice';
+import {clearNewMoment} from '../new-moment/new-moment.slice';
 
-export const addLocation = createAsyncThunk(
-  'locations/addLocation',
+export const addMoment = createAsyncThunk(
+  'moments/addMoment',
   async ({title, location, imagePath}, {rejectWithValue, dispatch}) => {
     const fileName = imagePath ? imagePath.split('/').pop() : null;
     const newPath = fileName
@@ -16,14 +16,14 @@ export const addLocation = createAsyncThunk(
 
     const now = new Date().toISOString();
 
-    dispatch(clearNewLocation());
+    dispatch(clearNewMoment());
 
     try {
       if (fileName) {
         await RNFS.moveFile(imagePath, newPath);
       }
 
-      const dbResult = await DBActions.insertLocation({
+      const dbResult = await DBActions.insertMoment({
         title,
         imagePath: newPath,
         lat: location.lat,
@@ -45,11 +45,11 @@ export const addLocation = createAsyncThunk(
   },
 );
 
-export const removeLocation = createAsyncThunk(
-  'locations/removeLocation',
+export const removeMoment = createAsyncThunk(
+  'moments/removeMoment',
   async ({id}, {rejectWithValue}) => {
     try {
-      await DBActions.removeLocation({id});
+      await DBActions.removeMoment({id});
 
       return {
         id,
@@ -60,11 +60,11 @@ export const removeLocation = createAsyncThunk(
   },
 );
 
-export const fetchLocationsFromDB = createAsyncThunk(
-  'locations/fetchLocationsFromDB',
+export const fetchMomentsFromDB = createAsyncThunk(
+  'moments/fetchMomentsFromDB',
   async (_, {rejectWithValue}) => {
     try {
-      const dbResult = await DBActions.fetchCollections();
+      const dbResult = await DBActions.fetchMoments();
       const items = [];
       for (let i = 0; i < dbResult.rows.length; i++) {
         items.push(dbResult.rows.item(i));

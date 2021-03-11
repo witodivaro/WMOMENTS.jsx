@@ -1,28 +1,28 @@
-import LocationDetailsScreen from '../screens/location-details/location-details.component';
-import LocationsScreen from '../screens/locations/locations.component';
+import MomentDetailsScreen from '../screens/moment-details/moment-details.component';
 import MapScreen from '../screens/map/map.component';
-import NewLocationScreen from '../screens/new-location/new-location.component';
+import NewMomentScreen from '../screens/new-moment/new-moment.component';
+import MomentsScreen from '../screens/moments/moments.component';
 
 const SCREENS = {
-  Locations: {
-    name: 'locations',
-    component: LocationsScreen,
-    key: 'screen/locations',
+  Moments: {
+    name: 'moments',
+    component: MomentsScreen,
+    key: 'screen/moments',
   },
   Map: {
     name: 'map',
     key: 'screen/map',
     component: MapScreen,
   },
-  NewLocation: {
-    name: 'new-location',
-    key: 'screen/new-location',
-    component: NewLocationScreen,
+  NewMoment: {
+    name: 'new-moment',
+    key: 'screen/new-moment',
+    component: NewMomentScreen,
   },
-  LocationDetails: {
-    name: 'location-details',
-    key: 'screen/location-details',
-    component: LocationDetailsScreen,
+  MomentDetails: {
+    name: 'moment-details',
+    key: 'screen/moment-details',
+    component: MomentDetailsScreen,
   },
 };
 

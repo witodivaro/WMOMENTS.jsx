@@ -23,16 +23,18 @@ import COLORS from './src/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
 import NotificationService from './NotificationService';
 
-console.log(process.env);
-
-init()
-  .then((res) => {
-    console.log('Initialized database2');
-  })
-  .catch((err) => {
-    console.log('Database initializing failed');
-    console.log(err);
-  });
+if (process.env.NODE_ENV === 'development') {
+  init()
+    .then((res) => {
+      console.log('Initialized database');
+    })
+    .catch((err) => {
+      console.log('Database initializing failed');
+      console.log(err);
+    });
+} else {
+  init();
+}
 
 const Notifications = new NotificationService();
 

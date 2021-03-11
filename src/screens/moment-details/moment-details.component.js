@@ -12,32 +12,32 @@ import {
 import {useDispatch, useSelector} from 'react-redux';
 import MapPreview from '../../components/map-preview/map-preview.component';
 import COLORS from '../../constants/colors';
-import {createLocationByIdSelector} from '../../redux/locations/locations.selectors';
+import {createMomentByIdSelector} from '../../redux/moments/moments.selectors';
 import moment from 'moment-mini';
 import {useEffect} from 'react';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
-import {removeLocation} from '../../redux/locations/locations.thunks';
+import {removeMoment} from '../../redux/moments/moments.thunks';
 const NoImage = require('../../assets/no-image.png');
 
-const LocationDetailsScreen = ({route}) => {
-  const {locationId} = route.params;
+const MomentDetailsScreen = ({route}) => {
+  const {momentId} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const selectedLocation = useSelector(createLocationByIdSelector(locationId));
-  const [location] = useState(selectedLocation);
-  const {date, id, imagePath, lat, lng, title} = location;
+  const selectedMoment = useSelector(createMomentByIdSelector(momentId));
+  const [memoizedSelectedMoment] = useState(selectedMoment);
+  const {date, id, imagePath, lat, lng, title} = memoizedSelectedMoment;
 
   const toggleDeleteModalVisible = useCallback(() => {
     setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
   }, [setIsDeleteModalVisible]);
 
-  const deleteLocationHandler = useCallback(() => {
-    dispatch(removeLocation({id: locationId}));
+  const deletemomentHandler = useCallback(() => {
+    dispatch(removeMoment({id: momentId}));
     toggleDeleteModalVisible();
-    navigation.navigate('locations');
+    navigation.navigate('moments');
   }, [id, dispatch, navigation]);
 
   useEffect(() => {
@@ -57,7 +57,7 @@ const LocationDetailsScreen = ({route}) => {
 
   return (
     <ScrollView style={styles.screen}>
-      <View style={styles.locationDetails}>
+      <View style={styles.momentDetails}>
         <View style={styles.dateContainer}>
           <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
         </View>
@@ -96,14 +96,14 @@ const LocationDetailsScreen = ({route}) => {
         animationOut="fadeOutDown">
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Do you want to delete this location? {'\n'} '{title}'
+            Do you want to delete this memoizedSelectedMoment? {'\n'} '{title}'
           </Text>
           <View style={styles.modalActions}>
             <View style={styles.modalAction}>
               <Button
                 title="DELETE"
                 color="red"
-                onPress={deleteLocationHandler}
+                onPress={deletemomentHandler}
               />
             </View>
             <View style={styles.modalAction}>
@@ -117,7 +117,7 @@ const LocationDetailsScreen = ({route}) => {
 };
 
 const styles = StyleSheet.create({
-  locationDetails: {
+  momentDetails: {
     alignItems: 'center',
   },
   image: {
@@ -164,4 +164,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default LocationDetailsScreen;
+export default MomentDetailsScreen;

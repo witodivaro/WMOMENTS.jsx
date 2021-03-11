@@ -46,9 +46,9 @@ export default class NotificationService {
 
     this.scheduleNotification({
       id: NOTIFICATION_ID.REMINDER,
-      title: `Did you forget?`,
-      message: `It's time to add new locations!`,
-      delay: ONE_HOUR,
+      title: `Hey! How's it going?`,
+      message: `Add your current moment to remember about it!`,
+      delay: process.env.NODE_ENV === 'development' ? 5 * 1000 : ONE_HOUR,
     });
   }
 
