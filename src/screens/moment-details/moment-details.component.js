@@ -96,7 +96,7 @@ const MomentDetailsScreen = ({route}) => {
         animationOut="fadeOutDown">
         <View style={styles.modalView}>
           <Text style={styles.modalText}>
-            Do you want to delete this memoizedSelectedMoment? {'\n'} '{title}'
+            Do you want to delete this moment? {'\n'} '{title}'
           </Text>
           <View style={styles.modalActions}>
             <View style={styles.modalAction}>
