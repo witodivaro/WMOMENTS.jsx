@@ -10,7 +10,7 @@ const momentsSlice = createSlice({
   initialState,
   extraReducers: {
     [addMoment.fulfilled]: (state, {payload}) => {
-      const {title, lat, lng, imagePath, id} = payload;
+      const {title, lat, lng, imagePath, id, date} = payload;
 
       state.list.unshift({
         title,
@@ -18,6 +18,7 @@ const momentsSlice = createSlice({
         lng,
         imagePath,
         id,
+        date,
       });
     },
     [fetchMomentsFromDB.fulfilled]: (state, {payload}) => {

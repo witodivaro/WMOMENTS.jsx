@@ -58,9 +58,6 @@ const MomentDetailsScreen = ({route}) => {
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.momentDetails}>
-        <View style={styles.dateContainer}>
-          <Text style={styles.date}>{moment(date).format('MMMM Do YYYY')}</Text>
-        </View>
         <Image
           style={styles.image}
           source={
@@ -124,7 +121,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     width: '100%',
     height: 400,
-    borderWidth: 1,
   },
   title: {
     fontSize: 30,

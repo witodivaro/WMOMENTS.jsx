@@ -1,6 +1,13 @@
 import {useNavigation} from '@react-navigation/native';
 import React from 'react';
-import {View, Text, Image, StyleSheet, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Platform,
+} from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
 import {useMemo} from 'react';
@@ -18,14 +25,18 @@ const MomentItem = ({item}) => {
     });
   };
 
-  const renderedMomentDate = useMemo(() => moment(date).fromNow(), [date]);
+  const renderedMomentDate = useMemo(() => moment(date).format('h:mm A'), [
+    date,
+  ]);
 
   return (
     <TouchableOpacity onPress={itemClickHandler} style={styles.MomentItem}>
-      <Image
-        style={styles.image}
-        source={imagePath ? {uri: imagePath} : NoImage}
-      />
+      <View style={styles.imageContainer}>
+        <Image
+          style={styles.image}
+          source={imagePath ? {uri: imagePath} : NoImage}
+        />
+      </View>
       <View style={styles.infoContainer}>
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.date}>{renderedMomentDate}</Text>
@@ -36,19 +47,24 @@ const MomentItem = ({item}) => {
 
 const styles = StyleSheet.create({
   MomentItem: {
-    borderBottomColor: '#ccc',
-    borderBottomWidth: 1,
     paddingVertical: 15,
-    paddingHorizontal: 30,
     flexDirection: 'row',
     alignItems: 'center',
+  },
+  imageContainer: {
+    elevation: 5,
+    shadowOpacity: 0.26,
+    shadowOffset: {
+      height: 1,
+    },
+    borderRadius: 35,
   },
   image: {
     width: 70,
     height: 70,
     borderRadius: 35,
     backgroundColor: '#ccc',
-    borderColor: Colors.primary,
+    borderColor: Platform.OS === 'ios' ? Colors.primary : 'white',
     borderWidth: 1,
   },
   infoContainer: {
@@ -58,9 +74,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   title: {
-    color: 'black',
+    color: Platform.OS === 'ios' ? 'black' : 'white',
     fontSize: 18,
     marginBottom: 5,
+  },
+  date: {
+    color: Platform.OS === 'ios' ? 'black' : 'white',
   },
   moment: {
     color: '#666',
