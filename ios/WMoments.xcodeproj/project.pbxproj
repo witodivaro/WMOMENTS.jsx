@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00E356F31AD99517003FC87E /* WonderfulLocationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WonderfulLocationsTests.m */; };
+		00E356F31AD99517003FC87E /* WMomentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WMomentsTests.m */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		2DCD954D1E0B4F2C00145EB5 /* WonderfulLocationsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WonderfulLocationsTests.m */; };
-		306A9023EA58F9A13AC5702E /* libPods-WonderfulLocations-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DECAE610AC8D71C7625C5295 /* libPods-WonderfulLocations-tvOS.a */; };
+		2DCD954D1E0B4F2C00145EB5 /* WMomentsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* WMomentsTests.m */; };
+		306A9023EA58F9A13AC5702E /* libPods-WMoments-tvOS.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DECAE610AC8D71C7625C5295 /* libPods-WMoments-tvOS.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		9D3CB0EF989CACA241A973D5 /* libPods-WonderfulLocations-WonderfulLocationsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B458BBA76FA8334C2AF8FA1 /* libPods-WonderfulLocations-WonderfulLocationsTests.a */; };
-		9D8D67D49D36DA74184482AD /* libPods-WonderfulLocations-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65312A86D2E483B27E6087B3 /* libPods-WonderfulLocations-tvOSTests.a */; };
-		F62F74517030C86AE20E7934 /* libPods-WonderfulLocations.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C755382E2A460E49D421FF8 /* libPods-WonderfulLocations.a */; };
+		9D3CB0EF989CACA241A973D5 /* libPods-WMoments-WMomentsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B458BBA76FA8334C2AF8FA1 /* libPods-WMoments-WMomentsTests.a */; };
+		9D8D67D49D36DA74184482AD /* libPods-WMoments-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65312A86D2E483B27E6087B3 /* libPods-WMoments-tvOSTests.a */; };
+		F62F74517030C86AE20E7934 /* libPods-WMoments.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C755382E2A460E49D421FF8 /* libPods-WMoments.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -28,43 +28,43 @@
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 13B07F861A680F5B00A75B9A;
-			remoteInfo = WonderfulLocations;
+			remoteInfo = WMoments;
 		};
 		2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 83CBB9F71A601CBA00E9B192 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 2D02E47A1E0B4A5D006451C7;
-			remoteInfo = "WonderfulLocations-tvOS";
+			remoteInfo = "WMoments-tvOS";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		008F07F21AC5B25A0029DE68 /* main.jsbundle */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = main.jsbundle; sourceTree = "<group>"; };
-		00E356EE1AD99517003FC87E /* WonderfulLocationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WonderfulLocationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356EE1AD99517003FC87E /* WMomentsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WMomentsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		00E356F21AD99517003FC87E /* WonderfulLocationsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WonderfulLocationsTests.m; sourceTree = "<group>"; };
-		13B07F961A680F5B00A75B9A /* WonderfulLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WonderfulLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = WonderfulLocations/AppDelegate.h; sourceTree = "<group>"; };
-		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = WonderfulLocations/AppDelegate.m; sourceTree = "<group>"; };
-		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WonderfulLocations/Images.xcassets; sourceTree = "<group>"; };
-		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WonderfulLocations/Info.plist; sourceTree = "<group>"; };
-		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WonderfulLocations/main.m; sourceTree = "<group>"; };
-		28EEC7B22B284DA45F19985C /* Pods-WonderfulLocations-WonderfulLocationsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-WonderfulLocationsTests.release.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-WonderfulLocationsTests/Pods-WonderfulLocations-WonderfulLocationsTests.release.xcconfig"; sourceTree = "<group>"; };
-		2D02E47B1E0B4A5D006451C7 /* WonderfulLocations-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WonderfulLocations-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D02E4901E0B4A5D006451C7 /* WonderfulLocations-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WonderfulLocations-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		65312A86D2E483B27E6087B3 /* libPods-WonderfulLocations-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonderfulLocations-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		68E421EB7DD1ACEE3D6487A0 /* Pods-WonderfulLocations-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOS.release.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOS/Pods-WonderfulLocations-tvOS.release.xcconfig"; sourceTree = "<group>"; };
-		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = WonderfulLocations/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		988C58BB41A348AD47A1621B /* Pods-WonderfulLocations-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOSTests/Pods-WonderfulLocations-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9B458BBA76FA8334C2AF8FA1 /* libPods-WonderfulLocations-WonderfulLocationsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonderfulLocations-WonderfulLocationsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		9C755382E2A460E49D421FF8 /* libPods-WonderfulLocations.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonderfulLocations.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		AAE06A460AADC222AA29DDB0 /* Pods-WonderfulLocations-WonderfulLocationsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-WonderfulLocationsTests.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-WonderfulLocationsTests/Pods-WonderfulLocations-WonderfulLocationsTests.debug.xcconfig"; sourceTree = "<group>"; };
-		AD577A0890E4493F3DA875C8 /* Pods-WonderfulLocations.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations.release.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations/Pods-WonderfulLocations.release.xcconfig"; sourceTree = "<group>"; };
-		BCF5289237CA5A99F8C4798A /* Pods-WonderfulLocations-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOS/Pods-WonderfulLocations-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
-		BD76E79E829875AC1D982B3D /* Pods-WonderfulLocations.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations.debug.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations/Pods-WonderfulLocations.debug.xcconfig"; sourceTree = "<group>"; };
-		C4AAEFFD954B7573350B6394 /* Pods-WonderfulLocations-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WonderfulLocations-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-WonderfulLocations-tvOSTests/Pods-WonderfulLocations-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
-		DECAE610AC8D71C7625C5295 /* libPods-WonderfulLocations-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WonderfulLocations-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		00E356F21AD99517003FC87E /* WMomentsTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WMomentsTests.m; sourceTree = "<group>"; };
+		13B07F961A680F5B00A75B9A /* WMoments.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WMoments.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = WMoments/AppDelegate.h; sourceTree = "<group>"; };
+		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = WMoments/AppDelegate.m; sourceTree = "<group>"; };
+		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = WMoments/Images.xcassets; sourceTree = "<group>"; };
+		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = WMoments/Info.plist; sourceTree = "<group>"; };
+		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = WMoments/main.m; sourceTree = "<group>"; };
+		28EEC7B22B284DA45F19985C /* Pods-WMoments-WMomentsTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-WMomentsTests.release.xcconfig"; path = "Target Support Files/Pods-WMoments-WMomentsTests/Pods-WMoments-WMomentsTests.release.xcconfig"; sourceTree = "<group>"; };
+		2D02E47B1E0B4A5D006451C7 /* WMoments-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WMoments-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2D02E4901E0B4A5D006451C7 /* WMoments-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "WMoments-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65312A86D2E483B27E6087B3 /* libPods-WMoments-tvOSTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WMoments-tvOSTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		68E421EB7DD1ACEE3D6487A0 /* Pods-WMoments-tvOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOS.release.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOS/Pods-WMoments-tvOS.release.xcconfig"; sourceTree = "<group>"; };
+		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = WMoments/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		988C58BB41A348AD47A1621B /* Pods-WMoments-tvOSTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOSTests.debug.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOSTests/Pods-WMoments-tvOSTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9B458BBA76FA8334C2AF8FA1 /* libPods-WMoments-WMomentsTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WMoments-WMomentsTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9C755382E2A460E49D421FF8 /* libPods-WMoments.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WMoments.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAE06A460AADC222AA29DDB0 /* Pods-WMoments-WMomentsTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-WMomentsTests.debug.xcconfig"; path = "Target Support Files/Pods-WMoments-WMomentsTests/Pods-WMoments-WMomentsTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AD577A0890E4493F3DA875C8 /* Pods-WMoments.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments.release.xcconfig"; path = "Target Support Files/Pods-WMoments/Pods-WMoments.release.xcconfig"; sourceTree = "<group>"; };
+		BCF5289237CA5A99F8C4798A /* Pods-WMoments-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOS/Pods-WMoments-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
+		BD76E79E829875AC1D982B3D /* Pods-WMoments.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments.debug.xcconfig"; path = "Target Support Files/Pods-WMoments/Pods-WMoments.debug.xcconfig"; sourceTree = "<group>"; };
+		C4AAEFFD954B7573350B6394 /* Pods-WMoments-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOSTests/Pods-WMoments-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		DECAE610AC8D71C7625C5295 /* libPods-WMoments-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WMoments-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 /* End PBXFileReference section */
@@ -74,7 +74,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D3CB0EF989CACA241A973D5 /* libPods-WonderfulLocations-WonderfulLocationsTests.a in Frameworks */,
+				9D3CB0EF989CACA241A973D5 /* libPods-WMoments-WMomentsTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,7 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F62F74517030C86AE20E7934 /* libPods-WonderfulLocations.a in Frameworks */,
+				F62F74517030C86AE20E7934 /* libPods-WMoments.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -90,7 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				306A9023EA58F9A13AC5702E /* libPods-WonderfulLocations-tvOS.a in Frameworks */,
+				306A9023EA58F9A13AC5702E /* libPods-WMoments-tvOS.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -98,20 +98,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9D8D67D49D36DA74184482AD /* libPods-WonderfulLocations-tvOSTests.a in Frameworks */,
+				9D8D67D49D36DA74184482AD /* libPods-WMoments-tvOSTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		00E356EF1AD99517003FC87E /* WonderfulLocationsTests */ = {
+		00E356EF1AD99517003FC87E /* WMomentsTests */ = {
 			isa = PBXGroup;
 			children = (
-				00E356F21AD99517003FC87E /* WonderfulLocationsTests.m */,
+				00E356F21AD99517003FC87E /* WMomentsTests.m */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
-			path = WonderfulLocationsTests;
+			path = WMomentsTests;
 			sourceTree = "<group>";
 		};
 		00E356F01AD99517003FC87E /* Supporting Files */ = {
@@ -125,19 +125,19 @@
 		02B26D893B36525A55ABE36D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				BD76E79E829875AC1D982B3D /* Pods-WonderfulLocations.debug.xcconfig */,
-				AD577A0890E4493F3DA875C8 /* Pods-WonderfulLocations.release.xcconfig */,
-				AAE06A460AADC222AA29DDB0 /* Pods-WonderfulLocations-WonderfulLocationsTests.debug.xcconfig */,
-				28EEC7B22B284DA45F19985C /* Pods-WonderfulLocations-WonderfulLocationsTests.release.xcconfig */,
-				BCF5289237CA5A99F8C4798A /* Pods-WonderfulLocations-tvOS.debug.xcconfig */,
-				68E421EB7DD1ACEE3D6487A0 /* Pods-WonderfulLocations-tvOS.release.xcconfig */,
-				988C58BB41A348AD47A1621B /* Pods-WonderfulLocations-tvOSTests.debug.xcconfig */,
-				C4AAEFFD954B7573350B6394 /* Pods-WonderfulLocations-tvOSTests.release.xcconfig */,
+				BD76E79E829875AC1D982B3D /* Pods-WMoments.debug.xcconfig */,
+				AD577A0890E4493F3DA875C8 /* Pods-WMoments.release.xcconfig */,
+				AAE06A460AADC222AA29DDB0 /* Pods-WMoments-WMomentsTests.debug.xcconfig */,
+				28EEC7B22B284DA45F19985C /* Pods-WMoments-WMomentsTests.release.xcconfig */,
+				BCF5289237CA5A99F8C4798A /* Pods-WMoments-tvOS.debug.xcconfig */,
+				68E421EB7DD1ACEE3D6487A0 /* Pods-WMoments-tvOS.release.xcconfig */,
+				988C58BB41A348AD47A1621B /* Pods-WMoments-tvOSTests.debug.xcconfig */,
+				C4AAEFFD954B7573350B6394 /* Pods-WMoments-tvOSTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		13B07FAE1A68108700A75B9A /* WonderfulLocations */ = {
+		13B07FAE1A68108700A75B9A /* WMoments */ = {
 			isa = PBXGroup;
 			children = (
 				008F07F21AC5B25A0029DE68 /* main.jsbundle */,
@@ -148,7 +148,7 @@
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
 			);
-			name = WonderfulLocations;
+			name = WMoments;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {
@@ -156,10 +156,10 @@
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
 				ED2971642150620600B7C4FE /* JavaScriptCore.framework */,
-				9C755382E2A460E49D421FF8 /* libPods-WonderfulLocations.a */,
-				9B458BBA76FA8334C2AF8FA1 /* libPods-WonderfulLocations-WonderfulLocationsTests.a */,
-				DECAE610AC8D71C7625C5295 /* libPods-WonderfulLocations-tvOS.a */,
-				65312A86D2E483B27E6087B3 /* libPods-WonderfulLocations-tvOSTests.a */,
+				9C755382E2A460E49D421FF8 /* libPods-WMoments.a */,
+				9B458BBA76FA8334C2AF8FA1 /* libPods-WMoments-WMomentsTests.a */,
+				DECAE610AC8D71C7625C5295 /* libPods-WMoments-tvOS.a */,
+				65312A86D2E483B27E6087B3 /* libPods-WMoments-tvOSTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -174,9 +174,9 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
-				13B07FAE1A68108700A75B9A /* WonderfulLocations */,
+				13B07FAE1A68108700A75B9A /* WMoments */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
-				00E356EF1AD99517003FC87E /* WonderfulLocationsTests */,
+				00E356EF1AD99517003FC87E /* WMomentsTests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				02B26D893B36525A55ABE36D /* Pods */,
@@ -189,10 +189,10 @@
 		83CBBA001A601CBA00E9B192 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				13B07F961A680F5B00A75B9A /* WonderfulLocations.app */,
-				00E356EE1AD99517003FC87E /* WonderfulLocationsTests.xctest */,
-				2D02E47B1E0B4A5D006451C7 /* WonderfulLocations-tvOS.app */,
-				2D02E4901E0B4A5D006451C7 /* WonderfulLocations-tvOSTests.xctest */,
+				13B07F961A680F5B00A75B9A /* WMoments.app */,
+				00E356EE1AD99517003FC87E /* WMomentsTests.xctest */,
+				2D02E47B1E0B4A5D006451C7 /* WMoments-tvOS.app */,
+				2D02E4901E0B4A5D006451C7 /* WMoments-tvOSTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -200,9 +200,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		00E356ED1AD99517003FC87E /* WonderfulLocationsTests */ = {
+		00E356ED1AD99517003FC87E /* WMomentsTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WonderfulLocationsTests" */;
+			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WMomentsTests" */;
 			buildPhases = (
 				4D83F9DAA633FF8324DEA994 /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
@@ -215,14 +215,14 @@
 			dependencies = (
 				00E356F51AD99517003FC87E /* PBXTargetDependency */,
 			);
-			name = WonderfulLocationsTests;
-			productName = WonderfulLocationsTests;
-			productReference = 00E356EE1AD99517003FC87E /* WonderfulLocationsTests.xctest */;
+			name = WMomentsTests;
+			productName = WMomentsTests;
+			productReference = 00E356EE1AD99517003FC87E /* WMomentsTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		13B07F861A680F5B00A75B9A /* WonderfulLocations */ = {
+		13B07F861A680F5B00A75B9A /* WMoments */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "WonderfulLocations" */;
+			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "WMoments" */;
 			buildPhases = (
 				DA983AAFB2FCC09C10DE7BAD /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
@@ -236,14 +236,14 @@
 			);
 			dependencies = (
 			);
-			name = WonderfulLocations;
-			productName = WonderfulLocations;
-			productReference = 13B07F961A680F5B00A75B9A /* WonderfulLocations.app */;
+			name = WMoments;
+			productName = WMoments;
+			productReference = 13B07F961A680F5B00A75B9A /* WMoments.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E47A1E0B4A5D006451C7 /* WonderfulLocations-tvOS */ = {
+		2D02E47A1E0B4A5D006451C7 /* WMoments-tvOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WonderfulLocations-tvOS" */;
+			buildConfigurationList = 2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WMoments-tvOS" */;
 			buildPhases = (
 				121E3D1700364CEEFA316D42 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F122414F3F0027D42C /* Start Packager */,
@@ -256,14 +256,14 @@
 			);
 			dependencies = (
 			);
-			name = "WonderfulLocations-tvOS";
-			productName = "WonderfulLocations-tvOS";
-			productReference = 2D02E47B1E0B4A5D006451C7 /* WonderfulLocations-tvOS.app */;
+			name = "WMoments-tvOS";
+			productName = "WMoments-tvOS";
+			productReference = 2D02E47B1E0B4A5D006451C7 /* WMoments-tvOS.app */;
 			productType = "com.apple.product-type.application";
 		};
-		2D02E48F1E0B4A5D006451C7 /* WonderfulLocations-tvOSTests */ = {
+		2D02E48F1E0B4A5D006451C7 /* WMoments-tvOSTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WonderfulLocations-tvOSTests" */;
+			buildConfigurationList = 2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WMoments-tvOSTests" */;
 			buildPhases = (
 				5DCB7BC88DC0B87236558AA3 /* [CP] Check Pods Manifest.lock */,
 				2D02E48C1E0B4A5D006451C7 /* Sources */,
@@ -275,9 +275,9 @@
 			dependencies = (
 				2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */,
 			);
-			name = "WonderfulLocations-tvOSTests";
-			productName = "WonderfulLocations-tvOSTests";
-			productReference = 2D02E4901E0B4A5D006451C7 /* WonderfulLocations-tvOSTests.xctest */;
+			name = "WMoments-tvOSTests";
+			productName = "WMoments-tvOSTests";
+			productReference = 2D02E4901E0B4A5D006451C7 /* WMoments-tvOSTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -306,7 +306,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "WonderfulLocations" */;
+			buildConfigurationList = 83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "WMoments" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -319,10 +319,10 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				13B07F861A680F5B00A75B9A /* WonderfulLocations */,
-				00E356ED1AD99517003FC87E /* WonderfulLocationsTests */,
-				2D02E47A1E0B4A5D006451C7 /* WonderfulLocations-tvOS */,
-				2D02E48F1E0B4A5D006451C7 /* WonderfulLocations-tvOSTests */,
+				13B07F861A680F5B00A75B9A /* WMoments */,
+				00E356ED1AD99517003FC87E /* WMomentsTests */,
+				2D02E47A1E0B4A5D006451C7 /* WMoments-tvOS */,
+				2D02E48F1E0B4A5D006451C7 /* WMoments-tvOSTests */,
 			);
 		};
 /* End PBXProject section */
@@ -391,7 +391,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WonderfulLocations-tvOS-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WMoments-tvOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -418,7 +418,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WonderfulLocations-WonderfulLocationsTests/Pods-WonderfulLocations-WonderfulLocationsTests-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WMoments-WMomentsTests/Pods-WMoments-WMomentsTests-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -459,7 +459,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WonderfulLocations-WonderfulLocationsTests/Pods-WonderfulLocations-WonderfulLocationsTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WMoments-WMomentsTests/Pods-WMoments-WMomentsTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4682D6BDF730A4A70EA503AD /* [CP] Copy Pods Resources */ = {
@@ -468,7 +468,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-WonderfulLocations/Pods-WonderfulLocations-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-WMoments/Pods-WMoments-resources.sh",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/AntDesign.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/Entypo.ttf",
 				"${PODS_ROOT}/../../node_modules/react-native-vector-icons/Fonts/EvilIcons.ttf",
@@ -509,7 +509,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WonderfulLocations/Pods-WonderfulLocations-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-WMoments/Pods-WMoments-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4D83F9DAA633FF8324DEA994 /* [CP] Check Pods Manifest.lock */ = {
@@ -527,7 +527,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WonderfulLocations-WonderfulLocationsTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WMoments-WMomentsTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -549,7 +549,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WonderfulLocations-tvOSTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WMoments-tvOSTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -571,7 +571,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-WonderfulLocations-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-WMoments-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -623,7 +623,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				00E356F31AD99517003FC87E /* WonderfulLocationsTests.m in Sources */,
+				00E356F31AD99517003FC87E /* WMomentsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2DCD954D1E0B4F2C00145EB5 /* WonderfulLocationsTests.m in Sources */,
+				2DCD954D1E0B4F2C00145EB5 /* WMomentsTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -658,12 +658,12 @@
 /* Begin PBXTargetDependency section */
 		00E356F51AD99517003FC87E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 13B07F861A680F5B00A75B9A /* WonderfulLocations */;
+			target = 13B07F861A680F5B00A75B9A /* WMoments */;
 			targetProxy = 00E356F41AD99517003FC87E /* PBXContainerItemProxy */;
 		};
 		2D02E4921E0B4A5D006451C7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 2D02E47A1E0B4A5D006451C7 /* WonderfulLocations-tvOS */;
+			target = 2D02E47A1E0B4A5D006451C7 /* WMoments-tvOS */;
 			targetProxy = 2D02E4911E0B4A5D006451C7 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -671,14 +671,14 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AAE06A460AADC222AA29DDB0 /* Pods-WonderfulLocations-WonderfulLocationsTests.debug.xcconfig */;
+			baseConfigurationReference = AAE06A460AADC222AA29DDB0 /* Pods-WMoments-WMomentsTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				INFOPLIST_FILE = WonderfulLocationsTests/Info.plist;
+				INFOPLIST_FILE = WMomentsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -688,17 +688,17 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WonderfulLocations.app/WonderfulLocations";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WMoments.app/WMoments";
 			};
 			name = Debug;
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 28EEC7B22B284DA45F19985C /* Pods-WonderfulLocations-WonderfulLocationsTests.release.xcconfig */;
+			baseConfigurationReference = 28EEC7B22B284DA45F19985C /* Pods-WMoments-WMomentsTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				INFOPLIST_FILE = WonderfulLocationsTests/Info.plist;
+				INFOPLIST_FILE = WMomentsTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
@@ -708,19 +708,19 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WonderfulLocations.app/WonderfulLocations";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WMoments.app/WMoments";
 			};
 			name = Release;
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BD76E79E829875AC1D982B3D /* Pods-WonderfulLocations.debug.xcconfig */;
+			baseConfigurationReference = BD76E79E829875AC1D982B3D /* Pods-WMoments.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				INFOPLIST_FILE = WonderfulLocations/Info.plist;
+				INFOPLIST_FILE = WMoments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -729,7 +729,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wonderfullocations;
-				PRODUCT_NAME = WonderfulLocations;
+				PRODUCT_NAME = WMoments;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -738,12 +738,12 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD577A0890E4493F3DA875C8 /* Pods-WonderfulLocations.release.xcconfig */;
+			baseConfigurationReference = AD577A0890E4493F3DA875C8 /* Pods-WMoments.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				INFOPLIST_FILE = WonderfulLocations/Info.plist;
+				INFOPLIST_FILE = WMoments/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -752,7 +752,7 @@
 					"-lc++",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wonderfullocations;
-				PRODUCT_NAME = WonderfulLocations;
+				PRODUCT_NAME = WMoments;
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -760,7 +760,7 @@
 		};
 		2D02E4971E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BCF5289237CA5A99F8C4798A /* Pods-WonderfulLocations-tvOS.debug.xcconfig */;
+			baseConfigurationReference = BCF5289237CA5A99F8C4798A /* Pods-WMoments-tvOS.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -771,14 +771,14 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "WonderfulLocations-tvOS/Info.plist";
+				INFOPLIST_FILE = "WMoments-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WonderfulLocations-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WMoments-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -788,7 +788,7 @@
 		};
 		2D02E4981E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68E421EB7DD1ACEE3D6487A0 /* Pods-WonderfulLocations-tvOS.release.xcconfig */;
+			baseConfigurationReference = 68E421EB7DD1ACEE3D6487A0 /* Pods-WMoments-tvOS.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "App Icon & Top Shelf Image";
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -799,14 +799,14 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "WonderfulLocations-tvOS/Info.plist";
+				INFOPLIST_FILE = "WMoments-tvOS/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WonderfulLocations-tvOS";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WMoments-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				TARGETED_DEVICE_FAMILY = 3;
@@ -816,7 +816,7 @@
 		};
 		2D02E4991E0B4A5E006451C7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 988C58BB41A348AD47A1621B /* Pods-WonderfulLocations-tvOSTests.debug.xcconfig */;
+			baseConfigurationReference = 988C58BB41A348AD47A1621B /* Pods-WMoments-tvOSTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -826,24 +826,24 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "WonderfulLocations-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "WMoments-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WonderfulLocations-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WMoments-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WonderfulLocations-tvOS.app/WonderfulLocations-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WMoments-tvOS.app/WMoments-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Debug;
 		};
 		2D02E49A1E0B4A5E006451C7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C4AAEFFD954B7573350B6394 /* Pods-WonderfulLocations-tvOSTests.release.xcconfig */;
+			baseConfigurationReference = C4AAEFFD954B7573350B6394 /* Pods-WMoments-tvOSTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
@@ -853,17 +853,17 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = "WonderfulLocations-tvOSTests/Info.plist";
+				INFOPLIST_FILE = "WMoments-tvOSTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
 					"-lc++",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WonderfulLocations-tvOSTests";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.WMoments-tvOSTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WonderfulLocations-tvOS.app/WonderfulLocations-tvOS";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WMoments-tvOS.app/WMoments-tvOS";
 				TVOS_DEPLOYMENT_TARGET = 10.1;
 			};
 			name = Release;
@@ -984,7 +984,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WonderfulLocationsTests" */ = {
+		00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "WMomentsTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				00E356F61AD99517003FC87E /* Debug */,
@@ -993,7 +993,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "WonderfulLocations" */ = {
+		13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "WMoments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				13B07F941A680F5B00A75B9A /* Debug */,
@@ -1002,7 +1002,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WonderfulLocations-tvOS" */ = {
+		2D02E4BA1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WMoments-tvOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4971E0B4A5E006451C7 /* Debug */,
@@ -1011,7 +1011,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WonderfulLocations-tvOSTests" */ = {
+		2D02E4BB1E0B4A5E006451C7 /* Build configuration list for PBXNativeTarget "WMoments-tvOSTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2D02E4991E0B4A5E006451C7 /* Debug */,
@@ -1020,7 +1020,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "WonderfulLocations" */ = {
+		83CBB9FA1A601CBA00E9B192 /* Build configuration list for PBXProject "WMoments" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				83CBBA201A601CBA00E9B192 /* Debug */,
