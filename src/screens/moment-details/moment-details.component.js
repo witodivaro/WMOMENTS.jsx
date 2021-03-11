@@ -55,6 +55,16 @@ const MomentDetailsScreen = ({route}) => {
     });
   }, [navigation, id]);
 
+  const navigateToMapHandler = useCallback(() => {
+    navigation.navigate('map', {
+      unchangable: true,
+      selectedLocation: {
+        lat,
+        lng,
+      },
+    });
+  }, [lat, lng]);
+
   return (
     <ScrollView style={styles.screen}>
       <View style={styles.momentDetails}>
@@ -74,15 +84,7 @@ const MomentDetailsScreen = ({route}) => {
             lat,
             lng,
           }}
-          onPress={() => {
-            navigation.navigate('map', {
-              unchangable: true,
-              selectedLocation: {
-                lat,
-                lng,
-              },
-            });
-          }}
+          onPress={navigateToMapHandler}
         />
       </View>
       <Modal
