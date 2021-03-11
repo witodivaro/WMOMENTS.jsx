@@ -102,9 +102,10 @@ const styles = StyleSheet.create({
   label: {
     textAlign: 'center',
     marginTop: 20,
+    marginLeft: 20,
     fontSize: 16,
     color: Platform.OS === 'ios' ? COLORS.primary : 'white',
-    alignSelf: 'center',
+    alignSelf: 'flex-start',
 
     padding: Platform.OS === 'ios' ? 0 : 5,
     backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,

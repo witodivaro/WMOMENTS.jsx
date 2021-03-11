@@ -1,7 +1,7 @@
 import moment from 'moment-mini';
-import React, {useState} from 'react';
-import {useMemo} from 'react';
+import React, {useState, useMemo, useCallback} from 'react';
 import {
+  Button,
   FlatList,
   Platform,
   StyleSheet,
@@ -22,24 +22,28 @@ const MomentsGroup = ({date, moments}) => {
 
   const [isExpanded, setIsExpanded] = useState(false);
 
+  const toggleIsExpandedHandler = useCallback(() => {
+    setIsExpanded((isExpanded) => !isExpanded);
+  }, []);
+
   const renderedMoments = useMemo(
     () =>
       isExpanded ? (
         <View style={styles.momentsContainer}>
           <FlatList data={moments} renderItem={renderMomentItem} />
+          <Text style={styles.closeText}>Touch to close</Text>
         </View>
       ) : null,
     [moments, isExpanded],
   );
 
-  const toggleIsExpandedHandler = () => {
-    setIsExpanded((isExpanded) => !isExpanded);
-  };
-
   return (
     <TouchableOpacity onPress={toggleIsExpandedHandler} style={styles.group}>
       <View style={styles.groupDateContainer}>
-        <Text style={styles.date}>{formattedDate}</Text>
+        <Text
+          style={[styles.date, {textAlign: isExpanded ? 'left' : 'center'}]}>
+          {formattedDate}
+        </Text>
       </View>
       {renderedMoments}
     </TouchableOpacity>
@@ -60,11 +64,19 @@ const styles = StyleSheet.create({
   },
   date: {
     fontSize: 20,
-    textAlign: 'center',
     color: Platform.OS === 'ios' ? COLORS.primary : '#fff',
   },
   momentsContainer: {
     maxHeight: 500,
+  },
+  actionContainer: {
+    marginTop: 10,
+  },
+  closeText: {
+    marginTop: 10,
+    fontSize: 16,
+    textAlign: 'center',
+    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
   },
 });
 
