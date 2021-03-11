@@ -52,7 +52,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   imageContainer: {
-    elevation: 5,
     shadowOpacity: 0.26,
     shadowOffset: {
       height: 1,
