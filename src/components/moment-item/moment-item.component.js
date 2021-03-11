@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     backgroundColor: '#ccc',
-    borderColor: Platform.OS === 'ios' ? Colors.primary : 'white',
+    borderColor: Platform.OS === 'ios' ? Colors.primary : 'transparent',
     borderWidth: 1,
   },
   infoContainer: {

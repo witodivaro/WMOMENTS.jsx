@@ -8,6 +8,7 @@ import {
   TextInput,
   ScrollView,
   Alert,
+  Platform,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
@@ -101,8 +102,13 @@ const styles = StyleSheet.create({
   label: {
     textAlign: 'center',
     marginTop: 20,
-    fontSize: 18,
-    color: COLORS.primary,
+    fontSize: 16,
+    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
+    alignSelf: 'center',
+
+    padding: Platform.OS === 'ios' ? 0 : 5,
+    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
+    textTransform: 'uppercase',
   },
   titleSelector: {
     marginVertical: 20,
