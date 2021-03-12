@@ -33,5 +33,4 @@ const momentsSlice = createSlice({
   },
 });
 
-export const {} = momentsSlice.actions;
 export default momentsSlice.reducer;

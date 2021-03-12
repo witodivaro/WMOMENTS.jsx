@@ -17,6 +17,12 @@ import MomentsGroup from '../../components/moments-group/moments-group.component
 
 const Notifications = new NotificationService();
 
+const renderMomentGroup = ({item}) => {
+  const [momentDate, moments] = item;
+
+  return <MomentsGroup key={momentDate} date={momentDate} moments={moments} />;
+};
+
 const MomentsScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
@@ -48,7 +54,7 @@ const MomentsScreen = () => {
     });
   }, [dispatch]);
 
-  const navigateToNewmomentsScreenHandler = useCallback(() => {
+  const navigateToNewMomentsHandler = useCallback(() => {
     navigation.navigate('new-moment');
   }, [navigation]);
 
@@ -61,21 +67,24 @@ const MomentsScreen = () => {
           <Text style={styles.noMomentsText}>You have no moments saved!</Text>
           <Button
             title="ADD NEW MOMENT"
-            onPress={navigateToNewmomentsScreenHandler}
+            onPress={navigateToNewMomentsHandler}
             color={COLORS.primary}
           />
         </View>
       );
     }
 
-    return momentDates.map((momentDate) => (
-      <MomentsGroup
-        key={momentDate}
-        date={momentDate}
-        moments={structuredMoments[momentDate]}
+    const momentEntries = Object.entries(structuredMoments);
+
+    return (
+      <FlatList
+        data={momentEntries}
+        nestedScrollEnabled={true}
+        keyExtractor={(entry) => entry[0]}
+        renderItem={renderMomentGroup}
       />
-    ));
-  }, [moments]);
+    );
+  }, [structuredMoments, navigateToNewMomentsHandler, renderMomentGroup]);
 
   return <View style={styles.screen}>{renderedContent}</View>;
 };

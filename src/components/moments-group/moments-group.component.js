@@ -7,14 +7,13 @@ import {
   StyleSheet,
   Text,
   TouchableOpacity,
-  TouchableWithoutFeedback,
   View,
 } from 'react-native';
 import COLORS from '../../constants/colors';
 import MomentItem from '../moment-item/moment-item.component';
 
 const renderMomentItem = ({item}) => {
-  return <MomentItem item={item} />;
+  return <MomentItem key={item.id.toString()} item={item} />;
 };
 
 const MomentsGroup = ({date, moments}) => {
@@ -67,7 +66,7 @@ const styles = StyleSheet.create({
     color: Platform.OS === 'ios' ? COLORS.primary : '#fff',
   },
   momentsContainer: {
-    maxHeight: 500,
+    marginTop: 20,
   },
   actionContainer: {
     marginTop: 10,
