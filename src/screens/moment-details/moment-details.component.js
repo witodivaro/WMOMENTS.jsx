@@ -101,12 +101,16 @@ const MomentDetailsScreen = ({route}) => {
             <View style={styles.modalAction}>
               <Button
                 title="DELETE"
-                color="red"
+                color={COLORS.primary}
                 onPress={deletemomentHandler}
               />
             </View>
-            <View style={styles.modalAction}>
-              <Button title="CANCEL" onPress={toggleDeleteModalVisible} />
+            <View style={[styles.modalAction]}>
+              <Button
+                title="CANCEL"
+                color={COLORS.primary}
+                onPress={toggleDeleteModalVisible}
+              />
             </View>
           </View>
         </View>
