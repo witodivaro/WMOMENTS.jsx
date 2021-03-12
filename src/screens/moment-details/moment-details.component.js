@@ -1,44 +1,48 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useState} from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  ScrollView,
-  Image,
-  Platform,
-  Button,
-} from 'react-native';
+import React, {useCallback, useMemo, useState} from 'react';
+import {StyleSheet, Text, View, Platform, Button} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import MapPreview from '../../components/map-preview/map-preview.component';
 import COLORS from '../../constants/colors';
-import {createMomentByIdSelector} from '../../redux/moments/moments.selectors';
-import moment from 'moment-mini';
+import {createThreeClosestMomentsByIdSelector} from '../../redux/moments/moments.selectors';
 import {useEffect} from 'react';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
 import {removeMoment} from '../../redux/moments/moments.thunks';
-const NoImage = require('../../assets/no-image.png');
+import Carousel from 'react-native-snap-carousel';
+import {useRef} from 'react';
+import MomentDetails from '../../components/moment-details/moment-details.component';
 
 const MomentDetailsScreen = ({route}) => {
   const {momentId} = route.params;
   const navigation = useNavigation();
   const dispatch = useDispatch();
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const selectedMoment = useSelector(createMomentByIdSelector(momentId));
-  const [memoizedSelectedMoment] = useState(selectedMoment);
-  const {date, id, imagePath, lat, lng, title} = memoizedSelectedMoment;
+  const [leftMoment, selectedMoment, rightMoment] = useSelector(
+    createThreeClosestMomentsByIdSelector(momentId),
+  );
+  const [selectedMomentIndex, setSelectedMomentIndex] = useState(null);
+
+  const [memoizedSelectedMoment, setMemoizedSelectedMoment] = useState(
+    selectedMoment,
+  );
+
+  const {id, title} = memoizedSelectedMoment;
+  const carouselRef = useRef();
 
   const toggleDeleteModalVisible = useCallback(() => {
     setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
   }, [setIsDeleteModalVisible]);
 
-  const deletemomentHandler = useCallback(() => {
-    dispatch(removeMoment({id: momentId}));
-    toggleDeleteModalVisible();
-    navigation.navigate('moments');
-  }, [id, dispatch, navigation]);
+  useEffect(() => {
+    if (selectedMoment) {
+      setMemoizedSelectedMoment(selectedMoment);
+    }
+  }, [selectedMoment]);
+
+  useEffect(() => {
+    carouselRef.current.snapToItem(selectedMomentIndex, false, false);
+  }, [memoizedSelectedMoment, carouselRef, selectedMomentIndex]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -52,41 +56,63 @@ const MomentDetailsScreen = ({route}) => {
           />
         </HeaderButtons>
       ),
+      title,
     });
   }, [navigation, id]);
 
-  const navigateToMapHandler = useCallback(() => {
-    navigation.navigate('map', {
-      unchangable: true,
-      selectedLocation: {
-        lat,
-        lng,
-      },
-    });
-  }, [lat, lng]);
+  const deleteMomentHandler = useCallback(() => {
+    dispatch(removeMoment({id}));
+    toggleDeleteModalVisible();
+    navigation.navigate('moments');
+  }, [dispatch, removeMoment, id]);
+
+  const scrollToMomentHandler = useCallback(
+    (index) => {
+      switch (index) {
+        case selectedMomentIndex - 1:
+          navigation.setParams({
+            momentId: leftMoment.id,
+          });
+
+          break;
+
+        case selectedMomentIndex + 1:
+          navigation.setParams({
+            momentId: rightMoment.id,
+          });
+          break;
+      }
+    },
+    [navigation, momentId, selectedMomentIndex],
+  );
+
+  const renderedCarousel = useMemo(() => {
+    const carouselData = [selectedMoment];
+    if (leftMoment) carouselData.unshift(leftMoment);
+    if (rightMoment) carouselData.push(rightMoment);
+
+    const selectedMomentIndex = carouselData.indexOf(selectedMoment);
+    setSelectedMomentIndex(selectedMomentIndex);
+
+    return (
+      <Carousel
+        ref={carouselRef}
+        data={carouselData}
+        onSnapToItem={scrollToMomentHandler}
+        firstItem={selectedMomentIndex}
+        onScrollToIndexFailed={() => {
+          console.log('scroll failed');
+        }}
+        renderItem={({item}) => <MomentDetails moment={item} />}
+        sliderWidth={400}
+        itemWidth={400}
+      />
+    );
+  }, [memoizedSelectedMoment, scrollToMomentHandler, rightMoment, leftMoment]);
 
   return (
-    <ScrollView style={styles.screen}>
-      <View style={styles.momentDetails}>
-        <Image
-          style={styles.image}
-          source={
-            imagePath
-              ? {
-                  uri: imagePath,
-                }
-              : NoImage
-          }
-          resizeMode="cover"
-        />
-        <MapPreview
-          location={{
-            lat,
-            lng,
-          }}
-          onPress={navigateToMapHandler}
-        />
-      </View>
+    <>
+      {renderedCarousel}
       <Modal
         backdropOpacity={0.4}
         onBackdropPress={toggleDeleteModalVisible}
@@ -102,7 +128,7 @@ const MomentDetailsScreen = ({route}) => {
               <Button
                 title="DELETE"
                 color={COLORS.primary}
-                onPress={deletemomentHandler}
+                onPress={deleteMomentHandler}
               />
             </View>
             <View style={[styles.modalAction]}>
@@ -115,37 +141,11 @@ const MomentDetailsScreen = ({route}) => {
           </View>
         </View>
       </Modal>
-    </ScrollView>
+    </>
   );
 };
 
 const styles = StyleSheet.create({
-  momentDetails: {
-    alignItems: 'center',
-  },
-  image: {
-    marginBottom: 20,
-    width: '100%',
-    height: 400,
-  },
-  title: {
-    fontSize: 30,
-    textAlign: 'center',
-    color: COLORS.primary,
-  },
-  dateContainer: {
-    marginVertical: 10,
-    alignItems: 'center',
-    borderWidth: Platform.OS === 'ios' ? 0 : 2,
-    borderColor: COLORS.primary,
-    padding: 20,
-    borderRadius: 20,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
-  },
-  date: {
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
-    fontSize: 20,
-  },
   modalView: {
     padding: 20,
     backgroundColor: 'white',

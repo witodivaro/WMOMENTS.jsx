@@ -7,10 +7,17 @@ export const selectMomentsList = createSelector(
   (moments) => moments.list,
 );
 
-export const createMomentByIdSelector = (momentId) =>
-  createSelector(selectMomentsList, (momentsList) =>
-    momentsList.find((moment) => moment.id === momentId),
-  );
+export const createThreeClosestMomentsByIdSelector = (momentId) =>
+  createSelector(selectMomentsList, (momentsList) => {
+    const wantedMoment = momentsList.find((moment) => moment.id === momentId);
+    const wantedMomentIndex = momentsList.indexOf(wantedMoment);
+
+    return [
+      momentsList[wantedMomentIndex - 1],
+      wantedMoment,
+      momentsList[wantedMomentIndex + 1],
+    ];
+  });
 
 export const selectMomentsListStructuredByDate = createSelector(
   selectMomentsList,

@@ -1,5 +1,11 @@
-import React from 'react';
-import {Image, StyleSheet, TouchableOpacity} from 'react-native';
+import React, {useMemo, useState} from 'react';
+import {
+  ActivityIndicator,
+  Image,
+  StyleSheet,
+  TouchableOpacity,
+  Text,
+} from 'react-native';
 
 const MapPreview = ({style, location, children, onPress}) => {
   let imagePreviewUrl = null;
@@ -8,13 +14,19 @@ const MapPreview = ({style, location, children, onPress}) => {
     imagePreviewUrl = `https://static-maps.yandex.ru/1.x/?ll=${location.lng},${location.lat}&size=450,450&z=16&l=map&pt=${location.lng},${location.lat},vkbkm,`;
   }
 
-  return (
-    <TouchableOpacity onPress={onPress} style={[styles.mapPreview, style]}>
-      {imagePreviewUrl ? (
-        <Image style={styles.mapImage} source={{uri: imagePreviewUrl}} />
+  const renderedImage = useMemo(
+    () =>
+      imagePreviewUrl ? (
+        <Image style={[styles.mapImage]} source={{uri: imagePreviewUrl}} />
       ) : (
         children
-      )}
+      ),
+    [imagePreviewUrl, children],
+  );
+
+  return (
+    <TouchableOpacity onPress={onPress} style={[styles.mapPreview, style]}>
+      {renderedImage}
     </TouchableOpacity>
   );
 };
@@ -34,6 +46,8 @@ const styles = StyleSheet.create({
     backgroundColor: '#eee',
   },
   mapImage: {
+    backgroundColor: 'transparent',
+    position: 'absolute',
     width: '100%',
     height: '100%',
   },
