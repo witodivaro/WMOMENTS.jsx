@@ -1,16 +1,14 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useMemo, useState} from 'react';
-import {StyleSheet, Text, View, Platform, Button} from 'react-native';
+import React, {useCallback, useMemo, useState, useEffect, useRef} from 'react';
+import {StyleSheet, Text, View, Platform, Button, Alert} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import COLORS from '../../constants/colors';
 import {createThreeClosestMomentsByIdSelector} from '../../redux/moments/moments.selectors';
-import {useEffect} from 'react';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
 import {removeMoment} from '../../redux/moments/moments.thunks';
 import Carousel from 'react-native-snap-carousel';
-import {useRef} from 'react';
 import MomentDetails from '../../components/moment-details/moment-details.component';
 
 const MomentDetailsScreen = ({route}) => {
@@ -21,12 +19,10 @@ const MomentDetailsScreen = ({route}) => {
   const [leftMoment, selectedMoment, rightMoment] = useSelector(
     createThreeClosestMomentsByIdSelector(momentId),
   );
-  const [selectedMomentIndex, setSelectedMomentIndex] = useState(null);
 
   const [memoizedSelectedMoment, setMemoizedSelectedMoment] = useState(
     selectedMoment,
   );
-
   const {id, title} = memoizedSelectedMoment;
   const carouselRef = useRef();
 
@@ -35,14 +31,8 @@ const MomentDetailsScreen = ({route}) => {
   }, [setIsDeleteModalVisible]);
 
   useEffect(() => {
-    if (selectedMoment) {
-      setMemoizedSelectedMoment(selectedMoment);
-    }
+    setMemoizedSelectedMoment(selectedMoment);
   }, [selectedMoment]);
-
-  useEffect(() => {
-    carouselRef.current.snapToItem(selectedMomentIndex, false, false);
-  }, [memoizedSelectedMoment, carouselRef, selectedMomentIndex]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -58,7 +48,16 @@ const MomentDetailsScreen = ({route}) => {
       ),
       title,
     });
-  }, [navigation, id]);
+  }, [navigation, id, toggleDeleteModalVisible]);
+
+  useEffect(() => {
+    let itemIndexToSnapTo = 1;
+    if (!leftMoment) {
+      itemIndexToSnapTo = 0;
+    }
+
+    carouselRef.current.snapToItem(itemIndexToSnapTo, false, false);
+  }, [leftMoment, carouselRef]);
 
   const deleteMomentHandler = useCallback(() => {
     dispatch(removeMoment({id}));
@@ -66,14 +65,19 @@ const MomentDetailsScreen = ({route}) => {
     navigation.navigate('moments');
   }, [dispatch, removeMoment, id]);
 
-  const scrollToMomentHandler = useCallback(
-    (index) => {
+  const renderedCarousel = useMemo(() => {
+    const carouselData = [selectedMoment];
+    if (leftMoment) carouselData.unshift(leftMoment);
+    if (rightMoment) carouselData.push(rightMoment);
+
+    const selectedMomentIndex = carouselData.indexOf(selectedMoment);
+
+    const scrollToMomentHandler = (index) => {
       switch (index) {
         case selectedMomentIndex - 1:
           navigation.setParams({
             momentId: leftMoment.id,
           });
-
           break;
 
         case selectedMomentIndex + 1:
@@ -82,17 +86,7 @@ const MomentDetailsScreen = ({route}) => {
           });
           break;
       }
-    },
-    [navigation, momentId, selectedMomentIndex],
-  );
-
-  const renderedCarousel = useMemo(() => {
-    const carouselData = [selectedMoment];
-    if (leftMoment) carouselData.unshift(leftMoment);
-    if (rightMoment) carouselData.push(rightMoment);
-
-    const selectedMomentIndex = carouselData.indexOf(selectedMoment);
-    setSelectedMomentIndex(selectedMomentIndex);
+    };
 
     return (
       <Carousel
@@ -103,12 +97,13 @@ const MomentDetailsScreen = ({route}) => {
         onScrollToIndexFailed={() => {
           console.log('scroll failed');
         }}
+        keyExtractor={(item) => `slide ${item.id.toString()}`}
         renderItem={({item}) => <MomentDetails moment={item} />}
         sliderWidth={400}
         itemWidth={400}
       />
     );
-  }, [memoizedSelectedMoment, scrollToMomentHandler, rightMoment, leftMoment]);
+  }, [navigation, selectedMoment, rightMoment, leftMoment]);
 
   return (
     <>

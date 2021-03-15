@@ -29,7 +29,11 @@ const MomentsGroup = ({date, moments}) => {
     () =>
       isExpanded ? (
         <View style={styles.momentsContainer}>
-          <FlatList data={moments} renderItem={renderMomentItem} />
+          <FlatList
+            data={moments}
+            keyExtractor={(item) => item.id.toString()}
+            renderItem={renderMomentItem}
+          />
           <Text style={styles.closeText}>Touch to close</Text>
         </View>
       ) : null,

@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     marginLeft: 25,
-    width: 250,
+    flex: 1,
     justifyContent: 'center',
     alignItems: 'flex-start',
   },
