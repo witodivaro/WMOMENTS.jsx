@@ -40,7 +40,9 @@ const MomentDetailsScreen = ({route}) => {
   }, [setIsDeleteModalVisible]);
 
   useEffect(() => {
-    setMemoizedSelectedMoment(selectedMoment);
+    if (selectedMoment) {
+      setMemoizedSelectedMoment(selectedMoment);
+    }
   }, [selectedMoment]);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ const MomentDetailsScreen = ({route}) => {
   }, [dispatch, removeMoment, id]);
 
   const renderedCarousel = useMemo(() => {
-    const carouselData = [selectedMoment];
+    const carouselData = [memoizedSelectedMoment];
     if (leftMoment) carouselData.unshift(leftMoment);
     if (rightMoment) carouselData.push(rightMoment);
 
@@ -106,13 +108,13 @@ const MomentDetailsScreen = ({route}) => {
         onScrollToIndexFailed={() => {
           console.log('scroll failed');
         }}
-        keyExtractor={(item) => `slide ${item.id.toString()}`}
+        keyExtractor={(item, index) => `slide ${index}: ${item.id.toString()}`}
         renderItem={({item}) => <MomentDetails moment={item} />}
         sliderWidth={DEVICE_WIDTH}
         itemWidth={DEVICE_WIDTH}
       />
     );
-  }, [navigation, selectedMoment, rightMoment, leftMoment]);
+  }, [navigation, memoizedSelectedMoment, rightMoment, leftMoment]);
 
   return (
     <>
