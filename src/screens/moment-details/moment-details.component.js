@@ -1,6 +1,13 @@
 import {useNavigation} from '@react-navigation/core';
 import React, {useCallback, useMemo, useState, useEffect, useRef} from 'react';
-import {StyleSheet, Text, View, Platform, Button, Alert} from 'react-native';
+import {
+  StyleSheet,
+  Text,
+  View,
+  Platform,
+  Button,
+  Dimensions,
+} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import COLORS from '../../constants/colors';
 import {createThreeClosestMomentsByIdSelector} from '../../redux/moments/moments.selectors';
@@ -10,6 +17,8 @@ import Modal from 'react-native-modal';
 import {removeMoment} from '../../redux/moments/moments.thunks';
 import Carousel from 'react-native-snap-carousel';
 import MomentDetails from '../../components/moment-details/moment-details.component';
+
+const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const MomentDetailsScreen = ({route}) => {
   const {momentId} = route.params;
@@ -99,8 +108,8 @@ const MomentDetailsScreen = ({route}) => {
         }}
         keyExtractor={(item) => `slide ${item.id.toString()}`}
         renderItem={({item}) => <MomentDetails moment={item} />}
-        sliderWidth={400}
-        itemWidth={400}
+        sliderWidth={DEVICE_WIDTH}
+        itemWidth={DEVICE_WIDTH}
       />
     );
   }, [navigation, selectedMoment, rightMoment, leftMoment]);
