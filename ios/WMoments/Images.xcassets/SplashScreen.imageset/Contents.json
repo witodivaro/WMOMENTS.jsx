@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "filename" : "splash-screen.png",
+      "filename" : "Default-Portrait-736h@3x-2.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Default-568h@2x.png",
+      "filename" : "Default-Portrait-736h@3x-1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
