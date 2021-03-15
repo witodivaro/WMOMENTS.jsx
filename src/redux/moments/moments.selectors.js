@@ -14,11 +14,31 @@ export const createMomentByIdSelector = (momentId) =>
     return wantedMoment;
   });
 
-export const selectMomentsImagesAndIDs = createSelector(
-  selectMomentsList,
-  (momentsList) =>
-    momentsList.map((moment) => ({image: moment.image, id: moment.id})),
-);
+export const createSameDateMomentImagesAndIDsSelector = (momentId) =>
+  createSelector(
+    selectMomentsListStructuredByDate,
+    (momentsListStructuredByDate) => {
+      const sameDateMomentsEntries = Object.entries(
+        momentsListStructuredByDate,
+      ).filter(([date, dateMoments]) => {
+        for (dateMoment of dateMoments) {
+          if (dateMoment.id === momentId) {
+            return true;
+          }
+        }
+        return false;
+      });
+      const [filteredMomentsEntry] = sameDateMomentsEntries;
+
+      const sameDateMomentImagesAndIDs = !!filteredMomentsEntry
+        ? filteredMomentsEntry[1].map((moment) => ({
+            id: moment.id,
+            imagePath: moment.imagePath,
+          }))
+        : [];
+      return sameDateMomentImagesAndIDs;
+    },
+  );
 
 export const selectMomentsListStructuredByDate = createSelector(
   selectMomentsList,

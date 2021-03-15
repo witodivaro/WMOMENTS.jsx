@@ -14,7 +14,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import COLORS from '../../constants/colors';
 import {
   createMomentByIdSelector,
-  selectMomentsImagesAndIDs,
+  createSameDateMomentImagesAndIDsSelector,
 } from '../../redux/moments/moments.selectors';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
@@ -26,16 +26,41 @@ const NoImage = require('../../assets/no-image.png');
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
+const renderMomentImage = ({item}) => (
+  <Image
+    style={styles.image}
+    source={
+      item.imagePath
+        ? {
+            uri: item.imagePath,
+          }
+        : NoImage
+    }
+    resizeMode="cover"
+  />
+);
+
 const MomentDetailsScreen = ({route}) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   const {momentId} = route.params;
 
-  const momentsImagesAndIDs = useSelector(selectMomentsImagesAndIDs);
+  const sameDateMomentImagesAndIDs = useSelector(
+    createSameDateMomentImagesAndIDsSelector(momentId),
+  );
   const selectedMoment = useSelector(createMomentByIdSelector(momentId));
+  const [memoizedSelectedMoment, setMemoizedSelectedMoment] = useState(
+    selectedMoment,
+  );
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
-  const {id, title} = selectedMoment;
+  const {id, title} = memoizedSelectedMoment;
+
+  useEffect(() => {
+    if (selectedMoment) {
+      setMemoizedSelectedMoment(selectedMoment);
+    }
+  }, [selectedMoment]);
 
   const toggleDeleteModalVisible = useCallback(() => {
     setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
@@ -64,9 +89,9 @@ const MomentDetailsScreen = ({route}) => {
   }, [dispatch, removeMoment, id]);
 
   const renderedCarousel = useMemo(() => {
-    const selectedMomentIndex = momentsImagesAndIDs.indexOf(
-      momentsImagesAndIDs.find(
-        (momentImageAndID) => momentImageAndID.id === selectedMoment.id,
+    const selectedMomentIndex = sameDateMomentImagesAndIDs.indexOf(
+      sameDateMomentImagesAndIDs.find(
+        (momentImageAndID) => momentImageAndID.id === memoizedSelectedMoment.id,
       ),
     );
 
@@ -74,13 +99,13 @@ const MomentDetailsScreen = ({route}) => {
       switch (index) {
         case selectedMomentIndex - 1:
           navigation.setParams({
-            momentId: momentsImagesAndIDs[selectedMomentIndex - 1].id,
+            momentId: sameDateMomentImagesAndIDs[selectedMomentIndex - 1].id,
           });
           break;
 
         case selectedMomentIndex + 1:
           navigation.setParams({
-            momentId: momentsImagesAndIDs[selectedMomentIndex + 1].id,
+            momentId: sameDateMomentImagesAndIDs[selectedMomentIndex + 1].id,
           });
           break;
       }
@@ -88,34 +113,24 @@ const MomentDetailsScreen = ({route}) => {
 
     return (
       <Carousel
-        data={momentsImagesAndIDs}
-        onSnapToItem={scrollToMomentHandler}
+        initialNumToRender={sameDateMomentImagesAndIDs.length}
         firstItem={selectedMomentIndex}
+        data={sameDateMomentImagesAndIDs}
+        onSnapToItem={scrollToMomentHandler}
         onScrollToIndexFailed={() => {
           console.log('scroll failed');
         }}
         keyExtractor={(item, index) => `slide ${index}: ${item.id.toString()}`}
-        renderItem={({item}) => (
-          <Image
-            style={styles.image}
-            source={
-              item.imagePath
-                ? {
-                    uri: item.imagePath,
-                  }
-                : NoImage
-            }
-            resizeMode="cover"
-          />
-        )}
+        renderItem={renderMomentImage}
         sliderWidth={DEVICE_WIDTH}
         itemWidth={DEVICE_WIDTH}
         style={{
           height: 200,
         }}
+        lockScrollWhileSnapping={true}
       />
     );
-  }, [navigation, momentsImagesAndIDs, selectedMoment]);
+  }, [navigation, sameDateMomentImagesAndIDs, memoizedSelectedMoment]);
 
   const renderedModal = useMemo(
     () => (
@@ -159,7 +174,7 @@ const MomentDetailsScreen = ({route}) => {
   return (
     <ScrollView>
       {renderedCarousel}
-      <MomentDetails moment={selectedMoment} />
+      <MomentDetails moment={memoizedSelectedMoment} />
       {renderedModal}
     </ScrollView>
   );
@@ -185,7 +200,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 10,
   },
   image: {
-    height: 300,
+    height: DEVICE_WIDTH,
     width: '100%',
   },
 });
