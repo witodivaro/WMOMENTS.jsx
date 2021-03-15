@@ -1,5 +1,5 @@
 import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useMemo, useState, useEffect, useRef} from 'react';
+import React, {useCallback, useMemo, useState, useEffect} from 'react';
 import {
   StyleSheet,
   Text,
@@ -7,43 +7,39 @@ import {
   Platform,
   Button,
   Dimensions,
+  Image,
+  ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import COLORS from '../../constants/colors';
-import {createThreeClosestMomentsByIdSelector} from '../../redux/moments/moments.selectors';
+import {
+  createMomentByIdSelector,
+  selectMomentsImagesAndIDs,
+} from '../../redux/moments/moments.selectors';
 import {HeaderButtons, Item} from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
 import {removeMoment} from '../../redux/moments/moments.thunks';
 import Carousel from 'react-native-snap-carousel';
 import MomentDetails from '../../components/moment-details/moment-details.component';
+const NoImage = require('../../assets/no-image.png');
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
 const MomentDetailsScreen = ({route}) => {
-  const {momentId} = route.params;
-  const navigation = useNavigation();
   const dispatch = useDispatch();
-  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
-  const [leftMoment, selectedMoment, rightMoment] = useSelector(
-    createThreeClosestMomentsByIdSelector(momentId),
-  );
+  const navigation = useNavigation();
+  const {momentId} = route.params;
 
-  const [memoizedSelectedMoment, setMemoizedSelectedMoment] = useState(
-    selectedMoment,
-  );
-  const {id, title} = memoizedSelectedMoment;
-  const carouselRef = useRef();
+  const momentsImagesAndIDs = useSelector(selectMomentsImagesAndIDs);
+  const selectedMoment = useSelector(createMomentByIdSelector(momentId));
+  const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
+
+  const {id, title} = selectedMoment;
 
   const toggleDeleteModalVisible = useCallback(() => {
     setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
   }, [setIsDeleteModalVisible]);
-
-  useEffect(() => {
-    if (selectedMoment) {
-      setMemoizedSelectedMoment(selectedMoment);
-    }
-  }, [selectedMoment]);
 
   useEffect(() => {
     navigation.setOptions({
@@ -61,15 +57,6 @@ const MomentDetailsScreen = ({route}) => {
     });
   }, [navigation, id, toggleDeleteModalVisible]);
 
-  useEffect(() => {
-    let itemIndexToSnapTo = 1;
-    if (!leftMoment) {
-      itemIndexToSnapTo = 0;
-    }
-
-    carouselRef.current.snapToItem(itemIndexToSnapTo, false, false);
-  }, [leftMoment, carouselRef]);
-
   const deleteMomentHandler = useCallback(() => {
     dispatch(removeMoment({id}));
     toggleDeleteModalVisible();
@@ -77,23 +64,23 @@ const MomentDetailsScreen = ({route}) => {
   }, [dispatch, removeMoment, id]);
 
   const renderedCarousel = useMemo(() => {
-    const carouselData = [memoizedSelectedMoment];
-    if (leftMoment) carouselData.unshift(leftMoment);
-    if (rightMoment) carouselData.push(rightMoment);
-
-    const selectedMomentIndex = carouselData.indexOf(selectedMoment);
+    const selectedMomentIndex = momentsImagesAndIDs.indexOf(
+      momentsImagesAndIDs.find(
+        (momentImageAndID) => momentImageAndID.id === selectedMoment.id,
+      ),
+    );
 
     const scrollToMomentHandler = (index) => {
       switch (index) {
         case selectedMomentIndex - 1:
           navigation.setParams({
-            momentId: leftMoment.id,
+            momentId: momentsImagesAndIDs[selectedMomentIndex - 1].id,
           });
           break;
 
         case selectedMomentIndex + 1:
           navigation.setParams({
-            momentId: rightMoment.id,
+            momentId: momentsImagesAndIDs[selectedMomentIndex + 1].id,
           });
           break;
       }
@@ -101,24 +88,37 @@ const MomentDetailsScreen = ({route}) => {
 
     return (
       <Carousel
-        ref={carouselRef}
-        data={carouselData}
+        data={momentsImagesAndIDs}
         onSnapToItem={scrollToMomentHandler}
         firstItem={selectedMomentIndex}
         onScrollToIndexFailed={() => {
           console.log('scroll failed');
         }}
         keyExtractor={(item, index) => `slide ${index}: ${item.id.toString()}`}
-        renderItem={({item}) => <MomentDetails moment={item} />}
+        renderItem={({item}) => (
+          <Image
+            style={styles.image}
+            source={
+              item.imagePath
+                ? {
+                    uri: item.imagePath,
+                  }
+                : NoImage
+            }
+            resizeMode="cover"
+          />
+        )}
         sliderWidth={DEVICE_WIDTH}
         itemWidth={DEVICE_WIDTH}
+        style={{
+          height: 200,
+        }}
       />
     );
-  }, [navigation, memoizedSelectedMoment, rightMoment, leftMoment]);
+  }, [navigation, momentsImagesAndIDs, selectedMoment]);
 
-  return (
-    <>
-      {renderedCarousel}
+  const renderedModal = useMemo(
+    () => (
       <Modal
         backdropOpacity={0.4}
         onBackdropPress={toggleDeleteModalVisible}
@@ -147,7 +147,21 @@ const MomentDetailsScreen = ({route}) => {
           </View>
         </View>
       </Modal>
-    </>
+    ),
+    [
+      deleteMomentHandler,
+      toggleDeleteModalVisible,
+      title,
+      isDeleteModalVisible,
+    ],
+  );
+
+  return (
+    <ScrollView>
+      {renderedCarousel}
+      <MomentDetails moment={selectedMoment} />
+      {renderedModal}
+    </ScrollView>
   );
 };
 
@@ -169,6 +183,10 @@ const styles = StyleSheet.create({
   },
   modalAction: {
     marginHorizontal: 10,
+  },
+  image: {
+    height: 300,
+    width: '100%',
   },
 });
 

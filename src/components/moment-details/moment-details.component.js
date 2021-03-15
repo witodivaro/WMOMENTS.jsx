@@ -1,21 +1,12 @@
 import {useNavigation} from '@react-navigation/core';
 import React, {useCallback} from 'react';
-import {
-  StyleSheet,
-  ScrollView,
-  Image,
-  View,
-  Text,
-  Platform,
-} from 'react-native';
+import {StyleSheet, ScrollView, View, Text, Platform} from 'react-native';
 import MapPreview from '../map-preview/map-preview.component';
 import momentDateFormatter from 'moment-mini';
 import COLORS from '../../constants/colors';
 
-const NoImage = require('../../assets/no-image.png');
-
 const MomentDetails = ({moment}) => {
-  const {imagePath, lat, lng, date} = moment;
+  const {lat, lng, date} = moment;
   const navigation = useNavigation();
 
   const navigateToMapHandler = useCallback(() => {
@@ -29,36 +20,24 @@ const MomentDetails = ({moment}) => {
   }, [lat, lng, navigation]);
 
   return (
-    <ScrollView>
-      <View style={styles.momentDetails}>
-        <Image
-          style={styles.image}
-          source={
-            imagePath
-              ? {
-                  uri: imagePath,
-                }
-              : NoImage
-          }
-          resizeMode="cover"
-        />
-        <Text style={styles.date}>
-          {momentDateFormatter(date).format('hh:mm A')}
-        </Text>
-        <MapPreview
-          location={{
-            lat,
-            lng,
-          }}
-          onPress={navigateToMapHandler}
-        />
-      </View>
-    </ScrollView>
+    <View style={styles.momentDetails}>
+      <Text style={styles.date}>
+        {momentDateFormatter(date).format('hh:mm A')}
+      </Text>
+      <MapPreview
+        location={{
+          lat,
+          lng,
+        }}
+        onPress={navigateToMapHandler}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   momentDetails: {
+    marginTop: 10,
     alignItems: 'center',
   },
   image: {
