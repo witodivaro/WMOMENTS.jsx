@@ -7,15 +7,8 @@
  */
 
 import React, {useEffect} from 'react';
-import {
-  Platform,
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Button,
-  Alert,
-  AppState,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, AppState} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
 
 import PlacesStackNavigator from './src/navigators/stack/places/places.navigator';
 import {init} from './src/db/db';
@@ -54,10 +47,12 @@ const App = () => {
   }, []);
 
   return (
-    <SafeAreaView style={styles.screen}>
-      <StatusBar backgroundColor={COLORS.primary} />
-      <PlacesStackNavigator />
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaView style={styles.screen}>
+        <StatusBar backgroundColor={COLORS.primary} />
+        <PlacesStackNavigator />
+      </SafeAreaView>
+    </NavigationContainer>
   );
 };
 
