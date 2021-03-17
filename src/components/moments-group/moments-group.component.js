@@ -33,6 +33,7 @@ const MomentsGroup = ({date, moments}) => {
             data={moments}
             keyExtractor={(item) => item.id.toString()}
             renderItem={renderMomentItem}
+            accessibilityLabel="moments list"
           />
           <Text style={styles.closeText}>Touch to close</Text>
         </View>
@@ -41,7 +42,10 @@ const MomentsGroup = ({date, moments}) => {
   );
 
   return (
-    <TouchableOpacity onPress={toggleIsExpandedHandler} style={styles.group}>
+    <TouchableOpacity
+      accessibilityLabel="open moments group"
+      onPress={toggleIsExpandedHandler}
+      style={styles.group}>
       <View style={styles.groupDateContainer}>
         <Text
           style={[styles.date, {textAlign: isExpanded ? 'left' : 'center'}]}>

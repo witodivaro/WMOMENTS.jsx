@@ -30,13 +30,18 @@ jest.mock('react-native', () => ({
   },
   Linking: {
     addEventListener: () => ({}),
+    removeEventListener: () => ({}),
   },
   AppState: {
     addEventListener: () => ({}),
   },
   BackHandler: {
-    addEventListener: () => ({}),
+    addEventListener: () => ({remove: jest.fn()}),
   },
   SafeAreaView: 'SafeAreaView',
   StatusBar: 'StatusBar',
+  Text: 'Text',
+  View: 'View',
+  TouchableOpacity: 'TouchableOpacity',
+  FlatList: 'FlatList',
 }));

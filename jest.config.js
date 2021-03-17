@@ -11,4 +11,6 @@ module.exports = {
       '|react-navigation-header-buttons' +
       ')',
   ],
+  testPathIgnorePatterns: ['/__tests__/test-utils.js'],
+  moduleDirectories: ['node_modules', '__tests__'],
 };
