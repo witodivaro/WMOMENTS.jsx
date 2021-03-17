@@ -18,25 +18,25 @@ export const createSameDateMomentImagesAndIDsSelector = (momentId) =>
   createSelector(
     selectMomentsListStructuredByDate,
     (momentsListStructuredByDate) => {
-      const sameDateMomentsEntries = Object.entries(
-        momentsListStructuredByDate,
-      ).filter(([date, dateMoments]) => {
-        for (dateMoment of dateMoments) {
-          if (dateMoment.id === momentId) {
-            return true;
+      const sameDateMoments = Object.values(momentsListStructuredByDate)
+        .filter((dateMoments) => {
+          for (dateMoment of dateMoments) {
+            if (dateMoment.id === momentId) {
+              return true;
+            }
           }
-        }
-        return false;
-      });
-      const [filteredMomentsEntry] = sameDateMomentsEntries;
+          return false;
+        })
+        .pop();
 
-      const sameDateMomentImagesAndIDs = !!filteredMomentsEntry
-        ? filteredMomentsEntry[1].map((moment) => ({
-            id: moment.id,
-            imagePath: moment.imagePath,
-          }))
-        : [];
-      return sameDateMomentImagesAndIDs;
+      const sameDateMomentsImagesAndIDs = sameDateMoments.map(
+        ({id, imagePath}) => ({
+          id,
+          imagePath,
+        }),
+      );
+
+      return sameDateMomentsImagesAndIDs;
     },
   );
 
