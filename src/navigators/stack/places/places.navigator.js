@@ -1,5 +1,5 @@
 import React from 'react';
-import {createStackNavigator} from '@react-navigation/stack';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import SCREENS from '../../../config/screens';
 import COLORS from '../../../constants/colors';
@@ -41,7 +41,7 @@ const PlacesStackNavigator = () => {
         name={SCREENS.MomentDetails.name}
         key={SCREENS.MomentDetails.key}
         component={SCREENS.MomentDetails.component}
-        options={({route}) => ({
+        options={({ route }) => ({
           title: route.params.momentTitle,
         })}
       />

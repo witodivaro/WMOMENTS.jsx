@@ -106,8 +106,8 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     color: COLORS.primary,
-    fontSize: 16,
-    textShadowRadius: 5,
+    fontSize: 18,
+    textShadowRadius: 1,
     shadowOpacity: 0.1,
   },
 });

@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState, useEffect} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,13 +10,13 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
-import {addMoment} from '../../redux/moments/moments.thunks';
-import {selectNewMomentSelectedLocation} from '../../redux/new-moment/new-moment.selectors';
+import { addMoment } from '../../redux/moments/moments.thunks';
+import { selectNewMomentSelectedLocation } from '../../redux/new-moment/new-moment.selectors';
 
 const NewMomentScreen = () => {
   const dispatch = useDispatch();
