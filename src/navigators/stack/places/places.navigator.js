@@ -1,6 +1,5 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Platform} from 'react-native';
 
 import SCREENS from '../../../config/screens';
 import COLORS from '../../../constants/colors';
@@ -11,17 +10,7 @@ const PlacesStackNavigator = () => {
   return (
     <PlacesStack.Navigator
       screenOptions={{
-        ...Platform.select({
-          ios: {
-            headerTintColor: COLORS.primary,
-          },
-          default: {
-            headerStyle: {
-              backgroundColor: COLORS.primary,
-            },
-            headerTintColor: 'white',
-          },
-        }),
+        headerTintColor: COLORS.primary,
       }}
       initialRouteName={SCREENS.Moments.name}>
       <PlacesStack.Screen

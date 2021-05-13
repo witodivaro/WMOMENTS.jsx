@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     backgroundColor: '#ccc',
-    borderColor: Platform.OS === 'ios' ? Colors.primary : 'transparent',
+    borderColor: Colors.primary,
     borderWidth: 1,
   },
   infoContainer: {
@@ -73,12 +73,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   title: {
-    color: Platform.OS === 'ios' ? 'black' : 'white',
+    color: 'black',
     fontSize: 18,
     marginBottom: 5,
   },
   date: {
-    color: Platform.OS === 'ios' ? 'black' : 'white',
+    color: 'black',
   },
   moment: {
     color: '#666',

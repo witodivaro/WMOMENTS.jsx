@@ -35,7 +35,7 @@ const NewMomentScreen = () => {
     }
   }, [selectedLocation]);
 
-  const titleChangeHandler = (text) => {
+  const titleChangeHandler = text => {
     setTitleValue(text);
   };
 
@@ -68,7 +68,7 @@ const NewMomentScreen = () => {
     navigation.navigate('moments');
   };
 
-  const imageTakenHandler = (uri) => {
+  const imageTakenHandler = uri => {
     setImageUri(uri);
   };
 
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     fontSize: 16,
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
+    color: COLORS.primary,
     alignSelf: 'flex-start',
 
-    padding: Platform.OS === 'ios' ? 0 : 5,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
+    padding: 0,
+    backgroundColor: 'transparent',
     textTransform: 'uppercase',
   },
   titleSelector: {
