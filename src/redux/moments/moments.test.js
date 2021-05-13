@@ -44,16 +44,16 @@ describe('moments', () => {
       expect(
         momentsReducer(stateMock, {
           type: momentsThunks.removeMoment.fulfilled,
-          payload: {id: 1},
+          payload: { id: 1 },
         }),
       ).toEqual({
-        list: [{id: 2}],
+        list: [{ id: 2 }],
       });
     });
 
     test('unshift moment with initial params on addMoment fulfilled', () => {
       const stateMock = {
-        list: [{id: 1}],
+        list: [{ id: 1 }],
       };
 
       const momentMock = {
@@ -97,7 +97,7 @@ describe('moments', () => {
 
       expect(
         momentsSelectors.createMomentByIdSelector(2)(storeStateMock),
-      ).toEqual({...momentMock});
+      ).toEqual({ ...momentMock });
     });
 
     test('createSameDateMomentImagesAndIDsSelector returns same date moment images & ids', () => {

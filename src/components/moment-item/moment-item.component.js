@@ -1,4 +1,4 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
 import {
   View,
@@ -10,12 +10,12 @@ import {
 } from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 
 const NoImage = require('../../assets/no-image.png');
 
-const MomentItem = ({item}) => {
-  const {id, title, imagePath, date} = item;
+const MomentItem = ({ item }) => {
+  const { id, title, imagePath, date } = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
@@ -34,7 +34,7 @@ const MomentItem = ({item}) => {
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={imagePath ? {uri: imagePath} : NoImage}
+          source={imagePath ? { uri: imagePath } : NoImage}
         />
       </View>
       <View style={styles.infoContainer}>

@@ -1,12 +1,12 @@
-import {createAsyncThunk} from '@reduxjs/toolkit';
-import {Platform} from 'react-native';
+import { createAsyncThunk } from '@reduxjs/toolkit';
+import { Platform } from 'react-native';
 import * as DBActions from '../../db/db';
 import RNFS from 'react-native-fs';
-import {clearNewMoment} from '../new-moment/new-moment.slice';
+import { clearNewMoment } from '../new-moment/new-moment.slice';
 
 export const addMoment = createAsyncThunk(
   'moments/addMoment',
-  async ({title, location, imagePath}, {rejectWithValue, dispatch}) => {
+  async ({ title, location, imagePath }, { rejectWithValue, dispatch }) => {
     const fileName = imagePath ? imagePath.split('/').pop() : null;
     const newPath = fileName
       ? (Platform.OS === 'android' ? 'file://' : '') +
@@ -47,9 +47,9 @@ export const addMoment = createAsyncThunk(
 
 export const removeMoment = createAsyncThunk(
   'moments/removeMoment',
-  async ({id}, {rejectWithValue}) => {
+  async ({ id }, { rejectWithValue }) => {
     try {
-      await DBActions.removeMoment({id});
+      await DBActions.removeMoment({ id });
 
       return {
         id,
@@ -62,7 +62,7 @@ export const removeMoment = createAsyncThunk(
 
 export const fetchMomentsFromDB = createAsyncThunk(
   'moments/fetchMomentsFromDB',
-  async (_, {rejectWithValue}) => {
+  async (_, { rejectWithValue }) => {
     try {
       const dbResult = await DBActions.fetchMoments();
       const items = [];

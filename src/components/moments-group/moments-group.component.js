@@ -1,5 +1,5 @@
 import moment from 'moment-mini';
-import React, {useState, useMemo, useCallback} from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   Button,
   FlatList,
@@ -12,11 +12,11 @@ import {
 import COLORS from '../../constants/colors';
 import MomentItem from '../moment-item/moment-item.component';
 
-const renderMomentItem = ({item}) => {
+const renderMomentItem = ({ item }) => {
   return <MomentItem key={item.id.toString()} item={item} />;
 };
 
-const MomentsGroup = ({date, moments}) => {
+const MomentsGroup = ({ date, moments }) => {
   const formattedDate = moment(date).format('MMMM Do YYYY');
 
   const [isExpanded, setIsExpanded] = useState(false);
@@ -48,7 +48,7 @@ const MomentsGroup = ({date, moments}) => {
       style={styles.group}>
       <View style={styles.groupDateContainer}>
         <Text
-          style={[styles.date, {textAlign: isExpanded ? 'left' : 'center'}]}>
+          style={[styles.date, { textAlign: isExpanded ? 'left' : 'center' }]}>
           {formattedDate}
         </Text>
       </View>

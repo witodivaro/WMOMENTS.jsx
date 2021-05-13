@@ -1,5 +1,5 @@
-import {createSlice} from '@reduxjs/toolkit';
-import {addMoment, fetchMomentsFromDB, removeMoment} from './moments.thunks';
+import { createSlice } from '@reduxjs/toolkit';
+import { addMoment, fetchMomentsFromDB, removeMoment } from './moments.thunks';
 
 const initialState = {
   list: [],
@@ -9,8 +9,8 @@ const momentsSlice = createSlice({
   name: 'moments',
   initialState,
   extraReducers: {
-    [addMoment.fulfilled]: (state, {payload}) => {
-      const {title, lat, lng, imagePath, id, date} = payload;
+    [addMoment.fulfilled]: (state, { payload }) => {
+      const { title, lat, lng, imagePath, id, date } = payload;
 
       state.list.unshift({
         title,
@@ -21,14 +21,14 @@ const momentsSlice = createSlice({
         date,
       });
     },
-    [fetchMomentsFromDB.fulfilled]: (state, {payload}) => {
-      const {items} = payload;
+    [fetchMomentsFromDB.fulfilled]: (state, { payload }) => {
+      const { items } = payload;
       state.list = items;
     },
-    [removeMoment.fulfilled]: (state, {payload}) => {
-      const {id} = payload;
+    [removeMoment.fulfilled]: (state, { payload }) => {
+      const { id } = payload;
 
-      state.list = state.list.filter((moment) => moment.id !== id);
+      state.list = state.list.filter(moment => moment.id !== id);
     },
   },
 });
