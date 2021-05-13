@@ -22,7 +22,7 @@ const MomentsGroup = ({date, moments}) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleIsExpandedHandler = useCallback(() => {
-    setIsExpanded((isExpanded) => !isExpanded);
+    setIsExpanded(isExpanded => !isExpanded);
   }, []);
 
   const renderedMoments = useMemo(
@@ -31,7 +31,7 @@ const MomentsGroup = ({date, moments}) => {
         <View style={styles.momentsContainer}>
           <FlatList
             data={moments}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={item => item.id.toString()}
             renderItem={renderMomentItem}
             accessibilityLabel="moments list"
           />
@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     shadowOpacity: 0.26,
-    backgroundColor: Platform.OS === 'ios' ? '#fff' : COLORS.primary,
+    backgroundColor: '#fff',
     borderColor: COLORS.primary,
     elevation: 5,
   },
   date: {
     fontSize: 20,
-    color: Platform.OS === 'ios' ? COLORS.primary : '#fff',
+    color: COLORS.primary,
   },
   momentsContainer: {
     marginTop: 20,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     textAlign: 'center',
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
+    color: COLORS.primary,
   },
 });
 

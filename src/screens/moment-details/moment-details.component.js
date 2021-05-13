@@ -63,7 +63,9 @@ const MomentDetailsScreen = ({route}) => {
   }, [selectedMoment]);
 
   const toggleDeleteModalVisible = useCallback(() => {
-    setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
+    setIsDeleteModalVisible(
+      prevIsDeleteModalVisible => !prevIsDeleteModalVisible,
+    );
   }, [setIsDeleteModalVisible]);
 
   useEffect(() => {
@@ -72,7 +74,7 @@ const MomentDetailsScreen = ({route}) => {
         <HeaderButtons HeaderButtonComponent={EvilHeaderButton}>
           <Item
             iconName="trash"
-            color={Platform.OS === 'ios' ? COLORS.primary : 'white'}
+            color={COLORS.primary}
             iconSize={30}
             onPress={toggleDeleteModalVisible}
           />
@@ -80,22 +82,22 @@ const MomentDetailsScreen = ({route}) => {
       ),
       title,
     });
-  }, [navigation, id, toggleDeleteModalVisible]);
+  }, [navigation, id, toggleDeleteModalVisible, title]);
 
   const deleteMomentHandler = useCallback(() => {
     dispatch(removeMoment({id}));
     toggleDeleteModalVisible();
     navigation.navigate('moments');
-  }, [dispatch, removeMoment, id]);
+  }, [dispatch, id, toggleDeleteModalVisible, navigation]);
 
   const renderedCarousel = useMemo(() => {
     const selectedMomentIndex = sameDateMomentImagesAndIDs.indexOf(
       sameDateMomentImagesAndIDs.find(
-        (momentImageAndID) => momentImageAndID.id === memoizedSelectedMoment.id,
+        momentImageAndID => momentImageAndID.id === memoizedSelectedMoment.id,
       ),
     );
 
-    const scrollToMomentHandler = (index) => {
+    const scrollToMomentHandler = index => {
       switch (index) {
         case selectedMomentIndex - 1:
           navigation.setParams({
@@ -124,9 +126,7 @@ const MomentDetailsScreen = ({route}) => {
         renderItem={renderMomentImage}
         sliderWidth={DEVICE_WIDTH}
         itemWidth={DEVICE_WIDTH}
-        style={{
-          height: 200,
-        }}
+        style={styles.carousel}
         lockScrollWhileSnapping={true}
       />
     );
@@ -202,6 +202,9 @@ const styles = StyleSheet.create({
   image: {
     height: DEVICE_WIDTH,
     width: '100%',
+  },
+  carousel: {
+    height: 200,
   },
 });
 

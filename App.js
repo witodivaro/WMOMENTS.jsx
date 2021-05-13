@@ -18,10 +18,10 @@ import NotificationService from './NotificationService';
 
 if (process.env.NODE_ENV === 'development') {
   init()
-    .then((res) => {
+    .then(res => {
       console.log('Initialized database');
     })
-    .catch((err) => {
+    .catch(err => {
       console.log('Database initializing failed');
       console.log(err);
     });
@@ -33,7 +33,7 @@ const Notifications = new NotificationService();
 
 const App = () => {
   useEffect(() => {
-    const appStateChangeHandler = (state) => {
+    const appStateChangeHandler = state => {
       if (state.match(/inactive|background/)) {
         Notifications.setAppReminder();
       } else if (state === 'active') {
@@ -49,7 +49,6 @@ const App = () => {
   return (
     <NavigationContainer>
       <SafeAreaView style={styles.screen}>
-        <StatusBar backgroundColor={COLORS.primary} />
         <PlacesStackNavigator />
       </SafeAreaView>
     </NavigationContainer>

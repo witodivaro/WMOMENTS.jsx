@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/core';
 import React, {useCallback} from 'react';
-import {StyleSheet, ScrollView, View, Text, Platform} from 'react-native';
+import {StyleSheet, View, Text} from 'react-native';
 import MapPreview from '../map-preview/map-preview.component';
 import momentDateFormatter from 'moment-mini';
 import COLORS from '../../constants/colors';
@@ -48,8 +48,8 @@ const styles = StyleSheet.create({
   date: {
     padding: 10,
     borderColor: COLORS.primary,
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
+    color: COLORS.primary,
+    backgroundColor: 'transparent',
     fontSize: 16,
     borderWidth: 1,
     marginBottom: 10,
