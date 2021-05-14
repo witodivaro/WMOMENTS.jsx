@@ -1,13 +1,6 @@
 import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
 import { useMemo } from 'react';
@@ -25,9 +18,10 @@ const MomentItem = ({ item }) => {
     });
   };
 
-  const renderedMomentDate = useMemo(() => moment(date).format('h:mm A'), [
-    date,
-  ]);
+  const renderedMomentDate = useMemo(
+    () => moment(date).format('h:mm A'),
+    [date],
+  );
 
   return (
     <TouchableOpacity onPress={itemClickHandler} style={styles.MomentItem}>

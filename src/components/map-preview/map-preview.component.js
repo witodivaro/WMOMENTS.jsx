@@ -1,13 +1,7 @@
-import React, {useMemo, useState} from 'react';
-import {
-  ActivityIndicator,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Text,
-} from 'react-native';
+import React, { useMemo } from 'react';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
 
-const MapPreview = ({style, location, children, onPress}) => {
+const MapPreview = ({ style, location, children, onPress }) => {
   let imagePreviewUrl = null;
 
   if (location) {
@@ -17,7 +11,7 @@ const MapPreview = ({style, location, children, onPress}) => {
   const renderedImage = useMemo(
     () =>
       imagePreviewUrl ? (
-        <Image style={[styles.mapImage]} source={{uri: imagePreviewUrl}} />
+        <Image style={[styles.mapImage]} source={{ uri: imagePreviewUrl }} />
       ) : (
         children
       ),

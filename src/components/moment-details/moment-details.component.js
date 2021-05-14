@@ -1,13 +1,14 @@
 import { useNavigation } from '@react-navigation/core';
 import React, { useCallback } from 'react';
 import { StyleSheet, View, Text } from 'react-native';
-import MapPreview from '../map-preview/map-preview.component';
 import momentDateFormatter from 'moment-mini';
-import COLORS from '../../constants/colors';
-import Button from '../common/button/button';
 import Share from 'react-native-share';
 import RNFS from 'react-native-fs';
-import { createShareMessage } from '../../constants/messages';
+
+import MapPreview from '../map-preview/map-preview.component';
+import COLORS from '../../constants/colors';
+import Button from '../common/button/button';
+import { createShareMessage } from '../../utils/messages';
 
 const MomentDetails = ({ moment }) => {
   const { lat, lng, date, title } = moment;
@@ -27,9 +28,9 @@ const MomentDetails = ({ moment }) => {
     const imagePath = await RNFS.readFile(moment.imagePath, 'base64');
 
     await Share.open({
-      message: createShareMessage(title, date),
+      message: createShareMessage({ title, date }),
       url: `data:image/png;base64,${imagePath}`,
-      title: 'Ауф',
+      title: 'WMoments',
     });
   };
 
