@@ -1,12 +1,17 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import getMapPreviewLink from '../../helpers/previews/getMapPreviewLink';
 
 const MapPreview = ({ style, location, children, onPress }) => {
-  let imagePreviewUrl = null;
+  const [imagePreviewUrl, setImagePreviewUrl] = useState(null);
 
-  if (location) {
-    imagePreviewUrl = `https://static-maps.yandex.ru/1.x/?ll=${location.lng},${location.lat}&size=450,450&z=16&l=map&pt=${location.lng},${location.lat},vkbkm,`;
-  }
+  useEffect(() => {
+    console.log(location);
+    if (location) {
+      const { lng, lat } = location;
+      setImagePreviewUrl(getMapPreviewLink(lng, lat));
+    }
+  }, [location]);
 
   const renderedImage = useMemo(
     () =>
