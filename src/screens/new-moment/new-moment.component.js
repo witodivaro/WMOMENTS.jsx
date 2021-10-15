@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/native';
-import React, {useState, useEffect} from 'react';
+import { useNavigation } from '@react-navigation/native';
+import React, { useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,13 +10,13 @@ import {
   Alert,
   Platform,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
-import {addMoment} from '../../redux/moments/moments.thunks';
-import {selectNewMomentSelectedLocation} from '../../redux/new-moment/new-moment.selectors';
+import { addMoment } from '../../redux/moments/moments.thunks';
+import { selectNewMomentSelectedLocation } from '../../redux/new-moment/new-moment.selectors';
 
 const NewMomentScreen = () => {
   const dispatch = useDispatch();
@@ -35,7 +35,7 @@ const NewMomentScreen = () => {
     }
   }, [selectedLocation]);
 
-  const titleChangeHandler = (text) => {
+  const titleChangeHandler = text => {
     setTitleValue(text);
   };
 
@@ -68,7 +68,7 @@ const NewMomentScreen = () => {
     navigation.navigate('moments');
   };
 
-  const imageTakenHandler = (uri) => {
+  const imageTakenHandler = uri => {
     setImageUri(uri);
   };
 
@@ -104,11 +104,11 @@ const styles = StyleSheet.create({
     marginTop: 20,
     marginLeft: 20,
     fontSize: 16,
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
+    color: COLORS.primary,
     alignSelf: 'flex-start',
 
-    padding: Platform.OS === 'ios' ? 0 : 5,
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
+    padding: 0,
+    backgroundColor: 'transparent',
     textTransform: 'uppercase',
   },
   titleSelector: {

@@ -1,21 +1,14 @@
-import {useNavigation} from '@react-navigation/native';
+import { useNavigation } from '@react-navigation/native';
 import React from 'react';
-import {
-  View,
-  Text,
-  Image,
-  StyleSheet,
-  TouchableOpacity,
-  Platform,
-} from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import Colors from '../../constants/colors';
 import moment from 'moment-mini';
-import {useMemo} from 'react';
+import { useMemo } from 'react';
 
 const NoImage = require('../../assets/no-image.png');
 
-const MomentItem = ({item}) => {
-  const {id, title, imagePath, date} = item;
+const MomentItem = ({ item }) => {
+  const { id, title, imagePath, date } = item;
   const navigation = useNavigation();
 
   const itemClickHandler = () => {
@@ -25,16 +18,17 @@ const MomentItem = ({item}) => {
     });
   };
 
-  const renderedMomentDate = useMemo(() => moment(date).format('h:mm A'), [
-    date,
-  ]);
+  const renderedMomentDate = useMemo(
+    () => moment(date).format('h:mm A'),
+    [date],
+  );
 
   return (
     <TouchableOpacity onPress={itemClickHandler} style={styles.MomentItem}>
       <View style={styles.imageContainer}>
         <Image
           style={styles.image}
-          source={imagePath ? {uri: imagePath} : NoImage}
+          source={imagePath ? { uri: imagePath } : NoImage}
         />
       </View>
       <View style={styles.infoContainer}>
@@ -63,7 +57,7 @@ const styles = StyleSheet.create({
     height: 70,
     borderRadius: 35,
     backgroundColor: '#ccc',
-    borderColor: Platform.OS === 'ios' ? Colors.primary : 'transparent',
+    borderColor: Colors.primary,
     borderWidth: 1,
   },
   infoContainer: {
@@ -73,12 +67,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
   },
   title: {
-    color: Platform.OS === 'ios' ? 'black' : 'white',
+    color: 'black',
     fontSize: 18,
     marginBottom: 5,
   },
   date: {
-    color: Platform.OS === 'ios' ? 'black' : 'white',
+    color: 'black',
   },
   moment: {
     color: '#666',

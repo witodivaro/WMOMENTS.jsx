@@ -1,5 +1,5 @@
-import {useNavigation} from '@react-navigation/core';
-import React, {useCallback, useMemo, useState, useEffect} from 'react';
+import { useNavigation } from '@react-navigation/core';
+import React, { useCallback, useMemo, useState, useEffect } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,23 +10,23 @@ import {
   Image,
   ScrollView,
 } from 'react-native';
-import {useDispatch, useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import COLORS from '../../constants/colors';
 import {
   createMomentByIdSelector,
   createSameDateMomentImagesAndIDsSelector,
 } from '../../redux/moments/moments.selectors';
-import {HeaderButtons, Item} from 'react-navigation-header-buttons';
+import { HeaderButtons, Item } from 'react-navigation-header-buttons';
 import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
 import Modal from 'react-native-modal';
-import {removeMoment} from '../../redux/moments/moments.thunks';
+import { removeMoment } from '../../redux/moments/moments.thunks';
 import Carousel from 'react-native-snap-carousel';
 import MomentDetails from '../../components/moment-details/moment-details.component';
 const NoImage = require('../../assets/no-image.png');
 
 const DEVICE_WIDTH = Dimensions.get('window').width;
 
-const renderMomentImage = ({item}) => (
+const renderMomentImage = ({ item }) => (
   <Image
     style={styles.image}
     source={
@@ -40,10 +40,10 @@ const renderMomentImage = ({item}) => (
   />
 );
 
-const MomentDetailsScreen = ({route}) => {
+const MomentDetailsScreen = ({ route }) => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const {momentId} = route.params;
+  const { momentId } = route.params;
 
   const sameDateMomentImagesAndIDs = useSelector(
     createSameDateMomentImagesAndIDsSelector(momentId),
@@ -54,7 +54,7 @@ const MomentDetailsScreen = ({route}) => {
   );
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
-  const {id, title} = memoizedSelectedMoment;
+  const { id, title } = memoizedSelectedMoment;
 
   useEffect(() => {
     if (selectedMoment) {
@@ -63,7 +63,9 @@ const MomentDetailsScreen = ({route}) => {
   }, [selectedMoment]);
 
   const toggleDeleteModalVisible = useCallback(() => {
-    setIsDeleteModalVisible((isDeleteModalVisible) => !isDeleteModalVisible);
+    setIsDeleteModalVisible(
+      prevIsDeleteModalVisible => !prevIsDeleteModalVisible,
+    );
   }, [setIsDeleteModalVisible]);
 
   useEffect(() => {
@@ -72,7 +74,7 @@ const MomentDetailsScreen = ({route}) => {
         <HeaderButtons HeaderButtonComponent={EvilHeaderButton}>
           <Item
             iconName="trash"
-            color={Platform.OS === 'ios' ? COLORS.primary : 'white'}
+            color={COLORS.primary}
             iconSize={30}
             onPress={toggleDeleteModalVisible}
           />
@@ -80,22 +82,22 @@ const MomentDetailsScreen = ({route}) => {
       ),
       title,
     });
-  }, [navigation, id, toggleDeleteModalVisible]);
+  }, [navigation, id, toggleDeleteModalVisible, title]);
 
   const deleteMomentHandler = useCallback(() => {
-    dispatch(removeMoment({id}));
+    dispatch(removeMoment({ id }));
     toggleDeleteModalVisible();
     navigation.navigate('moments');
-  }, [dispatch, removeMoment, id]);
+  }, [dispatch, id, toggleDeleteModalVisible, navigation]);
 
   const renderedCarousel = useMemo(() => {
     const selectedMomentIndex = sameDateMomentImagesAndIDs.indexOf(
       sameDateMomentImagesAndIDs.find(
-        (momentImageAndID) => momentImageAndID.id === memoizedSelectedMoment.id,
+        momentImageAndID => momentImageAndID.id === memoizedSelectedMoment.id,
       ),
     );
 
-    const scrollToMomentHandler = (index) => {
+    const scrollToMomentHandler = index => {
       switch (index) {
         case selectedMomentIndex - 1:
           navigation.setParams({
@@ -124,9 +126,7 @@ const MomentDetailsScreen = ({route}) => {
         renderItem={renderMomentImage}
         sliderWidth={DEVICE_WIDTH}
         itemWidth={DEVICE_WIDTH}
-        style={{
-          height: 200,
-        }}
+        style={styles.carousel}
         lockScrollWhileSnapping={true}
       />
     );
@@ -202,6 +202,9 @@ const styles = StyleSheet.create({
   image: {
     height: DEVICE_WIDTH,
     width: '100%',
+  },
+  carousel: {
+    height: 200,
   },
 });
 

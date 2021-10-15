@@ -1,12 +1,17 @@
-import {useNavigation} from '@react-navigation/core';
-import React, {useCallback} from 'react';
-import {StyleSheet, ScrollView, View, Text, Platform} from 'react-native';
-import MapPreview from '../map-preview/map-preview.component';
+import { useNavigation } from '@react-navigation/core';
+import React, { useCallback } from 'react';
+import { StyleSheet, View, Text } from 'react-native';
 import momentDateFormatter from 'moment-mini';
-import COLORS from '../../constants/colors';
+import Share from 'react-native-share';
+import RNFS from 'react-native-fs';
 
-const MomentDetails = ({moment}) => {
-  const {lat, lng, date} = moment;
+import MapPreview from '../map-preview/map-preview.component';
+import COLORS from '../../constants/colors';
+import Button from '../common/button/button';
+import { createShareMessage } from '../../utils/messages';
+
+const MomentDetails = ({ moment }) => {
+  const { lat, lng, date, title } = moment;
   const navigation = useNavigation();
 
   const navigateToMapHandler = useCallback(() => {
@@ -19,11 +24,26 @@ const MomentDetails = ({moment}) => {
     });
   }, [lat, lng, navigation]);
 
+  const share = async () => {
+    const imagePath = await RNFS.readFile(moment.imagePath, 'base64');
+
+    await Share.open({
+      message: createShareMessage({ title, date }),
+      url: `data:image/png;base64,${imagePath}`,
+      title: 'WMoments',
+    });
+  };
+
   return (
     <View style={styles.momentDetails}>
-      <Text style={styles.date}>
-        {momentDateFormatter(date).format('hh:mm A')}
-      </Text>
+      <View style={styles.metadataContainer}>
+        <Text style={styles.date}>
+          {momentDateFormatter(date).format('hh:mm A')}
+        </Text>
+        <Button style={styles.shareButton} onPress={share}>
+          <Text style={styles.shareText}>Share</Text>
+        </Button>
+      </View>
       <MapPreview
         location={{
           lat,
@@ -48,10 +68,26 @@ const styles = StyleSheet.create({
   date: {
     padding: 10,
     borderColor: COLORS.primary,
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
-    backgroundColor: Platform.OS === 'ios' ? 'transparent' : COLORS.primary,
+    color: COLORS.primary,
+    backgroundColor: 'transparent',
     fontSize: 16,
     borderWidth: 1,
+    borderRadius: 5,
+  },
+  shareButton: {
+    padding: 10,
+    borderWidth: 1,
+    borderRadius: 5,
+    borderColor: COLORS.primary,
+  },
+  shareText: {
+    color: COLORS.primary,
+  },
+  metadataContainer: {
+    width: '100%',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
     marginBottom: 10,
   },
 });

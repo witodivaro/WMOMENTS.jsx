@@ -1,5 +1,5 @@
 import moment from 'moment-mini';
-import React, {useState, useMemo, useCallback} from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import {
   Button,
   FlatList,
@@ -12,17 +12,17 @@ import {
 import COLORS from '../../constants/colors';
 import MomentItem from '../moment-item/moment-item.component';
 
-const renderMomentItem = ({item}) => {
+const renderMomentItem = ({ item }) => {
   return <MomentItem key={item.id.toString()} item={item} />;
 };
 
-const MomentsGroup = ({date, moments}) => {
+const MomentsGroup = ({ date, moments }) => {
   const formattedDate = moment(date).format('MMMM Do YYYY');
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleIsExpandedHandler = useCallback(() => {
-    setIsExpanded((isExpanded) => !isExpanded);
+    setIsExpanded(isExpanded => !isExpanded);
   }, []);
 
   const renderedMoments = useMemo(
@@ -31,7 +31,7 @@ const MomentsGroup = ({date, moments}) => {
         <View style={styles.momentsContainer}>
           <FlatList
             data={moments}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={item => item.id.toString()}
             renderItem={renderMomentItem}
             accessibilityLabel="moments list"
           />
@@ -48,7 +48,7 @@ const MomentsGroup = ({date, moments}) => {
       style={styles.group}>
       <View style={styles.groupDateContainer}>
         <Text
-          style={[styles.date, {textAlign: isExpanded ? 'left' : 'center'}]}>
+          style={[styles.date, { textAlign: isExpanded ? 'left' : 'center' }]}>
           {formattedDate}
         </Text>
       </View>
@@ -65,13 +65,13 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderRadius: 20,
     shadowOpacity: 0.26,
-    backgroundColor: Platform.OS === 'ios' ? '#fff' : COLORS.primary,
+    backgroundColor: '#fff',
     borderColor: COLORS.primary,
     elevation: 5,
   },
   date: {
     fontSize: 20,
-    color: Platform.OS === 'ios' ? COLORS.primary : '#fff',
+    color: COLORS.primary,
   },
   momentsContainer: {
     marginTop: 20,
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     textAlign: 'center',
-    color: Platform.OS === 'ios' ? COLORS.primary : 'white',
+    color: COLORS.primary,
   },
 });
 
