@@ -1,20 +1,19 @@
-import React, {useState} from 'react';
-import {Button, StyleSheet, Image, Text, View} from 'react-native';
+import React, { useState } from 'react';
+import { Button, StyleSheet, Image, Text, View } from 'react-native';
 import COLORS from '../../constants/colors';
 
-import {launchCamera} from 'react-native-image-picker';
+import { launchCamera } from 'react-native-image-picker';
 
-const ImageSelector = ({onImageTaken}) => {
-  const [imageUrl, setImageUrl] = useState('');
+const ImageSelector = ({ uri, onImageTaken }) => {
   const [error, setError] = useState('');
 
   const takeImageHadler = () => {
     launchCamera(
       {
         mediaType: 'photo',
-        quality: 0.5,
+        quality: 1,
       },
-      (response) => {
+      response => {
         if (response.errorCode) {
           let errorMessage = '';
           switch (response.errorCode) {
@@ -30,17 +29,16 @@ const ImageSelector = ({onImageTaken}) => {
           }
           setError(errorMessage);
         }
-        setImageUrl(response.uri);
         onImageTaken(response.uri);
       },
     );
   };
 
-  const renderedImage = imageUrl ? (
+  const renderedImage = uri ? (
     <Image
       style={styles.image}
       source={{
-        uri: imageUrl,
+        uri,
       }}
     />
   ) : (

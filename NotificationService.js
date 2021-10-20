@@ -1,4 +1,3 @@
-import {Platform} from 'react-native';
 import PushNotification from 'react-native-push-notification';
 import NotificationHandler from './NotificationHandler';
 import NOTIFICATION_ID from './src/config/notification-id';
@@ -20,7 +19,7 @@ export default class NotificationService {
         importance: 4,
         vibrate: true,
       },
-      (created) =>
+      created =>
         console.log(
           `createChannel 'default-channel-id' returned '${created}' `,
         ),
@@ -46,8 +45,8 @@ export default class NotificationService {
 
     this.scheduleNotification({
       id: NOTIFICATION_ID.REMINDER,
-      title: `Hey! How's it going?`,
-      message: `Add your current moment to remember about it!`,
+      title: "Hey! How's it going?",
+      message: 'Add your current moment to remember about it!',
       delay: process.env.NODE_ENV === 'development' ? 5 * 1000 : ONE_HOUR,
     });
   }
@@ -58,7 +57,7 @@ export default class NotificationService {
     });
   }
 
-  scheduleNotification({id, delay, title, message}) {
+  scheduleNotification({ id, delay, title, message }) {
     PushNotification.localNotificationSchedule({
       date: new Date(Date.now() + delay),
       channelId: 'default-channel-id',
@@ -73,7 +72,7 @@ export default class NotificationService {
     });
   }
 
-  cancelNotification({id}) {
+  cancelNotification({ id }) {
     PushNotification.cancelLocalNotifications({
       id: id,
     });
