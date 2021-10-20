@@ -1,8 +1,9 @@
 import PushNotification from 'react-native-push-notification';
+
 import NotificationHandler from './NotificationHandler';
 import NOTIFICATION_ID from './src/config/notification-id';
 
-export default class NotificationService {
+class NotificationService {
   constructor() {
     this.lastId = 0;
 
@@ -73,9 +74,7 @@ export default class NotificationService {
   }
 
   cancelNotification({ id }) {
-    PushNotification.cancelLocalNotifications({
-      id: id,
-    });
+    PushNotification.cancelLocalNotification(id);
   }
 
   checkPermission(cb) {
@@ -90,3 +89,5 @@ export default class NotificationService {
     };
   }
 }
+
+export default new NotificationService();

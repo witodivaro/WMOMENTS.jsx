@@ -4,7 +4,6 @@ import {
   StyleSheet,
   Text,
   View,
-  Platform,
   Button,
   Dimensions,
   Image,
@@ -49,9 +48,8 @@ const MomentDetailsScreen = ({ route }) => {
     createSameDateMomentImagesAndIDsSelector(momentId),
   );
   const selectedMoment = useSelector(createMomentByIdSelector(momentId));
-  const [memoizedSelectedMoment, setMemoizedSelectedMoment] = useState(
-    selectedMoment,
-  );
+  const [memoizedSelectedMoment, setMemoizedSelectedMoment] =
+    useState(selectedMoment);
   const [isDeleteModalVisible, setIsDeleteModalVisible] = useState(false);
 
   const { id, title } = memoizedSelectedMoment;

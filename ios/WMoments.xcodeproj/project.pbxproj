@@ -19,6 +19,7 @@
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
 		9D3CB0EF989CACA241A973D5 /* libPods-WMoments-WMomentsTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B458BBA76FA8334C2AF8FA1 /* libPods-WMoments-WMomentsTests.a */; };
 		9D8D67D49D36DA74184482AD /* libPods-WMoments-tvOSTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 65312A86D2E483B27E6087B3 /* libPods-WMoments-tvOSTests.a */; };
+		D8462A1F27205D7700E04523 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8462A1E27205D7700E04523 /* File.swift */; };
 		F62F74517030C86AE20E7934 /* libPods-WMoments.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C755382E2A460E49D421FF8 /* libPods-WMoments.a */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +65,8 @@
 		BCF5289237CA5A99F8C4798A /* Pods-WMoments-tvOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOS.debug.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOS/Pods-WMoments-tvOS.debug.xcconfig"; sourceTree = "<group>"; };
 		BD76E79E829875AC1D982B3D /* Pods-WMoments.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments.debug.xcconfig"; path = "Target Support Files/Pods-WMoments/Pods-WMoments.debug.xcconfig"; sourceTree = "<group>"; };
 		C4AAEFFD954B7573350B6394 /* Pods-WMoments-tvOSTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WMoments-tvOSTests.release.xcconfig"; path = "Target Support Files/Pods-WMoments-tvOSTests/Pods-WMoments-tvOSTests.release.xcconfig"; sourceTree = "<group>"; };
+		D8462A1D27205D7600E04523 /* WMoments-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WMoments-Bridging-Header.h"; sourceTree = "<group>"; };
+		D8462A1E27205D7700E04523 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		DECAE610AC8D71C7625C5295 /* libPods-WMoments-tvOS.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WMoments-tvOS.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
@@ -147,6 +150,8 @@
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
+				D8462A1E27205D7700E04523 /* File.swift */,
+				D8462A1D27205D7600E04523 /* WMoments-Bridging-Header.h */,
 			);
 			name = WMoments;
 			sourceTree = "<group>";
@@ -295,7 +300,7 @@
 						TestTargetID = 13B07F861A680F5B00A75B9A;
 					};
 					13B07F861A680F5B00A75B9A = {
-						LastSwiftMigration = 1120;
+						LastSwiftMigration = 1300;
 					};
 					2D02E47A1E0B4A5D006451C7 = {
 						CreatedOnToolsVersion = 8.2.1;
@@ -674,6 +679,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */,
+				D8462A1F27205D7700E04523 /* File.swift in Sources */,
 				13B07FC11A68108700A75B9A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -715,6 +721,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = AAE06A460AADC222AA29DDB0 /* Pods-WMoments-WMomentsTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -738,6 +745,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 28EEC7B22B284DA45F19985C /* Pods-WMoments-WMomentsTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
 				INFOPLIST_FILE = WMomentsTests/Info.plist;
@@ -763,7 +771,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = WMoments/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -773,6 +781,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wmoments;
 				PRODUCT_NAME = WMoments;
+				SWIFT_OBJC_BRIDGING_HEADER = "WMoments-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -787,7 +796,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				INFOPLIST_FILE = WMoments/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
@@ -797,6 +806,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.itechart.wmoments;
 				PRODUCT_NAME = WMoments;
+				SWIFT_OBJC_BRIDGING_HEADER = "WMoments-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};

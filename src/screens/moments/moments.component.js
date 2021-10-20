@@ -3,17 +3,16 @@ import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
-import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
-import COLORS from '../../constants/colors';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectMomentsListStructuredByDate } from '../../redux/moments/moments.selectors';
-import { fetchMomentsFromDB } from '../../redux/moments/moments.thunks';
-import NotificationService from '../../../NotificationService';
-import MomentsGroup from '../../components/moments-group/moments-group.component';
-import Button from '../../components/common/button/button';
 import { launchCamera } from 'react-native-image-picker';
 
-const Notifications = new NotificationService();
+import { selectMomentsListStructuredByDate } from '../../redux/moments/moments.selectors';
+import EvilHeaderButton from '../../components/evil-header-button/evil-header-button.component';
+import { fetchMomentsFromDB } from '../../redux/moments/moments.thunks';
+import Notifications from '../../../NotificationService';
+import MomentsGroup from '../../components/moments-group/moments-group.component';
+import Button from '../../components/common/button/button';
+import COLORS from '../../constants/colors';
 
 const renderMomentGroup = ({ item }) => {
   const [momentDate, moments] = item;

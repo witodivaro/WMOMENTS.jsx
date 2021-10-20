@@ -11,6 +11,7 @@ import {
   AsyncStorage,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
+
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';

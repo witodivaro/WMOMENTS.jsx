@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import { SafeAreaView, StyleSheet, AppState } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
+import SplashScreen from 'react-native-splash-screen';
 
 import PlacesStackNavigator from './src/navigators/stack/places/places.navigator';
 import { init } from './src/db/db';
-import SplashScreen from 'react-native-splash-screen';
-import NotificationService from './NotificationService';
+import Notifications from './NotificationService';
 
 if (process.env.NODE_ENV === 'development') {
   init()
@@ -19,8 +19,6 @@ if (process.env.NODE_ENV === 'development') {
 } else {
   init();
 }
-
-const Notifications = new NotificationService();
 
 const App = () => {
   useEffect(() => {

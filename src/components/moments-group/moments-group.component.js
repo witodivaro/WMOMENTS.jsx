@@ -1,9 +1,7 @@
 import moment from 'moment-mini';
 import React, { useState, useMemo, useCallback } from 'react';
 import {
-  Button,
-  FlatList,
-  Platform,
+  LayoutAnimation,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -12,29 +10,23 @@ import {
 import COLORS from '../../constants/colors';
 import MomentItem from '../moment-item/moment-item.component';
 
-const renderMomentItem = ({ item }) => {
-  return <MomentItem key={item.id.toString()} item={item} />;
-};
-
 const MomentsGroup = ({ date, moments }) => {
   const formattedDate = moment(date).format('MMMM Do YYYY');
 
   const [isExpanded, setIsExpanded] = useState(false);
 
   const toggleIsExpandedHandler = useCallback(() => {
-    setIsExpanded(isExpanded => !isExpanded);
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.spring);
+    setIsExpanded(newIsExpanded => !newIsExpanded);
   }, []);
 
   const renderedMoments = useMemo(
     () =>
       isExpanded ? (
         <View style={styles.momentsContainer}>
-          <FlatList
-            data={moments}
-            keyExtractor={item => item.id.toString()}
-            renderItem={renderMomentItem}
-            accessibilityLabel="moments list"
-          />
+          {moments.map(item => (
+            <MomentItem key={item.id} item={item} />
+          ))}
           <Text style={styles.closeText}>Touch to close</Text>
         </View>
       ) : null,
@@ -47,8 +39,7 @@ const MomentsGroup = ({ date, moments }) => {
       onPress={toggleIsExpandedHandler}
       style={styles.group}>
       <View style={styles.groupDateContainer}>
-        <Text
-          style={[styles.date, { textAlign: isExpanded ? 'left' : 'center' }]}>
+        <Text style={[styles.date, isExpanded ? styles.textLeft : null]}>
           {formattedDate}
         </Text>
       </View>
@@ -68,12 +59,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
     borderColor: COLORS.primary,
     elevation: 5,
+    overflow: 'hidden',
   },
   date: {
     fontSize: 20,
     color: COLORS.primary,
+    textAlign: 'center',
   },
   momentsContainer: {
+    position: 'relative',
     marginTop: 20,
   },
   actionContainer: {
@@ -84,6 +78,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     color: COLORS.primary,
+  },
+  textLeft: {
+    textAlign: 'left',
   },
 });
 
