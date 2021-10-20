@@ -1,18 +1,9 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
-
 import React, { useEffect } from 'react';
-import { SafeAreaView, StatusBar, StyleSheet, AppState } from 'react-native';
+import { SafeAreaView, StyleSheet, AppState } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 
 import PlacesStackNavigator from './src/navigators/stack/places/places.navigator';
 import { init } from './src/db/db';
-import COLORS from './src/constants/colors';
 import SplashScreen from 'react-native-splash-screen';
 import NotificationService from './NotificationService';
 

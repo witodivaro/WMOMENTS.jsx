@@ -1,55 +1,59 @@
-import React, {useState} from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
-import {useDispatch} from 'react-redux';
-import COLORS from '../../constants/colors';
-import {setLocation} from '../../redux/new-moment/new-moment.slice';
+import React, { useState } from 'react';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import MapView, { Marker } from 'react-native-maps';
 
-const MapScreen = ({navigation, route}) => {
-  const dispatch = useDispatch();
-  const selectedLocation = route.params?.selectedLocation || null;
-  const unchangable = route.params?.unchangable || false;
+import COLORS from '../../constants/colors';
+
+const MapScreen = ({ navigation, route }) => {
+  const { unchangable = false, location = { lat: 37.78, lng: -122.43 } } =
+    route.params;
   const [touched, setTouched] = useState(false);
 
-  const [unsavedSelectedLocation, setUnsavedSelectedLocation] = useState(
-    selectedLocation,
-  );
-
-  const mapRegion = {
-    latitude: unsavedSelectedLocation?.lat || selectedLocation?.lat || 37.78,
-    longitude: unsavedSelectedLocation?.lng || selectedLocation?.lng || -122.43,
+  const [mapRegion, setMapRegion] = useState({
+    latitude: location.lat,
+    longitude: location.lng,
     latitudeDelta: 0.01,
     longitudeDelta: 0.01,
-  };
+  });
 
-  const selectLocationHandler = (e) => {
-    if (unchangable) return;
+  const [selectedLocation, setSelectedLocation] = useState(location);
+
+  const selectLocationHandler = e => {
+    if (unchangable) {
+      return;
+    }
 
     setTouched(true);
-    const {longitude, latitude} = e.nativeEvent.coordinate;
-    setUnsavedSelectedLocation({
+    const { longitude, latitude } = e.nativeEvent.coordinate;
+
+    setSelectedLocation({
       lng: longitude,
       lat: latitude,
+    });
+
+    setMapRegion({
+      ...mapRegion,
+      latitude,
+      longitude,
     });
   };
 
   const saveLocationHandler = () => {
-    dispatch(setLocation(unsavedSelectedLocation));
-    navigation.navigate('new-moment');
+    navigation.navigate('new-moment', { selectedLocation });
   };
 
-  const renderedMarker = unsavedSelectedLocation ? (
+  const renderedMarker = selectedLocation ? (
     <Marker
       title="Selected location"
       coordinate={{
-        latitude: unsavedSelectedLocation.lat,
-        longitude: unsavedSelectedLocation.lng,
+        latitude: selectedLocation.lat,
+        longitude: selectedLocation.lng,
       }}
     />
   ) : null;
 
   const renderedSaveButton =
-    unsavedSelectedLocation && touched ? (
+    selectedLocation && touched ? (
       <TouchableOpacity style={styles.button} onPress={saveLocationHandler}>
         <Text style={styles.text}>Save</Text>
       </TouchableOpacity>

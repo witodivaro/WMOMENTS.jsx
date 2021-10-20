@@ -1,78 +1,51 @@
-import React, {useState, useEffect} from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
   View,
   Button,
-  PermissionsAndroid,
   ActivityIndicator,
 } from 'react-native';
 import COLORS from '../../constants/colors';
 import Geolocation from 'react-native-geolocation-service';
 import MapPreview from '../map-preview/map-preview.component';
-import {useNavigation} from '@react-navigation/core';
-import {useDispatch, useSelector} from 'react-redux';
-import {selectNewMomentSelectedLocation} from '../../redux/new-moment/new-moment.selectors';
-import {setLocation} from '../../redux/new-moment/new-moment.slice';
+import { useNavigation } from '@react-navigation/core';
+import getGeolocationPermission from '../../helpers/permissions/getGeolocationPermission';
 
-const LocationPicker = () => {
-  const [error, setError] = useState('');
-  const [position, setPosition] = useState(null);
+const LocationPicker = ({ location, onLocationPick }) => {
+  const [error, setError] = useState(null);
   const [isFetching, setIsFetching] = useState(false);
-  const selectedLocation = useSelector(selectNewMomentSelectedLocation);
   const navigation = useNavigation();
-  const dispatch = useDispatch();
+
+  const getGeolocationHandler = useCallback(async () => {
+    await getGeolocationPermission();
+    setIsFetching(true);
+
+    Geolocation.getCurrentPosition(
+      newPosition => {
+        const newLocation = {
+          lat: newPosition.coords.latitude,
+          lng: newPosition.coords.longitude,
+        };
+
+        onLocationPick(newLocation);
+        setIsFetching(false);
+      },
+      getPositionError => {
+        setError(getPositionError.message);
+        setIsFetching(false);
+      },
+      { enableHighAccuracy: true, timeout: 15000, showLocationDialog: true },
+    );
+  }, [onLocationPick]);
 
   useEffect(() => {
-    if (selectedLocation) {
-      setPosition({
-        lat: selectedLocation.lat,
-        lng: selectedLocation.lng,
-      });
-    }
-  }, [selectedLocation]);
-
-  const getGeolocationHandler = () => {
-    const getPermission = async () => {
-      if (Platform.OS === 'ios') {
-        Geolocation.requestAuthorization('whenInUse');
-      }
-
-      if (Platform.OS === 'android') {
-        await PermissionsAndroid.request(
-          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
-        );
-      }
-    };
-
-    const getLocation = async () => {
-      await getPermission();
-      setIsFetching(true);
-
-      Geolocation.getCurrentPosition(
-        (position) => {
-          const newLocation = {
-            lat: position.coords.latitude,
-            lng: position.coords.longitude,
-          };
-
-          dispatch(setLocation(newLocation));
-          setIsFetching(false);
-        },
-        (error) => {
-          setError(error.message);
-          setIsFetching(false);
-        },
-        {enableHighAccuracy: true, timeout: 15000, showLocationDialog: true},
-      );
-    };
-
-    getLocation();
-  };
+    getGeolocationHandler();
+  }, [getGeolocationHandler]);
 
   const pickOnMapHandler = () => {
     navigation.navigate('map', {
-      selectedLocation: selectedLocation,
+      selectedLocation: location,
     });
   };
 
@@ -86,7 +59,7 @@ const LocationPicker = () => {
 
   return (
     <View style={styles.locationPicker}>
-      <MapPreview onPress={pickOnMapHandler} location={position}>
+      <MapPreview onPress={pickOnMapHandler} location={location}>
         {renderedPositionFallback}
       </MapPreview>
       <View style={styles.buttonContainer}>
@@ -114,7 +87,6 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   mapPreview: {
-    marginBottom: 10,
     width: '100%',
     height: 150,
     borderColor: '#ccc',

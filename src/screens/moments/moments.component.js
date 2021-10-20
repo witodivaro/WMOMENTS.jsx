@@ -1,5 +1,5 @@
 import React, { useMemo, useCallback } from 'react';
-import { FlatList, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, Text, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import { useEffect } from 'react';
 import { HeaderButtons, Item } from 'react-navigation-header-buttons';
@@ -11,6 +11,7 @@ import { fetchMomentsFromDB } from '../../redux/moments/moments.thunks';
 import NotificationService from '../../../NotificationService';
 import MomentsGroup from '../../components/moments-group/moments-group.component';
 import Button from '../../components/common/button/button';
+import { launchCamera } from 'react-native-image-picker';
 
 const Notifications = new NotificationService();
 
@@ -33,6 +34,36 @@ const MomentsScreen = () => {
     Notifications.attachNotificationHandler(notificationOpenHandler);
   }, [navigation]);
 
+  const addNewMomentHandler = useCallback(() => {
+    launchCamera(
+      {
+        mediaType: 'photo',
+        quality: 1,
+      },
+      response => {
+        if (response.errorCode) {
+          let errorMessage = '';
+
+          switch (response.errorCode) {
+            case 'camera_unavailable':
+              errorMessage = 'Camera is unavailable on your device.';
+              break;
+            case 'permission':
+              errorMessage = 'Application has no permissions to use camera.';
+              break;
+            case 'other':
+              errorMessage = response.errorMessage;
+              break;
+          }
+
+          return Alert.alert(errorMessage);
+        }
+
+        navigation.navigate('new-moment', { uri: response.uri });
+      },
+    );
+  }, [navigation]);
+
   useEffect(() => {
     dispatch(fetchMomentsFromDB());
 
@@ -43,17 +74,12 @@ const MomentsScreen = () => {
             iconName="plus"
             color={COLORS.primary}
             iconSize={35}
-            onPress={() => navigation.navigate('new-moment')}
+            onPress={addNewMomentHandler}
           />
         </HeaderButtons>
       ),
     });
-  }, [dispatch, navigation]);
-
-  const navigateToNewMomentsHandler = useCallback(() => {
-    console.log(1);
-    navigation.navigate('new-moment');
-  }, [navigation]);
+  }, [dispatch, navigation, addNewMomentHandler]);
 
   const renderedContent = useMemo(() => {
     const momentDates = Object.keys(structuredMoments);
@@ -62,7 +88,7 @@ const MomentsScreen = () => {
       return (
         <View style={styles.noMoments}>
           <Text style={styles.noMomentsText}>You have no moments saved!</Text>
-          <Button onPress={navigateToNewMomentsHandler}>
+          <Button onPress={addNewMomentHandler}>
             <Text style={styles.buttonText}>Add new moment</Text>
           </Button>
         </View>
@@ -79,7 +105,7 @@ const MomentsScreen = () => {
         renderItem={renderMomentGroup}
       />
     );
-  }, [structuredMoments, navigateToNewMomentsHandler]);
+  }, [structuredMoments, addNewMomentHandler]);
 
   return <View style={styles.screen}>{renderedContent}</View>;
 };

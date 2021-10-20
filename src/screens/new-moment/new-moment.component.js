@@ -1,5 +1,5 @@
-import { useNavigation } from '@react-navigation/native';
-import React, { useState, useEffect } from 'react';
+import { useNavigation, useRoute } from '@react-navigation/native';
+import React, { useCallback, useEffect, useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -8,38 +8,75 @@ import {
   TextInput,
   ScrollView,
   Alert,
-  Platform,
+  AsyncStorage,
 } from 'react-native';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import ImageSelector from '../../components/image-selector/image-selector.component';
 import LocationPicker from '../../components/location-picker/location-picker.component';
 import COLORS from '../../constants/colors';
 
 import { addMoment } from '../../redux/moments/moments.thunks';
-import { selectNewMomentSelectedLocation } from '../../redux/new-moment/new-moment.selectors';
 
 const NewMomentScreen = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const selectedLocation = useSelector(selectNewMomentSelectedLocation);
+  const route = useRoute();
+
+  const { uri, selectedLocation } = route.params;
   const [titleValue, setTitleValue] = useState('');
-  const [imageUri, setImageUri] = useState('');
-  const [location, setLocation] = useState('');
+  const [imageUri, setImageUri] = useState(uri);
+  const [location, setLocation] = useState(selectedLocation);
 
   useEffect(() => {
-    if (selectedLocation) {
-      setLocation({
-        lat: selectedLocation.lat,
-        lng: selectedLocation.lng,
-      });
+    if (uri) {
+      setImageUri(uri);
     }
-  }, [selectedLocation]);
 
-  const titleChangeHandler = text => {
+    if (selectedLocation) {
+      setLocation(selectedLocation);
+    }
+  }, [uri, selectedLocation]);
+
+  useEffect(() => {
+    const saveMomentInStorage = async () => {
+      await AsyncStorage.setItem('new_uri', uri);
+      await AsyncStorage.setItem('new_location', location);
+    };
+
+    saveMomentInStorage();
+  }, [uri, location]);
+
+  useEffect(() => {
+    const getMomentFromStorage = async () => {
+      const storedLocation = await AsyncStorage.getItem('new_location');
+      const storedUri = await AsyncStorage.getItem('new_uri');
+      const storedTitle = await AsyncStorage.getItem('new_title');
+      if (storedLocation) {
+        setLocation(storedLocation);
+      }
+
+      if (storedUri) {
+        setImageUri(storedUri);
+      }
+
+      if (storedTitle) {
+        setTitleValue(storedTitle);
+      }
+    };
+    getMomentFromStorage();
+  }, []);
+
+  const locationChangeHandler = useCallback(async newLocation => {
+    setLocation(newLocation);
+    await AsyncStorage.setItem('new_location', newLocation);
+  }, []);
+
+  const titleChangeHandler = async text => {
+    await AsyncStorage.setItem('new_title', text);
     setTitleValue(text);
   };
 
-  const saveLocationHandler = () => {
+  const saveLocationHandler = async () => {
     if (!titleValue) {
       Alert.alert('Invalid title.', 'Input the valid location title!', [
         {
@@ -65,18 +102,24 @@ const NewMomentScreen = () => {
         imagePath: imageUri,
       }),
     );
+
+    await AsyncStorage.clear();
     navigation.navigate('moments');
   };
 
-  const imageTakenHandler = uri => {
-    setImageUri(uri);
+  const imageTakenHandler = async newUri => {
+    await AsyncStorage.setItem('new_title', newUri);
+    setImageUri(newUri);
   };
 
   return (
     <ScrollView>
       <View style={styles.form}>
-        <ImageSelector onImageTaken={imageTakenHandler} />
-        <LocationPicker />
+        <ImageSelector uri={imageUri} onImageTaken={imageTakenHandler} />
+        <LocationPicker
+          location={location}
+          onLocationPick={locationChangeHandler}
+        />
         <View style={styles.titleSelector}>
           <Text style={styles.label}>Title</Text>
           <TextInput
